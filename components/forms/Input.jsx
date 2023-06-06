@@ -31,7 +31,7 @@ const Input = ({
             type={showPassword ? "text" : "password"}
             name={name}
             id={name}
-            className={`flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-[#8A8A8A] transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-[#8A8A8A] focus:border-[#929292] ${classNames}`}
+            className={`flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-[#8A8A8A] focus:border-[#929292] ${classNames}`}
             {...register(name, validationSchema)}
             {...rest}
           />
@@ -48,7 +48,7 @@ const Input = ({
           type={type}
           name={name}
           id={name}
-          className={`flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-[#8A8A8A] transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-[#8A8A8A] focus:border-[#929292] ${classNames}`}
+          className={`flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-[#8A8A8A] focus:border-[#929292] ${classNames}`}
           {...register(name, validationSchema)}
           {...rest}
         />

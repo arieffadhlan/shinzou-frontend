@@ -11,7 +11,7 @@ import Label from "@/components/forms/Label";
 const validationSchema = yup.object().shape({
   emailPhone: yup.string().required("Email atau nomor telepon wajib diisi."),
   password: yup.string().min(8).required("Password wajib diisi."),
-})
+});
 
 const Login = () => {  
   const {
