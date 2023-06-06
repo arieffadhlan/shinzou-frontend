@@ -30,7 +30,7 @@ const ButtonLink = ({
     <button
       type="button"
       onClick={() => router.push(href)}
-      className={`flex justify-center items-center gap-1 py-3 px-6 rounded-2xl font-medium ${classNames}`}
+      className={`flex justify-center items-center gap-1 px-6 py-3 rounded-2xl font-medium text-white ${classNames}`}
       {...rest}
     >
       {children}

@@ -5,7 +5,7 @@ import SearchIcon from '../assets/fi_search.png'
 import MasukIcon from '../assets/fi_log-in.png'
 import React from 'react'
 
-function navbar() {
+function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-20 font-poppins shadow-lg bg-white">
         <div className="max-w-full m-auto flex flex-wrap justify-between items-center px-10 py-4">
@@ -36,7 +36,7 @@ function navbar() {
                 </div>
             </div>
             
-            <div className="flex bg-boldPurple px-4 py-3.5 rounded-[12px]">
+            <div className="flex bg-primary-4 px-4 py-3.5 rounded-[12px]">
                 <div className="btnIcon">
                     <Image
                         src={MasukIcon}
@@ -51,4 +51,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default Navbar
