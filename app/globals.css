@@ -16,3 +16,11 @@
 .Toastify__toast-theme--light.Toastify__toast--error {
   @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-white;
 }
+
+.Toastify__toast-auth .Toastify {
+  @apply flex justify-center items-center;
+}
+
+.Toastify__toast-auth .Toastify .Toastify__toast-container--bottom-center {
+  @apply left-auto translate-x-0;
+}

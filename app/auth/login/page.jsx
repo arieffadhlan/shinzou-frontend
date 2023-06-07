@@ -12,9 +12,7 @@ import { ToastContainer } from "react-toastify";
 
 const validationSchema = yup.object().shape({
   emailPhone: yup.string().required("Email atau nomor telepon wajib diisi!"),
-  password: yup.string()
-    .min(8, "Password min 8 karakter!")
-    .required("Password wajib diisi!"),
+  password: yup.string().required("Password wajib diisi!"),
 });
 
 const Login = () => {  
@@ -50,6 +48,7 @@ const Login = () => {
               errors={errors}
               validationSchema={validationSchema}
               placeholder="Contoh: johndoe@gmail.com"
+              autoFocus
             />
             {errors["emailPhone"]?.message && <Alert type="error" message={errors["emailPhone"].message} />}
           </div>
@@ -78,7 +77,9 @@ const Login = () => {
         <span className="flex justify-center items-center text-sm text-black">
           Belum punya akun? &nbsp;<a href="#" className="font-bold text-primary-4">Daftar di sini</a>
         </span>
-        <ToastContainer />
+        <div className="Toastify__toast-auth">
+          <ToastContainer />
+        </div>
       </div>
     </>
   )

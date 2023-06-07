@@ -17,7 +17,7 @@ const Input = ({
   };
 
   const pickedVariant = inputVariants[variant];
-  const classNames = `${pickedVariant} ${className}`;
+  const classNames = `${pickedVariant} ${className} ${errors[name]?.message && "border-danger"}`;
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
