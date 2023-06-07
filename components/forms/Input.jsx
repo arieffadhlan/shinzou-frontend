@@ -24,7 +24,7 @@ const Input = ({
   }
 
   return (  
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       {type === "password" ? (
         <div className="relative">
           <input 
@@ -53,7 +53,6 @@ const Input = ({
           {...rest}
         />
       )}
-      {errors[name]?.message && <span className="text-sm text-danger">{errors[name].message}</span>}
     </div>
   );
 }

@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
+:root {
+  --toastify-toast-min-height: 52px !important;
+  --toastify-color-error: #990000 !important;
 }
 
-html {
+* {
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
-body {
-  @apply font-poppins;
+/* React Toastify */
+.Toastify__toast-theme--light.Toastify__toast--error {
+  @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-white;
 }

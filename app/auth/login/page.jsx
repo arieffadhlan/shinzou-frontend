@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
+import { ToastContainer } from "react-toastify";
 
 const validationSchema = yup.object().shape({
-  emailPhone: yup.string().required("Email atau nomor telepon wajib diisi."),
-  password: yup.string().min(8).required("Password wajib diisi."),
+  emailPhone: yup.string().required("Email atau nomor telepon wajib diisi!"),
+  password: yup.string()
+    .min(8, "Password min 8 karakter!")
+    .required("Password wajib diisi!"),
 });
 
 const Login = () => {  
@@ -21,15 +25,16 @@ const Login = () => {
     formState: { errors }
   } = useForm({
     resolver: yupResolver(validationSchema),
+    reValidateMode: "onSubmit"
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (formData) => {
+    console.log(formData);
     reset();
   }
   
   return (
-    <div className="flex-[100%] flex flex-col gap-6 px-6 xs:px-0 xl:px-[136px] xl:flex-[50%]">
+    <>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Masuk
       </h1>
@@ -46,6 +51,7 @@ const Login = () => {
               validationSchema={validationSchema}
               placeholder="Contoh: johndoe@gmail.com"
             />
+            {errors["emailPhone"]?.message && <Alert type="error" message={errors["emailPhone"].message} />}
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
@@ -63,6 +69,7 @@ const Login = () => {
               validationSchema={validationSchema}
               placeholder="Masukkan password"
             />
+            {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
           </div>
           <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
             Masuk
@@ -71,8 +78,9 @@ const Login = () => {
         <span className="flex justify-center items-center text-sm text-black">
           Belum punya akun? &nbsp;<a href="#" className="font-bold text-primary-4">Daftar di sini</a>
         </span>
+        <ToastContainer />
       </div>
-    </div>
+    </>
   )
 }
 

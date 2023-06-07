@@ -28,6 +28,9 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"], 
       },
+      padding: {
+        4.5: "1.125rem"
+      },
       screens: {
 				xs: "460px",
 			},
