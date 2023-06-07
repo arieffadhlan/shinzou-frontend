@@ -1,18 +1,25 @@
 "use client";
 
+import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required("Nama wajib diisi."),
-  email: yup.string().email("Email tidak valid.").required("Email wajib diisi."),
-  phoneNumber: yup.string().required("Nomor telepon wajib diisi."),
-  password: yup.string().min(8).required("Password wajib diisi."),
+  name: yup.string().required("Nama wajib diisi!"),
+  email: yup.string()
+    .required("Email wajib diisi!")
+    .email("Email tidak valid!"),
+  phoneNumber: yup.string().required("Nomor telepon wajib diisi!"),
+  password: yup.string()
+    .required("Password wajib diisi!")
+    .min(8, "Password min 8 karakter!")
 });
 
 const Register = () => {  
@@ -23,6 +30,7 @@ const Register = () => {
     formState: { errors }
   } = useForm({
     resolver: yupResolver(validationSchema),
+    reValidateMode: "onSubmit"
   });
 
   const onSubmit = (data) => {
@@ -31,7 +39,7 @@ const Register = () => {
   }
   
   return (
-    <div className="flex-[100%] flex flex-col gap-6 px-6 xs:px-0 xl:px-[136px] xl:flex-[50%]">
+    <>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Masuk
       </h1>
@@ -48,6 +56,7 @@ const Register = () => {
               validationSchema={validationSchema}
               placeholder="Nama Lengkap"
             />
+            {errors["name"]?.message && <Alert type="error" message={errors["name"].message} />}
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
@@ -60,6 +69,7 @@ const Register = () => {
               validationSchema={validationSchema}
               placeholder="Contoh: johndee@gmail.com"
             />
+            {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
           </div>
           <div className="flex flex-col gap-1">
             <Label id="phoneNumber">Nomor Telepon</Label>
@@ -72,6 +82,7 @@ const Register = () => {
               validationSchema={validationSchema}
               placeholder="+62 ."
             />
+            {errors["phoneNumber"]?.message && <Alert type="error" message={errors["phoneNumber"].message} />}
           </div>
           <div className="flex flex-col gap-1">
             <Label id="password">Buat Password</Label>
@@ -84,16 +95,20 @@ const Register = () => {
               validationSchema={validationSchema}
               placeholder="Buat Password"
             />
+            {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
           </div>
           <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
             Daftar
           </Button>
         </form>
         <span className="flex justify-center items-center text-sm text-black">
-          Sudah punya akun? &nbsp;<a href="#" className="font-bold text-primary-4">Masuk di sini</a>
+          Sudah punya akun? &nbsp;<Link href="/auth/login" className="font-bold text-primary-4">Masuk di sini</Link>
         </span>
+        <div className="Toastify__toast-auth">
+          <ToastContainer />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

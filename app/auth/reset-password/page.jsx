@@ -1,16 +1,22 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
 
 const validationSchema = yup.object().shape({
-  password: yup.string().min(8).required("Password wajib diisi."),
-  confirmationPassword: yup.string().min(8).required("Konfirmasi password wajib diisi."),
+  password: yup.string()
+    .required("Password wajib diisi!")
+    .min(8, "Password min 8 karakter!"),
+  confirmationPassword: yup.string()
+    .required("Konfirmasi password wajib diisi!")
+    .min(8, "Konfirmasi password min 8 karakter!")
 });
 
 const ResetPassword = () => {  
@@ -21,6 +27,7 @@ const ResetPassword = () => {
     formState: { errors }
   } = useForm({
     resolver: yupResolver(validationSchema),
+    reValidateMode: "onSubmit"
   });
 
   const onSubmit = (data) => {
@@ -29,7 +36,7 @@ const ResetPassword = () => {
   }
   
   return (
-    <div className="flex-[100%] flex flex-col gap-6 px-6 xs:px-0 xl:px-[136px] xl:flex-[50%]">
+    <>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Reset Password
       </h1>
@@ -45,6 +52,7 @@ const ResetPassword = () => {
             validationSchema={validationSchema}
             placeholder="Masukkan password baru"
           />
+          {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
         </div>
         <div className="flex flex-col gap-1">
           <Label id="confirmationPassword">Ulangi Password Baru</Label>
@@ -57,12 +65,16 @@ const ResetPassword = () => {
             validationSchema={validationSchema}
             placeholder="Ulangi password baru"
           />
+          {errors["confirmationPassword"]?.message && <Alert type="error" message={errors["confirmationPassword"].message} />}
         </div>
         <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
           Simpan
         </Button>
       </form>
-    </div>
+      <div className="Toastify__toast-auth">
+        <ToastContainer />
+      </div>
+    </>
   )
 }
 

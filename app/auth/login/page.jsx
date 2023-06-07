@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -8,11 +10,10 @@ import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
-import { ToastContainer } from "react-toastify";
 
 const validationSchema = yup.object().shape({
   emailPhone: yup.string().required("Email atau nomor telepon wajib diisi!"),
-  password: yup.string().required("Password wajib diisi!"),
+  password: yup.string().required("Password wajib diisi!")
 });
 
 const Login = () => {  
@@ -55,9 +56,9 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
               <Label id="password">Password</Label>
-              <a href="#" className="font-medium text-xs leading-[18px] text-primary-4">
+              <Link href="/auth/forgot-password" className="font-medium text-xs leading-[18px] text-primary-4">
                 Lupa Kata Sandi
-              </a>
+              </Link>
             </div>
             <Input
               type="password"
@@ -75,7 +76,7 @@ const Login = () => {
           </Button>
         </form>
         <span className="flex justify-center items-center text-sm text-black">
-          Belum punya akun? &nbsp;<a href="#" className="font-bold text-primary-4">Daftar di sini</a>
+          Belum punya akun? &nbsp;<Link href="/auth/register" className="font-bold text-primary-4">Daftar di sini</Link>
         </span>
         <div className="Toastify__toast-auth">
           <ToastContainer />

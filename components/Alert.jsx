@@ -6,7 +6,7 @@ const Alert = ({
   message,
 }) => {
   const toastOptions = {
-    autoClose: 3000,
+    autoClose: 2500,
     closeButton: false,
     icon: false,
     position: toast.POSITION.BOTTOM_CENTER

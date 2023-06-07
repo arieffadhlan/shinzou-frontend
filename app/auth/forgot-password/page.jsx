@@ -1,15 +1,19 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email().required("Email wajib diisi."),
+  email: yup.string()
+    .required("Email wajib diisi!")
+    .email("Email tidak valid!")
 });
 
 const ForgotPassword = () => {  
@@ -20,6 +24,7 @@ const ForgotPassword = () => {
     formState: { errors }
   } = useForm({
     resolver: yupResolver(validationSchema),
+    reValidateMode: "onSubmit"
   });
 
   const onSubmit = (data) => {
@@ -28,7 +33,7 @@ const ForgotPassword = () => {
   }
   
   return (
-    <div className="flex-[100%] flex flex-col gap-6 px-6 xs:px-0 xl:px-[136px] xl:flex-[50%]">
+    <>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Lupa Password
       </h1>
@@ -44,12 +49,16 @@ const ForgotPassword = () => {
             validationSchema={validationSchema}
             placeholder="Masukkan email"
           />
+          {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
         </div>
         <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
           Kirim
         </Button>
       </form>
-    </div>
+      <div className="Toastify__toast-auth">
+        <ToastContainer />
+      </div>
+    </>
   )
 }
 
