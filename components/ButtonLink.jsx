@@ -18,7 +18,7 @@ const ButtonLink = ({
   };
   
   const buttonVariants = {
-    primary: "bg-primary hocus:bg-primary-hover active:bg-primary-active disabled:bg-primary-disabled",
+    primary: "bg-primary-4 hocus:bg-primary-3 active:bg-primary-5 disabled:bg-primary-2",
     secondary: "bg-success hocus:bg-success-hover active:bg-success-active disabled:bg-success-disabled",
   };
 

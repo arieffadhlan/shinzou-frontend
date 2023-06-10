@@ -34,6 +34,9 @@ module.exports = {
       screens: {
 				xs: "460px",
 			},
+      boxShadow: {
+        navbar: "0px 0px 10px rgba(0, 0, 0, 0.15)"
+      },
       translate: {
         center: "(-50%, -50%)"
       },
