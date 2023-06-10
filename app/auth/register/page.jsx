@@ -98,7 +98,7 @@ const Register = () => {
             />
             {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
           </div>
-          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
+          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
             Daftar
           </Button>
         </form>

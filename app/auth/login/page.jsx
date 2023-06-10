@@ -6,11 +6,11 @@ import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import Alert from "@/components/Alert";
-import Button from "@/components/Button";
+import AuthContainer from "@/components/layouts/AuthContainer";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
-import AuthContainer from "@/components/layouts/AuthContainer";
+import Alert from "@/components/Alert";
+import Button from "@/components/Button";
 
 const validationSchema = yup.object().shape({
   email: yup.string().required("Email wajib diisi!"),
@@ -72,7 +72,7 @@ const Login = () => {
             />
             {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
           </div>
-          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
+          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
             Masuk
           </Button>
         </form>

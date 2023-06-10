@@ -53,7 +53,7 @@ const ForgotPassword = () => {
           />
           {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
+        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
           Kirim
         </Button>
       </form>

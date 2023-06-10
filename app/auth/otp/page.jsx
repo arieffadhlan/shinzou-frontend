@@ -34,7 +34,7 @@ const Otp = () => {
             Kirim Ulang OTP dalam 60 detik
           </span>
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full">
+        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5">
           Simpan
         </Button>
       </div>

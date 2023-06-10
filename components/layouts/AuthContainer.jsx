@@ -10,7 +10,7 @@ const AuthContainer = ({ children }) => {
           priority={true}
           src={banner}
           alt="Banner"
-          className="h-screen object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
       <div className="flex-[100%] flex flex-col gap-6 px-6 xs:px-0 xl:px-[136px] xl:flex-[50%]">

@@ -68,7 +68,7 @@ const ResetPassword = () => {
           />
           {errors["confirmationPassword"]?.message && <Alert type="error" message={errors["confirmationPassword"].message} />}
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
+        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
           Simpan
         </Button>
       </form>
