@@ -12,6 +12,27 @@
   scroll-behavior: smooth;
 }
 
+@layer base {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield !important;
+  }
+}
+
+@layer components {
+  .input-otp__container {
+    @apply flex items-center gap-2;
+  }
+  
+  .input-otp {
+    @apply flex justify-center items-center !w-[40px] h-[40px] outline-none border border-[#D0D0D0] rounded-2xl bg-white font-medium text-base leading-5 text-black xs:!w-[42px] xs:h-[42px];
+  }
+}
+
 /* React Toastify */
 .Toastify__toast-theme--light.Toastify__toast--error {
   @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-white;

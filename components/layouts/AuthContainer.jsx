@@ -2,11 +2,7 @@ import Image from "next/image";
 
 import banner from "@/assets/images/auth-banner.webp";
 
-export const metadata = { 
-  title: "Shinzou - Auth"
-};
-
-const AuthLayout = ({ children }) => {
+const AuthContainer = ({ children }) => {
   return (
     <section className="flex justify-center items-center min-h-screen w-full mx-auto xs:max-w-[25rem] xl:max-w-none">
       <div className="hidden xl:block xl:flex-[50%]">
@@ -21,7 +17,7 @@ const AuthLayout = ({ children }) => {
         {children}
       </div>
     </section>
-  );
+  )
 }
 
-export default AuthLayout;
+export default AuthContainer;

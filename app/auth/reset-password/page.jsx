@@ -9,6 +9,7 @@ import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
+import AuthContainer from "@/components/layouts/AuthContainer";
 
 const validationSchema = yup.object().shape({
   password: yup.string()
@@ -36,7 +37,7 @@ const ResetPassword = () => {
   }
   
   return (
-    <>
+    <AuthContainer>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Reset Password
       </h1>
@@ -74,7 +75,7 @@ const ResetPassword = () => {
       <div className="Toastify__toast-auth">
         <ToastContainer />
       </div>
-    </>
+    </AuthContainer>
   )
 }
 
