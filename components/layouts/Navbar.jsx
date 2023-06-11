@@ -13,7 +13,11 @@ const Navbar = () => {
 				<div className="flex flex-wrap items-center justify-between">
 					<div className="flex items-center gap-[34px]">
 						<Link href="/">
-							<Image src={logo} alt="Logo" />
+							<Image 
+								src={logo} 
+								alt="Logo" 
+								className="w-20 lg:w-24" 
+							/>
 						</Link>
 						<div className="relative">
 							<InputSearch 
@@ -24,37 +28,48 @@ const Navbar = () => {
 							/>
 						</div>
 					</div>
-					<div className="flex items-center gap-5">
-						<button 
-							type="button" 
-							data-collapse-toggle="navbar-search" 
-							aria-controls="navbar-search" 
-							aria-expanded="false"  
-							className="material-icons-round lg:!hidden !text-[32px] text-[#8A8A8A]"
-						>
-							search
-						</button>
+					<div className="flex items-center gap-4">
 						<ButtonLink 
 							href="/auth/login" 
 							size="sm" 
 							variant="primary" 
-							className="!px-4 py-3.5 rounded-xl"
+							className="hidden !px-4 py-3.5 rounded-xl lg:flex"
 						>
 							<span className="material-icons-round !text-[20px]">login</span>
 							Masuk
 						</ButtonLink>
+						<button 
+							type="button" 
+							data-collapse-toggle="navbar-collapse" 
+							aria-controls="navbar-collapse" 
+							aria-expanded="false"
+							className="material-icons-round !text-[32px] lg:!hidden"
+						>
+							menu
+						</button>
 					</div>
 				</div>
 				
 				{/* Navbar Collapse Contents */}
-				<div id="navbar-search" className="hidden lg:hidden">
-					<div className="relative w-full">
-						<InputSearch 
-							name="search-flight" 
-							placeholder="Cari di sini ..."
-							className="w-full lg:hidden"
-							iconClassName="!inline-block lg:!hidden"
-						/>
+				<div id="navbar-collapse" className="hidden lg:hidden">
+					<div className="flex flex-col gap-5">
+						<div className="relative w-full">
+							<InputSearch 
+								name="search-flight" 
+								placeholder="Cari di sini ..."
+								className="w-full lg:hidden"
+								iconClassName="!inline-block lg:!hidden"
+							/>
+						</div>
+						<ButtonLink 
+							href="/auth/login" 
+							size="sm" 
+							variant="primary" 
+							className="!px-4 py-3.5 rounded-xl lg:hidden"
+						>
+							<span className="material-icons-round !text-[20px]">login</span>
+							Masuk
+						</ButtonLink>
 					</div>
 				</div>
 			</div>
