@@ -20,3 +20,11 @@
 body {
   @apply font-poppins;
 }
+
+.formContent {
+  @apply relative px-6;
+}
+
+.desfav-btn{
+  @apply bg-lightPurple01 w-[7.8rem] rounded-xl flex self-center justify-center py-3.5 mx-2 text-black 
+}
