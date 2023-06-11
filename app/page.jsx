@@ -1,11 +1,13 @@
 import Navbar from "@/components/layouts/Navbar";
 import Hero from "@/components/Hero";
+import DesFav from '@/components/DestinationFav';
 
 export default function Home() {
   return (
     <>
-      <Navbar></Navbar>
-      <Hero></Hero>
+      <Navbar />
+      <Hero />
+      <DesFav />
     </>
   )
 }
