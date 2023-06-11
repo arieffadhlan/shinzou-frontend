@@ -19,7 +19,11 @@ const PilihPenerbangan = () => {
               <span className="material-icons-round">arrow_back</span>
               JKT &gt; MLB  - 2 Penumpang - Economy
             </ButtonLink>
-            <Button size="md" variant="success" className="flex-[35%] w-full !font-bold 2md:w-auto xl:flex-[25%]">
+            <Button 
+              size="md" 
+              variant="success" 
+              className="flex-[35%] w-full !font-bold 2md:w-auto xl:flex-[25%]"
+            >
               Ubah Pencarian
             </Button>
           </div>
