@@ -6,12 +6,15 @@ import PilihPenerbangan from "@/components/PilihPenerbangan"
 import FlightCard from "@/components/FlightCard";
 
 import ticketsSoldOut from "@/assets/images/flight/tickets-sold-out.svg";
+import ticketsNotFound from "@/assets/images/flight/tickets-not-found.svg";
 
 const SearchFlight = () => {
+  const flightTicketsStatus = "available"; 
+  
   return (
     <>
       <PilihPenerbangan></PilihPenerbangan>
-      {flights.length > 0 ? (
+      {flightTicketsStatus === "available" ? (
         <>
           <Container className="flex justify-end mt-6">
             <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-xs leading-[18px] text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-white active:border-primary-5 active:bg-primary-5 active:text-white">
@@ -48,9 +51,19 @@ const SearchFlight = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4 w-full">
-              {flights.map((flight) => <FlightCard key={flight.id} props={flight} /> )}
-            </div>
+            {flights.length > 0 ? (
+              <div className="flex flex-col gap-4 w-full">
+                {flights.map((flight) => <FlightCard key={flight.id} props={flight} /> )}
+              </div>
+            ): (
+              <div className="flex flex-col justify-center items-center gap-6 w-full">
+                <Image src={ticketsNotFound} alt="Flight tickets not found" />
+                <span className="font-medium text-sm text-center text-black">
+                  Maaf, pencarian Anda tidak ditemukan <br />
+                  <strong className="font-medium text-primary-4">Coba cari perjalanan lainnya!</strong>
+                </span>
+              </div>
+            )}
           </Container>
         </>
       ) : (
