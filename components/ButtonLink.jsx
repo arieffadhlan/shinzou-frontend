@@ -14,8 +14,8 @@ const ButtonLink = ({
   
   const buttonSizes = {
     sm: "text-sm",
-    md: "text-base",
-    lg: "text-xl",
+    md: "text-sm xs:text-base",
+    lg: "text-base xs:text-xl",
   };
   
   const buttonVariants = {
@@ -31,7 +31,7 @@ const ButtonLink = ({
     <button
       type="button"
       onClick={() => router.push(href)}
-      className={`flex justify-center items-center gap-1 px-6 py-3 rounded-2xl font-medium text-white ${classNames}`}
+      className={`flex justify-center items-center gap-2 px-6 py-3 rounded-2xl font-medium text-white ${classNames}`}
       {...rest}
     >
       {children}

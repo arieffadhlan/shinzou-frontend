@@ -15,12 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" className={poppins.className}>
       <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
       </head>
       <body>
-        <main>
-          {children}
-        </main>
+        {children}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" defer></script>
       </body>
     </html>
   )

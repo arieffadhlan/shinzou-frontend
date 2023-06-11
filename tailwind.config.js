@@ -28,11 +28,16 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"], 
       },
+      gap: {
+        4.5: "1.125rem"
+      },
       padding: {
         4.5: "1.125rem"
       },
       screens: {
 				xs: "460px",
+        "2md": "992px",
+        "2xl": "1440px",
 			},
       boxShadow: {
         "xs": "0px 0px 10px rgba(0, 0, 0, 0.15)"
