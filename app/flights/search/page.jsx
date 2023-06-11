@@ -1,12 +1,10 @@
-import Image from "next/image";
-
 import { flights } from "@/constants/flights";
+
 import Container from "@/components/layouts/Container";
+import TicketsNotFound from "@/components/flights/TicketsNotFound";
+import TicketsSoldOut from "@/components/flights/TicketsSoldOut";
 import PilihPenerbangan from "@/components/PilihPenerbangan"
 import FlightCard from "@/components/FlightCard";
-
-import ticketsSoldOut from "@/assets/images/flight/tickets-sold-out.svg";
-import ticketsNotFound from "@/assets/images/flight/tickets-not-found.svg";
 
 const SearchFlight = () => {
   const flightTicketsStatus = "available"; 
@@ -56,24 +54,12 @@ const SearchFlight = () => {
                 {flights.map((flight) => <FlightCard key={flight.id} props={flight} /> )}
               </div>
             ): (
-              <div className="flex flex-col justify-center items-center gap-6 w-full">
-                <Image src={ticketsNotFound} alt="Flight tickets not found" />
-                <span className="font-medium text-sm text-center text-black">
-                  Maaf, pencarian Anda tidak ditemukan <br />
-                  <strong className="font-medium text-primary-4">Coba cari perjalanan lainnya!</strong>
-                </span>
-              </div>
+              <TicketsNotFound />
             )}
           </Container>
         </>
       ) : (
-        <Container className="flex flex-col justify-center items-center gap-9 my-[100px]">
-          <Image src={ticketsSoldOut} alt="Flight tickets sold out" />
-          <span className="font-medium text-sm text-center text-black">
-            Maaf, tiket terjual habis! <br />
-            <strong className="font-medium text-primary-4">Coba cari perjalanan lainnya!</strong>
-          </span>
-        </Container>
+        <TicketsSoldOut />
       )}
     </>
   )
