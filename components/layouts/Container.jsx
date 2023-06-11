@@ -1,8 +1,10 @@
-const Container = ({ children, className = "" }) => {
+const Container = ({ htmlTag, children, className = "" }) => {
+  const Tag = htmlTag ?? "section";
+  
   return (
-    <section className={`px-5 sm:px-16 md:px-32 xl:pl-[260px] xl:pr-[212px] ${className}`}>
+    <Tag className={`max-w-8xl px-5 mx-auto sm:px-16 md:px-32 2xl:pl-[260px] 2xl:pr-[212px] ${className}`}>
       {children}
-    </section>
+    </Tag>
   )
 }
 

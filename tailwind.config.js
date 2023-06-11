@@ -28,15 +28,23 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"], 
       },
+      flex: {
+        "2": "2 2 0%"
+      },
       gap: {
         4.5: "1.125rem"
+      },
+      maxWidth: {
+        "8xl": "1440px"
       },
       padding: {
         4.5: "1.125rem"
       },
       screens: {
+        "2xs": "375px",
 				xs: "460px",
         "2md": "992px",
+        "2lg": "1200px",
         "2xl": "1440px",
 			},
       boxShadow: {

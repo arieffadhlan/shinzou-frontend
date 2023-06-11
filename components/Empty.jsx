@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react'
-import Empty from '../assets/empty.png'
+import EmptyImage from '../assets/empty.png'
 
 const Empty = () => {
     return (
@@ -8,7 +8,7 @@ const Empty = () => {
       <div className='empty d-flex bg-white w-100 h-100  align-items-center justify-content-center'>
         <div className='ml-[670px]'> 
             <Image
-                src={Empty}
+                src={EmptyImage}
                   alt="Empty"
                   width={276}
                   height={194}

@@ -14,8 +14,8 @@ const Flight = () => {
           Termurah
         </button>
       </Container>
-      <Container className="flex gap-7 mt-6">
-        <div className="flex flex-col gap-6 w-full h-fit p-6 rounded-2xl shadow-xs sm:w-[268px]">
+      <Container className="flex flex-col gap-7 mt-6 mb-16 2md:flex-row">
+        <div className="flex flex-col gap-6 w-full h-fit p-6 rounded-2xl shadow-xs 2md:w-[268px]">
           <h2 className="font-medium text-base text-black">Filter</h2>
           <div className="flex flex-col gap-4">
             <div className="group cursor-pointer flex justify-between items-center pb-4 border-b border-[#D0D0D0]">
