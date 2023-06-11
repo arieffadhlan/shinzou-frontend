@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import searchIcon from "@/assets/icons/fi_search.svg";
+import searchIcon from "@/assets/icons/search.svg";
 
 const InputSearch = ({ name, className = "", ...rest }) => {
   return (  

@@ -1,116 +1,69 @@
+import Image from "next/image";
+
 import Button from "@/components/Button";
+import ButtonLink from "@/components/ButtonLink";
+
+import arrowLeftIcon from "@/assets/icons/arrow-left.svg";
 
 function PilihPenerbangan() {
     return (
-        <>
-        <div className="mt-[131px] shadow-lg">
-
-            <div>
-                <p className="ml-[178px] font-bold">Pilih Penerbangan </p>
+      <section className="flex flex-col gap-6 pt-[132px] pl-[260px] pr-[212px] pb-5 shadow-xs">
+        <h1 className="font-bold text-xl leading-[30px]">
+          Detail Penerbangan
+        </h1>
+        <div className="flex flex-col justify-center items-center gap-6">
+          <div className="flex items-center gap-3 w-full">
+            <ButtonLink href="/" size="md" variant="primary" className="flex-[75%] !justify-start bg-primary-3">
+              <Image src={arrowLeftIcon} alt="Back" />
+              JKT &gt; MLB  - 2 Penumpang - Economy
+            </ButtonLink>
+            <Button size="md" variant="success" className="flex-[25%] !font-bold">
+              Ubah Pencarian
+            </Button>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Selasa</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">01/03/2023</span>
             </div>
-
-            <div className="flex gap-3.5 ml-[186px]">
-                <Button type="submit" size="md" variant="primary" className="py-3.5 w-[700px] mt-[32px] "> JKT MLB 2 Penumpang Economy</Button>
-                <Button type="submit" size="md" variant="success" className="py-3.5 w-[220px] mt-[32px]"> Ubah Pencarian</Button>
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Rabu</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">02/03/2023</span>
             </div>
-
-            <div className="flex flex-wrap gap-1 text-sm my-4 ml-44 ">
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Selasa</div>
-                        <div className="text-[12px] text-[#8A8A8A]">01/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Rabu</div>
-                        <div className="text-[12px] text-[#8A8A8A]">02/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Kamis</div>
-                        <div className="text-[12px] text-[#8A8A8A]">03/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Jumat</div>
-                        <div className="text-[12px] text-[#8A8A8A]">04/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Sabtu</div>
-                        <div className="text-[12px] text-[#8A8A8A]">05/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Minggu</div>
-                        <div className="text-[12px] text-[#8A8A8A]">06/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Senin</div>
-                        <div className="text-[12px] text-[#8A8A8A]">07/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
-                <div className="border-r h-[24px] justify-center my-4 mx-2 text-[#D0D0D0]">
-                </div>
-
-                <div>
-                    <div>
-                    <button className="bg-white hover:bg-primary-3 focus:text-white  focus:bg-primary-5 font-bold item-center rounded-[8px] w-[100px] h-[46px]">
-                        <div>Selasa</div>
-                        <div className="text-[12px] text-[#8A8A8A]">08/03/2023</div>
-                    </button>
-                    </div>
-                </div>
-
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Kamis</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">03/03/2023</span>
             </div>
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Jumat</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">04/03/2023</span>
+            </div>
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Sabtu</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">05/03/2023</span>
+            </div>
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Minggu</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">06/03/2023</span>
+            </div>
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Senin</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">07/03/2023</span>
+            </div>
+            <div className="w-[1px] h-6 bg-[#D0D0D0]">&nbsp;</div>
+            <div className="group cursor-pointer flex flex-col justify-center items-center px-4 py-1 rounded-lg hocus:bg-primary-3 active:bg-primary-4">
+              <span className="font-bold text-sm text-[#151515] group-hover:text-white">Selasa</span>
+              <span className="font-medium text-xs leading-[18px] text-[#8A8A8A] group-hover:text-white">08/03/2023</span>
+            </div>
+          </div>
         </div>
-        </>
+      </section>
     )
   }
   

@@ -4,13 +4,13 @@ import Link from "next/link";
 import InputSearch from "@/components/forms/InputSearch";
 import ButtonLink from "@/components/ButtonLink";
 
-import loginIcon from "@/assets/icons/fi_log-in.svg";
+import loginIcon from "@/assets/icons/log-in.svg";
 import logo from "@/assets/images/logo.png";
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-20 shadow-navbar bg-white">
-			<div className="mx-auto flex flex-wrap justify-between items-center px-10 py-4">
+    <nav className="fixed top-0 left-0 w-full z-20 shadow-xs bg-white">
+			<div className="mx-auto flex flex-wrap justify-between items-center px-32 py-4">
 				<div className="flex items-center gap-[34px]">
 					<Link href="/">
 						<Image src={logo} alt="Logo" />

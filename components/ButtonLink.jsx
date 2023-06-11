@@ -14,6 +14,7 @@ const ButtonLink = ({
   
   const buttonSizes = {
     sm: "text-sm",
+    md: "text-base",
     lg: "text-xl",
   };
   
