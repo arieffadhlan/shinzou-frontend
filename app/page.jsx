@@ -1,11 +1,11 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
+import Loading from "../components/Loading";
+
 
 export default function Home() {
   return (
     <>
-      <Navbar></Navbar>
-      <Hero></Hero>
+      <Loading></Loading>
+
     </>
   )
 }
