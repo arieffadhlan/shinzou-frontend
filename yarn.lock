@@ -2142,7 +2142,12 @@ react-is@^18.0.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-redux@*, "react-redux@^7.2.1 || ^8.0.2", react-redux@^8.0.7:
+react-otp-input@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-otp-input/-/react-otp-input-3.0.2.tgz#9e64ba9ba6ae82acd7fd27ff8e334eb8442401c2"
+  integrity sha512-YzOYnol7NodV1KZdy9Y4y3jV4u3mlug98WfJqwV4hs7+zeRqzp5jcA/+onZ6OHjpdOMRQvA675xAHB5ynSmViA==
+
+react-redux@^8.0.7:
   version "8.0.7"
   resolved "https://registry.npmjs.org/react-redux/-/react-redux-8.0.7.tgz"
   integrity sha512-1vRQuCQI5Y2uNmrMXg81RXKiBHY3jBzvCvNmZF437O/Z9/pZ+ba2uYHbemYXb3g8rjsacBGo+/wmfrQKzMhJsg==

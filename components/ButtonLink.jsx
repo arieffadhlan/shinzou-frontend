@@ -14,11 +14,12 @@ const ButtonLink = ({
   
   const buttonSizes = {
     sm: "text-sm",
-    lg: "text-xl",
+    md: "text-sm xs:text-base",
+    lg: "text-base xs:text-xl",
   };
   
   const buttonVariants = {
-    primary: "bg-primary hocus:bg-primary-hover active:bg-primary-active disabled:bg-primary-disabled",
+    primary: "bg-primary-4 hocus:bg-primary-3 active:bg-primary-5 disabled:bg-primary-2",
     secondary: "bg-success hocus:bg-success-hover active:bg-success-active disabled:bg-success-disabled",
   };
 
@@ -30,7 +31,7 @@ const ButtonLink = ({
     <button
       type="button"
       onClick={() => router.push(href)}
-      className={`flex justify-center items-center gap-1 px-6 py-3 rounded-2xl font-medium text-white ${classNames}`}
+      className={`flex justify-center items-center gap-2 px-6 py-3 rounded-2xl font-medium text-white ${classNames}`}
       {...rest}
     >
       {children}

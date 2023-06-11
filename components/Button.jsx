@@ -8,8 +8,8 @@ const Button = ({
 }) => {
   const buttonSizes = {
     sm: "text-sm",
-    md: "text-base",
-    lg: "text-xl",
+    md: "text-sm xs:text-base",
+    lg: "text-base xs:text-xl",
   };
   
   const buttonVariants = {

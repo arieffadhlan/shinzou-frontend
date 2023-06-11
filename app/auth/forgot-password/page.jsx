@@ -9,6 +9,7 @@ import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
+import AuthContainer from "@/components/layouts/AuthContainer";
 
 const validationSchema = yup.object().shape({
   email: yup.string()
@@ -33,7 +34,8 @@ const ForgotPassword = () => {
   }
   
   return (
-    <>
+    <AuthContainer>
+
       <h1 className="font-bold text-2xl leading-6 text-black">
         Lupa Password
       </h1>
@@ -51,14 +53,14 @@ const ForgotPassword = () => {
           />
           {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
+        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
           Kirim
         </Button>
       </form>
       <div className="Toastify__toast-auth">
         <ToastContainer />
       </div>
-    </>
+    </AuthContainer>
   )
 }
 

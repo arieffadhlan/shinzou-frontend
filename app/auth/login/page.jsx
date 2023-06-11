@@ -6,13 +6,14 @@ import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import Alert from "@/components/Alert";
-import Button from "@/components/Button";
+import AuthContainer from "@/components/layouts/AuthContainer";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
+import Alert from "@/components/Alert";
+import Button from "@/components/Button";
 
 const validationSchema = yup.object().shape({
-  emailPhone: yup.string().required("Email atau nomor telepon wajib diisi!"),
+  email: yup.string().required("Email wajib diisi!"),
   password: yup.string().required("Password wajib diisi!")
 });
 
@@ -33,25 +34,25 @@ const Login = () => {
   }
   
   return (
-    <>
+    <AuthContainer>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Masuk
       </h1>
       <div className="flex flex-col gap-10">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
-            <Label id="emailPhone">Email/No Telepon</Label>
+            <Label id="email">Email</Label>
             <Input
-              type="text"
+              type="email"
               variant="primary"
-              name="emailPhone"
+              name="email"
               register={register}
               errors={errors}
               validationSchema={validationSchema}
               placeholder="Contoh: johndoe@gmail.com"
               autoFocus
             />
-            {errors["emailPhone"]?.message && <Alert type="error" message={errors["emailPhone"].message} />}
+            {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
@@ -71,18 +72,18 @@ const Login = () => {
             />
             {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
           </div>
-          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2 active:bg-primary5">
+          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
             Masuk
           </Button>
         </form>
         <span className="flex justify-center items-center text-sm text-black">
           Belum punya akun? &nbsp;<Link href="/auth/register" className="font-bold text-primary-4">Daftar di sini</Link>
         </span>
-        <div className="Toastify__toast-auth">
-          <ToastContainer />
-        </div>
       </div>
-    </>
+      <div className="Toastify__toast-auth">
+        <ToastContainer />
+      </div>
+    </AuthContainer>
   )
 }
 
