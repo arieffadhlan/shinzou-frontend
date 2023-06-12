@@ -1,5 +1,5 @@
-### Kolaborasi Final Project
-## Clone Repository
+## Kolaborasi Final Project
+### Clone Repository
 Untuk melakukan clone repository ikuti langkah berikut:
 1. Clone repository final project.
 ```console
@@ -21,7 +21,7 @@ git branch arief
 git checkout arief
 ```
 
-## Cara Kontribusi
+### Cara Kontribusi
 Untuk melakukan Kontribusi ikuti langkah berikut:
 1. Buat kodingan sesuai jobdesc yang telah diberikan.
 2. Pastikan kodingan **tidak ada eror** dan **tidak mempengaruhi kodingan lain secara fatal**.
@@ -38,7 +38,7 @@ git add page.jsx
 git status
 ```
 
-5. Commit file [Standar commit message](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/).
+5. Commit file dan harus mengikuti [standar commit message](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/).
 ```console
 git commit -m "Pesan Commit anda (misal: feat: slicing homepage UI and add button component)"
 ```
@@ -50,7 +50,7 @@ git push -u origin arief
 
 7. Setelah push ke repository, silakan buat pull request di Github.
 
-## Cara mengambil kodingan dari branch main
+### Cara mengambil kodingan dari branch main
 1. Pindah ke branch main.
 ```console
 git checkout main
