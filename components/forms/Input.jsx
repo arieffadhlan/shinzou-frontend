@@ -38,7 +38,7 @@ const Input = ({
           <button 
             type="button" 
             onClick={handleShowPassword}
-            className="material-icons-outlined absolute top-3 right-4 text-neutral-3"
+            className="material-icons-round absolute top-3 right-4 text-neutral-3"
           >
             {showPassword ? "visibility_off" : "visibility"}
           </button>

@@ -1,8 +1,9 @@
 "use client";
 
-import Button from "@/components/Button";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
+
+import Button from "@/components/Button";
 
 const Otp = () => {
   const [otp, setOtp] = useState("");
@@ -34,7 +35,12 @@ const Otp = () => {
             Kirim Ulang OTP dalam 60 detik
           </span>
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5">
+        <Button 
+          type="submit" 
+          size="md" 
+          variant="primary" 
+          className="w-full"
+        >
           Simpan
         </Button>
       </div>
