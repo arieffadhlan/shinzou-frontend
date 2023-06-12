@@ -46,7 +46,7 @@
 
 /* React Toastify */
 .Toastify__toast-theme--light.Toastify__toast--error {
-  @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-white;
+  @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-neutral-1;
 }
 
 .Toastify__toast-auth .Toastify {

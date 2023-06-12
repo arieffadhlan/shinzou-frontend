@@ -2,7 +2,7 @@ const Label = ({ id, children }) => {
   return (
     <label 
       htmlFor={id}
-      className="text-xs leading-[18px] text-black"
+      className="text-xs text-black"
     >
       {children}
     </label>

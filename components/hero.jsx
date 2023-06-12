@@ -136,7 +136,7 @@ export default function Hero() {
               </div>
             </div>
             
-            <button className="w-[968px] h-auto text-white bg-boldPurple px-5 py-3 relative bottom-10 rounded-b-xl">Cari Penerbangan</button>
+            <button className="w-[968px] h-auto text-neutral-1 bg-boldPurple px-5 py-3 relative bottom-10 rounded-b-xl">Cari Penerbangan</button>
           </div>
         </form>
 

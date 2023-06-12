@@ -36,7 +36,7 @@ const ForgotPassword = () => {
   return (
     <AuthContainer>
 
-      <h1 className="font-bold text-2xl leading-6 text-black">
+      <h1 className="font-bold text-2xl text-black">
         Lupa Password
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
