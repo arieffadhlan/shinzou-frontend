@@ -1,10 +1,9 @@
-'use client'
-import React from "react";
-import Image from 'next/image'
-import SearchIcon from '../../assets/fi_search.png'
+"use client"
 
-export default function searchModal() {
-  const [showModal, setShowModal] = React.useState(false);
+import { useState } from "react";
+
+export default function SearchModal() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
         <button
@@ -27,10 +26,9 @@ export default function searchModal() {
                             <div className="search relative float-right pt-[3px] px-3">
                                 <form action="" className='flex'>             
                                     <div className="searchIcon pointer-events-none absolute mt-3.5 px-3">
-                                        <Image
-                                            src={SearchIcon}
-                                            alt='Search Icon'
-                                        />
+                                    <span className="material-icons-round">
+                                        search
+                                    </span>
                                     </div>
                                     <div className="searcBar">
                                         <input

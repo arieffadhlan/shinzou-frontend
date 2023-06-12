@@ -1,10 +1,9 @@
-'use client'
-import React from "react";
-import Image from 'next/image'
-import SearchIcon from '../../assets/fi_search.png'
+"use client"
 
-export default function priceModal() {
-  const [showModal, setShowModal] = React.useState(false);
+import { useState } from "react";
+
+export default function PriceModal() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
         <button

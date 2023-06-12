@@ -34,7 +34,7 @@ export default function Hero() {
                     className="float-left my-2.5"
                   />
                   <div className="formContent">
-                    <label for="underline_select" className="font-normal text-sm text-primaryGray pr-3">From</label>
+                    <label htmlFor="underline_select" className="font-normal text-sm text-primaryGray pr-3">From</label>
                     <select id="underline_select" className="w-[300px] py-2.5 px-0 text-lg font-medium bg-transparent border-0 border-b-2 border-gray-200 appearance-none  dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                       <option selected>Choose a country</option>
                       <option value="JKT">Jakarta (JKTA)</option>
@@ -51,7 +51,7 @@ export default function Hero() {
                     className="float-left my-2.5"
                   />
                   <div className="formContent">
-                    <label for="underline_select" className="font-normal text-sm text-primaryGray pr-3">To</label>
+                    <label htmlFor="underline_select" className="font-normal text-sm text-primaryGray pr-3">To</label>
                     <select id="underline_select" className="w-[300px] py-2.5 px-0 text-lg font-medium bg-transparent border-0 border-b-2 border-gray-200 appearance-none  dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                       <option selected>Choose a country</option>
                       <option value="JKT">Jakarta (JKTA)</option>
@@ -76,12 +76,12 @@ export default function Hero() {
                     className="float-left my-2.5"
                   />
                   <div className="formContent">
-                    <label for="Date" className="font-normal text-sm text-primaryGray relative px-1 top-3">Date</label>
+                    <label htmlFor="Date" className="font-normal text-sm text-primaryGray relative px-1 top-3">Date</label>
                     <div className="ml-[2.69rem] relative top-0 -mt-10">
-                      <label for="departure" className="pr-[5.23rem]">Departure</label>
-                      <label for="return">Return</label>
-                      <label for="departure" className="ml-80 pr-[5.23rem]">Departure</label>
-                      <label for="return">Return</label>                
+                      <label htmlFor="departure" className="pr-[5.23rem]">Departure</label>
+                      <label htmlFor="return">Return</label>
+                      <label htmlFor="departure" className="ml-80 pr-[5.23rem]">Departure</label>
+                      <label htmlFor="return">Return</label>                
                     </div>
                     <div className="relative z-0 w-full mb-6 ml-[2.8rem]">
                       <select select id="underline_select" className="w-[140px] py-2.5 px-0 text-lg font-medium bg-transparent border-0 border-b-2 border-gray-200 appearance-none  dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
@@ -108,7 +108,7 @@ export default function Hero() {
                       alt= "calender"
                       className="float-left my-2.5"
                     />
-                    <label for="Date" className="font-normal text-sm text-primaryGray relative px-2">To</label>
+                    <label htmlFor="Date" className="font-normal text-sm text-primaryGray relative px-2">To</label>
                       <select select id="underline_select" className="w-[140px] py-2.5 px-0 text-lg font-medium bg-transparent border-0 border-b-2 border-gray-200 appearance-none  dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                         <option selected>Choose a country</option>
                         <option value="JKT">Jakarta (JKTA)</option>

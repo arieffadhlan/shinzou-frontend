@@ -1,9 +1,9 @@
-import Navbar from '../components/navbar';
-import Hero from '../components/hero';
+import Navbar from '../components/layouts/Navbar';
+import Hero from '../components/Hero';
 import DesFav from '../components/DestinationFav';
-import SearchModal from '../components/modals/searchModal'
-import DateModal from '../components/modals/dateModal'
-import PriceModal from '../components/modals/priceModal'
+import SearchModal from '../components/modals/SearchModal'
+import DateModal from '../components/modals/DateModal'
+import PriceModal from '../components/modals/PriceModal'
 
 const Home = () => {
   return (

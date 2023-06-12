@@ -1,11 +1,10 @@
-'use client'
-import React, {useState} from "react"; 
-import Datepicker from "react-tailwindcss-datepicker"; 
-import Image from 'next/image'
-import SearchIcon from '../../assets/fi_search.png'
+"use client"
 
-export default function dateModal() {
-  const [showModal, setShowModal] = React.useState(false);
+import { useState } from "react";
+import Datepicker from "react-tailwindcss-datepicker"; 
+
+export default function DateModal() {
+  const [showModal, setShowModal] = useState(false);
 
   const [value, setValue] = useState({ 
     startDate: new Date(), 

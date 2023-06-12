@@ -7,7 +7,7 @@ const PilihPenerbangan = () => {
       <section className="shadow-xs">
         <Container htmlTag="div" className="flex flex-col gap-6 pt-[132px] pb-5">
           <h1 className="font-bold text-xl">
-            Detail Penerbangan
+            Pilih Penerbangan
           </h1>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-3 w-full lg:flex-row">
