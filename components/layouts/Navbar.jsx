@@ -31,9 +31,9 @@ const Navbar = () => {
 					<div className="flex items-center gap-4">
 						<ButtonLink 
 							href="/auth/login" 
-							size="sm" 
+							size="md" 
 							variant="primary" 
-							className="hidden !px-4 py-3.5 rounded-xl lg:flex"
+							className="hidden px-4 rounded-xl lg:flex"
 						>
 							<span className="material-icons-round !text-[20px]">login</span>
 							Masuk
@@ -63,9 +63,9 @@ const Navbar = () => {
 						</div>
 						<ButtonLink 
 							href="/auth/login" 
-							size="sm" 
+							size="md" 
 							variant="primary" 
-							className="!px-4 py-3.5 rounded-xl lg:hidden"
+							className="px-4 rounded-xl lg:hidden"
 						>
 							<span className="material-icons-round !text-[20px]">login</span>
 							Masuk

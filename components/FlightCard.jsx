@@ -2,6 +2,7 @@ import Image from "next/image";
 import moment from "moment";
 import "moment/locale/id"
 
+import { getTimeDifference } from "@/helpers/getTimeDifference";
 import Button from "./Button";
 
 import airlineIcon from "@/assets/icons/airline.svg";
@@ -10,9 +11,8 @@ const FlightCard = ({ props }) => {
   moment.locale("id");
   const departureTime = moment(props.departure_time);
   const arrivalTime = moment(props.arrival_time);
-  const timeDifference = arrivalTime.diff(departureTime, "minutes");
-  const hourDifference = Math.floor((timeDifference % 1440) / 60);
-  const minuteDifference = Math.floor((timeDifference % 1440) % 60);
+  const hourDifference = getTimeDifference(departureTime, arrivalTime, "hours");
+  const minuteDifference = getTimeDifference(departureTime, arrivalTime, "minutes");
   
   return (
     <>

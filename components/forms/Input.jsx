@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 const Input = ({
   type,
@@ -17,7 +18,6 @@ const Input = ({
   };
 
   const pickedVariant = inputVariants[variant];
-  const classNames = `${pickedVariant} ${className} ${errors[name]?.message && "border-danger"}`;
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -31,7 +31,12 @@ const Input = ({
             type={showPassword ? "text" : "password"}
             name={name}
             id={name}
-            className={`flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-neutral-3 focus:border-[#929292] ${classNames}`}
+            className={twMerge(
+              `flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-neutral-3 focus:border-[#929292]`, 
+              pickedVariant, 
+              className,
+              errors[name]?.message && "border-danger"
+            )}
             {...register(name, validationSchema)}
             {...rest}
           />
@@ -48,7 +53,12 @@ const Input = ({
           type={type}
           name={name}
           id={name}
-          className={`flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-neutral-3 focus:border-[#929292] ${classNames}`}
+          className={twMerge(
+            `flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-neutral-3 focus:border-[#929292]`, 
+            pickedVariant, 
+            className,
+            errors[name]?.message && "border-danger"
+          )}
           {...register(name, validationSchema)}
           {...rest}
         />

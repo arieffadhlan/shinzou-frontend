@@ -15,7 +15,7 @@ const PilihPenerbangan = () => {
                 href="/" 
                 size="md" 
                 variant="primary" 
-                className="flex-[65%] !justify-start gap-3 w-full bg-primary-3 xs:gap-4.5 lg:w-auto xl:flex-[75%]"
+                className="flex-[65%] justify-start gap-3 w-full px-4 bg-primary-3 xs:gap-4.5 lg:w-auto xl:flex-[75%]"
               >
                 <span className="material-icons-round">arrow_back</span>
                 JKT &gt; MLB  - 2 Penumpang - Economy
@@ -23,7 +23,7 @@ const PilihPenerbangan = () => {
               <Button 
                 size="md" 
                 variant="success" 
-                className="flex-[35%] w-full !font-bold lg:w-auto xl:flex-[25%]"
+                className="flex-[35%] w-full font-bold lg:w-auto xl:flex-[25%]"
               >
                 Ubah Pencarian
               </Button>
