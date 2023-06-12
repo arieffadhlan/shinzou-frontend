@@ -57,7 +57,7 @@ const Login = () => {
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
               <Label id="password">Password</Label>
-              <Link href="/auth/forgot-password" className="font-medium text-xs leading-[18px] text-primary-4">
+              <Link href="/auth/forgot-password" className="font-medium text-xs text-primary-4">
                 Lupa Kata Sandi
               </Link>
             </div>
@@ -72,12 +72,18 @@ const Login = () => {
             />
             {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
           </div>
-          <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
+          <Button 
+            type="submit" 
+            size="md" 
+            variant="primary" 
+            className="w-full mt-2"
+          >
             Masuk
           </Button>
         </form>
         <span className="flex justify-center items-center text-sm text-black">
-          Belum punya akun? &nbsp;<Link href="/auth/register" className="font-bold text-primary-4">Daftar di sini</Link>
+          Belum punya akun? &nbsp;
+          <Link href="/auth/register" className="font-bold text-primary-4">Daftar di sini</Link>
         </span>
       </div>
       <div className="Toastify__toast-auth">

@@ -1,8 +1,9 @@
 "use client";
 
-import Button from "@/components/Button";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
+
+import Button from "@/components/Button";
 
 const Otp = () => {
   const [otp, setOtp] = useState("");
@@ -15,7 +16,7 @@ const Otp = () => {
         </h1>
         <div className="flex flex-col justify-center items-center gap-6 py-6 mb-16">
           <div className="flex flex-col justify-center items-center gap-11">
-            <p className="mb-0 text-sm text-center text-[#151515]">
+            <p className="mb-0 text-sm text-center text-neutral-5">
               Ketik 6 digit kode yang dikirimkan ke &nbsp;
               <span className="font-bold">J*****@gmail.com</span>
             </p>
@@ -30,11 +31,16 @@ const Otp = () => {
               shouldAutoFocus={true}
             />
           </div>
-          <span className="text-sm text-center text-[#151515]">
+          <span className="text-sm text-center text-neutral-5">
             Kirim Ulang OTP dalam 60 detik
           </span>
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5">
+        <Button 
+          type="submit" 
+          size="md" 
+          variant="primary" 
+          className="w-full"
+        >
           Simpan
         </Button>
       </div>

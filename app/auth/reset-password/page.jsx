@@ -5,11 +5,11 @@ import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import AuthContainer from "@/components/layouts/AuthContainer";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
-import AuthContainer from "@/components/layouts/AuthContainer";
 
 const validationSchema = yup.object().shape({
   password: yup.string()
@@ -38,7 +38,7 @@ const ResetPassword = () => {
   
   return (
     <AuthContainer>
-      <h1 className="font-bold text-2xl leading-6 text-black">
+      <h1 className="font-bold text-2xl text-black">
         Reset Password
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -68,7 +68,12 @@ const ResetPassword = () => {
           />
           {errors["confirmationPassword"]?.message && <Alert type="error" message={errors["confirmationPassword"].message} />}
         </div>
-        <Button type="submit" size="sm" variant="primary" className="w-full py-3.5 mt-2">
+        <Button 
+          type="submit" 
+          size="md" 
+          variant="primary" 
+          className="w-full mt-2"
+        >
           Simpan
         </Button>
       </form>

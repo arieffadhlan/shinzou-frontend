@@ -46,7 +46,7 @@
 
 /* React Toastify */
 .Toastify__toast-theme--light.Toastify__toast--error {
-  @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-white;
+  @apply flex justify-center items-center px-4.5 py-2.5 rounded-xl bg-danger font-medium text-sm text-center text-neutral-1;
 }
 
 .Toastify__toast-auth .Toastify {
@@ -62,5 +62,5 @@
 }
 
 .desfav-btn{
-  @apply bg-lightPurple01 w-[7.8rem] rounded-xl flex self-center justify-center py-3.5 mx-2 text-black;
+  @apply bg-primary-1 w-[7.8rem] rounded-xl flex self-center justify-center py-3.5 mx-2 text-black;
 }

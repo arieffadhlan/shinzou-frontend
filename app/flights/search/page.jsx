@@ -15,7 +15,7 @@ const SearchFlight = () => {
       {flightTicketsStatus === "available" ? (
         <>
           <Container className="flex justify-end mt-6">
-            <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-xs leading-[18px] text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-white active:border-primary-5 active:bg-primary-5 active:text-white">
+            <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-xs text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-neutral-1 active:border-primary-5 active:bg-primary-5 active:text-neutral-1">
               <span className="material-icons-round !text-[20px]">
                 swap_vert
               </span>
@@ -28,24 +28,24 @@ const SearchFlight = () => {
               <div className="flex flex-col gap-4">
                 <div className="group cursor-pointer flex justify-between items-center pb-4 border-b border-[#D0D0D0]">
                   <div className="flex items-center gap-2">
-                    <span className="material-icons-round text-[#D0D0D0]">work</span>
-                    <span className="w-[156px] text-base text-[#151515] group-hover:text-black">Transit</span>
+                    <span className="material-icons-round text-neutral-2">work</span>
+                    <span className="w-[156px] text-base text-neutral-5 group-hover:text-black">Transit</span>
                   </div>
-                  <span className="material-icons-round text-[#D0D0D0] group-hover:text-[#8A8A8A]">chevron_right</span>
+                  <span className="material-icons-round text-neutral-2 group-hover:text-neutral-3">chevron_right</span>
                 </div>
                 <div className="group cursor-pointer flex justify-between items-center pb-4 border-b border-[#D0D0D0]">
                   <div className="flex items-center gap-2">
-                    <span className="material-icons-round text-[#D0D0D0]">favorite</span>
-                    <span className="w-[156px] text-base text-[#151515] group-hover:text-black">Fasilitas</span>
+                    <span className="material-icons-round text-neutral-2">favorite</span>
+                    <span className="w-[156px] text-base text-neutral-5 group-hover:text-black">Fasilitas</span>
                   </div>
-                  <span className="material-icons-round text-[#D0D0D0] group-hover:text-[#8A8A8A]">chevron_right</span>
+                  <span className="material-icons-round text-neutral-2 group-hover:text-neutral-3">chevron_right</span>
                 </div>
                 <div className="group cursor-pointer flex justify-between items-center pb-4">
                   <div className="flex items-center gap-2">
-                    <span className="material-icons-round text-[#D0D0D0]">attach_money</span>
-                    <span className="w-[156px] text-base text-[#151515] group-hover:text-black">Harga</span>
+                    <span className="material-icons-round text-neutral-2">attach_money</span>
+                    <span className="w-[156px] text-base text-neutral-5 group-hover:text-black">Harga</span>
                   </div>
-                  <span className="material-icons-round text-[#D0D0D0] group-hover:text-[#8A8A8A]">chevron_right</span>
+                  <span className="material-icons-round text-neutral-2 group-hover:text-neutral-3">chevron_right</span>
                 </div>
               </div>
             </div>
