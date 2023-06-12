@@ -1,34 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Kolaborasi Final Project
+## Clone Repository
+Untuk melakukan clone repository ikuti langkah berikut:
+1. Clone repository fhs-management.
+```console
+git clone https://github.com/arieffadhlan/shinzou-frontend.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install package yang diperlukan dan jalankan aplikasi.
+```console
+yarn install
+yarn dev
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Buat branch baru sesuai nama kalian dan silakan kerjakan jobdesc kalian di branch kalian masing-masing.
+```console
+// Membuat branch [git branch <nama-branch>]
+git branch arief
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+// Pindah branch [git checkout <nama-branch>]
+git checkout arief
+```
 
-## Learn More
+## Cara Kontribusi
+Untuk melakukan Kontribusi ikuti langkah berikut:
+1. Buat kodingan sesuai jobdesc yang telah diberikan.
+2. Pastikan kodingan **tidak ada eror** dan **tidak mempengaruhi kodingan lain secara fatal**.
+3. Menambahkan file dari working directory ke staging index.
+```console
+git add .
 
-To learn more about Next.js, take a look at the following resources:
+// Menambahkan file tertentu
+git add page.jsx 
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Mengecek status dari repository.
+```console
+git status
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Commit file [Standar commit message](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/).
+```console
+git commit -m "Pesan Commit anda (misal: feat: slicing homepage UI and add button component)"
+```
 
-## Deploy on Vercel
+6. Push ke repository di branch kalian masing-masing.
+```console
+git push -u origin arief
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+7. Setelah push ke repository, silakan buat pull request di Github.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Cara mengambil kodingan dari branch main
+1. Pindah ke branch main.
+```console
+git checkout main
+```
+
+2. Pull kodingan kodingan terbaru dari branch main repository.
+```console
+git pull origin main
+```
+
+3. Pindah ke branch kalian masing-masing dan pull kodingan dari branch main di local laptop kalian.
+```console
+git checkout arief
+git pull origin main
+```
