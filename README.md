@@ -1,7 +1,7 @@
-## Kolaborasi Final Project
+### Kolaborasi Final Project
 ## Clone Repository
 Untuk melakukan clone repository ikuti langkah berikut:
-1. Clone repository fhs-management.
+1. Clone repository final project.
 ```console
 git clone https://github.com/arieffadhlan/shinzou-frontend.git
 ```
