@@ -1,8 +1,15 @@
 /** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
+<<<<<<< HEAD
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+=======
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+>>>>>>> 3583c11fdf3bfa8926d0f747d21e1ee18aa7b1a0
   ],
   theme: {
     extend: {
@@ -11,6 +18,7 @@ module.exports = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+<<<<<<< HEAD
         "primary-1": "#E2D4F0",
         "primary-2": "#D0B7E6",
         "primary-3": "#A06ECE",
@@ -54,6 +62,13 @@ module.exports = {
       translate: {
         center: "(-50%, -50%)"
       },
+=======
+        boldPurple: '#7126B5',
+        lightPurple01: '#E2D4F0',
+        lightPurple: '#B893DA',
+        primaryGray: '#8A8A8A'
+      }
+>>>>>>> 3583c11fdf3bfa8926d0f747d21e1ee18aa7b1a0
     },
   },
   plugins: [
