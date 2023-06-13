@@ -1,6 +1,6 @@
-import Container from "@/components/layouts/Container";
-import Button from "@/components/Button";
-import ButtonLink from "@/components/ButtonLink";
+import Container from "./layouts/Container";
+import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 
 const PilihPenerbangan = () => {
     return (

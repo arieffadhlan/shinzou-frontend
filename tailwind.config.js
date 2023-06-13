@@ -58,6 +58,7 @@ module.exports = {
         "2xs": "375px",
 				"xs": "460px",
         "2md": "992px",
+        "2lg": "1200px",
         "2xl": "1440px"
 			},
       translate: {
