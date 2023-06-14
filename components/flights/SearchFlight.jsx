@@ -9,6 +9,18 @@ import FlightSeatModal from "../modals/FlightSeatModal";
 import FlightClassModal from "../modals/FlightClassModal";
 import Button from "../Button";
 
+const datePickerOptions = {
+  asSingle: true,
+  useRange: false,
+  placeholder: "Pilih Tanggal",
+  primaryColor: "purple" ,
+  popoverDirection: "down",
+  i18n: "id",
+  displayFormat: "DD MMM YYYY",
+  inputClassName: "cursor-pointer w-full outline-none font-medium text-sm text-black placeholder:text-primary-4 disabled:placeholder:text-neutral-3 xs:text-base",
+  toggleClassName: "hidden"
+}
+
 const SearchFlight = () => {
   const [locationSwap, setLocationSwap] = useState(false);
   const [returnFlight, setReturnFlight] = useState(false);
@@ -98,13 +110,7 @@ const SearchFlight = () => {
                     <Datepicker 
                       onChange={handleDepartureTime}
                       value={departureTime}
-                      primaryColor="purple" 
-                      useRange={false}
-                      asSingle={true}
-                      placeholder="Pilih Tanggal"
-                      popoverDirection="down"
-                      inputClassName="cursor-pointer w-full outline-none font-medium text-sm text-black placeholder:text-neutral-3 xs:text-base"
-                      toggleClassName="hidden"
+                      {...datePickerOptions}
                     />
                     <div className="w-full h-[1px] bg-neutral-2"></div>
                   </div>
@@ -114,14 +120,8 @@ const SearchFlight = () => {
                   <Datepicker 
                     onChange={handleArrivalTime}
                     value={arrivalTime}
-                    primaryColor="purple" 
-                    useRange={false}
-                    asSingle={true}
-                    placeholder="Pilih Tanggal"
-                    popoverDirection="down"
-                    inputClassName="cursor-pointer w-full outline-none font-medium text-sm text-black placeholder:text-primary-4 disabled:cursor-default disabled:placeholder:text-neutral-3 xs:text-base"
-                    toggleClassName="hidden"
                     disabled={!returnFlight}
+                    {...datePickerOptions}
                   />
                   <div className="w-full h-[1px] bg-neutral-2"></div>
                 </div>
