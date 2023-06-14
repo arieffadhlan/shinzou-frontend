@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Datepicker from "react-tailwindcss-datepicker";
 
 import Container from "../layouts/Container";
 import FlightLocationModal from '../modals/FlightLocationModal';
@@ -11,6 +12,8 @@ import Button from "../Button";
 const SearchFlight = () => {
   const [locationSwap, setLocationSwap] = useState(false);
   const [returnFlight, setReturnFlight] = useState(false);
+  const [departureTime, setDepartureTime] = useState(""); 
+  const [arrivalTime, setArrivalTime] = useState("");
 
   const swapLocationHandler = () => {
     setLocationSwap(!locationSwap);
@@ -19,6 +22,14 @@ const SearchFlight = () => {
   const returnFlightHandler = () => {
     setReturnFlight(!returnFlight);
   }
+    
+  const handleDepartureTime = (departureTime) => {
+    setDepartureTime(departureTime); 
+  } 
+  
+  const handleArrivalTime = (arrivalTime) => {
+    setArrivalTime(arrivalTime); 
+  } 
   
   return (
     <Container className="mt-32">
@@ -82,17 +93,38 @@ const SearchFlight = () => {
                     <span className="material-icons-round">calendar_month</span>
                     <span className="text-sm">Date</span>
                   </div>
-                  <button type="button" className="flex flex-col items-start gap-2 w-full outline-none">
+                  <div className="flex flex-col items-start gap-2 w-full outline-none">
                     <span className="font-medium text-sm text-neutral-3 xs:text-base">Departure</span>
-                    <span className="font-medium text-sm text-black xs:text-base">1 Maret 2023</span>
+                    <Datepicker 
+                      onChange={handleDepartureTime}
+                      value={departureTime}
+                      primaryColor="purple" 
+                      useRange={false}
+                      asSingle={true}
+                      placeholder="Pilih Tanggal"
+                      popoverDirection="down"
+                      inputClassName="cursor-pointer w-full outline-none font-medium text-sm text-black placeholder:text-neutral-3 xs:text-base"
+                      toggleClassName="hidden"
+                    />
                     <div className="w-full h-[1px] bg-neutral-2"></div>
-                  </button>
+                  </div>
                 </div>
-                <button type="button" className="group flex flex-col items-start gap-2 w-full outline-none" disabled={!returnFlight}>
+                <div className="group flex flex-col items-start gap-2 w-full outline-none" disabled={!returnFlight}>
                   <span className="font-medium text-sm text-neutral-3 xs:text-base">Return</span>
-                  <span className="font-medium text-sm text-primary-4 xs:text-base group-disabled:text-neutral-3">Pilih Tanggal</span>
+                  <Datepicker 
+                    onChange={handleArrivalTime}
+                    value={arrivalTime}
+                    primaryColor="purple" 
+                    useRange={false}
+                    asSingle={true}
+                    placeholder="Pilih Tanggal"
+                    popoverDirection="down"
+                    inputClassName="cursor-pointer w-full outline-none font-medium text-sm text-black placeholder:text-primary-4 disabled:cursor-default disabled:placeholder:text-neutral-3 xs:text-base"
+                    toggleClassName="hidden"
+                    disabled={!returnFlight}
+                  />
                   <div className="w-full h-[1px] bg-neutral-2"></div>
-                </button>
+                </div>
                 <div className="flex items-center gap-7 w-full">
                   <div className="hidden items-center gap-3 text-neutral-3 2lg:flex">
                     <span className="material-icons-round">airline_seat_recline_normal</span>
@@ -132,6 +164,8 @@ const SearchFlight = () => {
           Cari Penerbangan
         </Button>
       </form>
+
+      {/* Modals */}
       <FlightLocationModal />
       <FlightSeatModal />
       <FlightClassModal />
