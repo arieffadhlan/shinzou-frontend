@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "./layouts/Container";
 import Button from "./Button";
 import DestinationCard from "./DestinationCard";

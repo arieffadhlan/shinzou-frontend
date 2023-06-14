@@ -1,16 +1,13 @@
 import Navbar from '@/components/layouts/Navbar';
-import Hero from '@/components/Hero';
+import SearchFlight from '@/components/flights/SearchFlight';
 import FavoriteDestination from '@/components/FavoriteDestination';
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <Hero />
+      <SearchFlight />
       <FavoriteDestination />
-      {/* <SearchModal/>
-      <DateModal/>
-      <PriceModal/> */}
     </>   
   )
 }
