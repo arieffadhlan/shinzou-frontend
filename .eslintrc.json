@@ -1,5 +1,5 @@
 {
-  "extends": "next",
+  "extends": ["next/babel","next/core-web-vitals"],
   "rules": {
     "default-param-last": ["error"],
     "object-shorthand": "error"
