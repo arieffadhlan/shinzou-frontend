@@ -3,6 +3,7 @@ import { flights } from "@/constants/flights";
 import Container from "@/components/layouts/Container";
 import TicketsNotFound from "@/components/flights/TicketsNotFound";
 import TicketsSoldOut from "@/components/flights/TicketsSoldOut";
+import FlightFilterModal from "@/components/modals/FlightFilterModal";
 import PilihPenerbangan from "@/components/PilihPenerbangan"
 import FlightCard from "@/components/FlightCard";
 
@@ -15,7 +16,12 @@ const SearchFlight = () => {
       {flightTicketsStatus === "available" ? (
         <>
           <Container className="flex justify-end mt-6">
-            <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-xs text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-neutral-1 active:border-primary-5 active:bg-primary-5 active:text-neutral-1">
+            <button 
+              type="button" 
+              data-modal-target="flight-filter" 
+              data-modal-toggle="flight-filter"
+              className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-xs text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-neutral-1 active:border-primary-5 active:bg-primary-5 active:text-neutral-1"
+            >
               <span className="material-icons-round !text-[20px]">
                 swap_vert
               </span>
@@ -56,6 +62,7 @@ const SearchFlight = () => {
             ): (
               <TicketsNotFound />
             )}
+            <FlightFilterModal />
           </Container>
         </>
       ) : (

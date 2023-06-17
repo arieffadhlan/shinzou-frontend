@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="id" className={poppins.className}>
       <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+        {/* <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" /> */}
       </head>
       <body>
         {children}

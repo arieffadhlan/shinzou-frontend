@@ -1,5 +1,5 @@
 import Navbar from '@/components/layouts/Navbar';
-import Hero from '@/components/Hero';
+import SearchFlight from '@/components/flights/SearchFlight';
 import FavoriteDestination from '@/components/FavoriteDestination';
 import NavbarPayment from '@/components/payments/NavbarPayment';
 import PaymentMethod from '@/components/payments/PaymentMethod';
@@ -7,15 +7,9 @@ import PaymentMethod from '@/components/payments/PaymentMethod';
 const Home = () => {
   return (
     <>
-      {/* <Navbar />
-      <Hero />
+      <Navbar />
+      <SearchFlight />
       <FavoriteDestination />
-      <SearchModal/>
-      <DateModal/>
-      <PriceModal/>  */}
-      <NavbarPayment/>
-      <PaymentMethod/>
-      
     </>   
   )
 }

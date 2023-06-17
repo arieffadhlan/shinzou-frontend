@@ -1,13 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import Datepicker from "react-tailwindcss-datepicker";
 
-import Container from "./layouts/Container";
-import Button from "./Button";
+import Container from "../layouts/Container";
+import FlightLocationModal from '../modals/FlightLocationModal';
+import FlightSeatModal from "../modals/FlightSeatModal";
+import FlightClassModal from "../modals/FlightClassModal";
+import Button from "../Button";
 
-const Hero = () => {
+const datePickerOptions = {
+  asSingle: true,
+  useRange: false,
+  placeholder: "Pilih Tanggal",
+  primaryColor: "purple" ,
+  popoverDirection: "down",
+  i18n: "id",
+  displayFormat: "DD MMM YYYY",
+  inputClassName: "cursor-pointer w-full outline-none font-medium text-sm text-black placeholder:text-primary-4 disabled:placeholder:text-neutral-3 xs:text-base",
+  toggleClassName: "hidden"
+}
+
+const SearchFlight = () => {
   const [locationSwap, setLocationSwap] = useState(false);
   const [returnFlight, setReturnFlight] = useState(false);
+  const [departureTime, setDepartureTime] = useState(""); 
+  const [arrivalTime, setArrivalTime] = useState("");
 
   const swapLocationHandler = () => {
     setLocationSwap(!locationSwap);
@@ -16,6 +34,14 @@ const Hero = () => {
   const returnFlightHandler = () => {
     setReturnFlight(!returnFlight);
   }
+    
+  const handleDepartureTime = (departureTime) => {
+    setDepartureTime(departureTime); 
+  } 
+  
+  const handleArrivalTime = (arrivalTime) => {
+    setArrivalTime(arrivalTime); 
+  } 
   
   return (
     <Container className="mt-32">
@@ -32,7 +58,12 @@ const Hero = () => {
                   <span className="material-icons-round">flight_takeoff</span>
                   <span className="text-xs xs:text-sm">{locationSwap ? "To" : "From"}</span>
                 </div>
-                <button type="button" className="flex flex-col items-start gap-3 w-full">
+                <button 
+                  type="button" 
+                  data-modal-target="search-flight" 
+                  data-modal-toggle="search-flight"
+                  className="flex flex-col items-start gap-3 w-full outline-none"
+                >
                   <span className="font-medium text-sm text-black xs:text-lg">Jakarta (JKTA)</span>
                   <div className="hidden w-full h-[1px] bg-neutral-2 2md:block"></div>
                 </button>
@@ -42,7 +73,7 @@ const Hero = () => {
                 <button 
                   type="button" 
                   onClick={swapLocationHandler}
-                  className="flex justify-center items-center p-1 border border-primary-4 rounded-xl bg-black rotate-90 2md:rotate-0"
+                  className="flex justify-center items-center p-1 border border-primary-4 outline-none rounded-xl bg-black rotate-90 2md:rotate-0"
                 >
                   <span className="material-icons-round !text-[20px] text-white xs:!text-[24px]">swap_horiz</span>
                 </button>
@@ -52,7 +83,7 @@ const Hero = () => {
                   <span className="material-icons-round">flight_takeoff</span>
                   <span className="text-xs xs:text-sm">{locationSwap ? "From" : "To"}</span>
                 </div>
-                <button type="button" className="flex flex-col items-start gap-3 w-full">
+                <button type="button" className="flex flex-col items-start gap-3 w-full outline-none">
                   <span className="font-medium text-sm text-black xs:text-lg">Melbourne (MLB)</span>
                   <div className="hidden w-full h-[1px] bg-neutral-2 2md:block"></div>
                 </button>
@@ -74,29 +105,48 @@ const Hero = () => {
                     <span className="material-icons-round">calendar_month</span>
                     <span className="text-sm">Date</span>
                   </div>
-                  <button type="button" className="flex flex-col items-start gap-2 w-full">
+                  <div className="flex flex-col items-start gap-2 w-full outline-none">
                     <span className="font-medium text-sm text-neutral-3 xs:text-base">Departure</span>
-                    <span className="font-medium text-sm text-black xs:text-base">1 Maret 2023</span>
+                    <Datepicker 
+                      onChange={handleDepartureTime}
+                      value={departureTime}
+                      {...datePickerOptions}
+                    />
                     <div className="w-full h-[1px] bg-neutral-2"></div>
-                  </button>
+                  </div>
                 </div>
-                <button type="button" className="group flex flex-col items-start gap-2 w-full" disabled={!returnFlight}>
+                <div className="group flex flex-col items-start gap-2 w-full outline-none" disabled={!returnFlight}>
                   <span className="font-medium text-sm text-neutral-3 xs:text-base">Return</span>
-                  <span className="font-medium text-sm text-primary-4 xs:text-base group-disabled:text-neutral-3">Pilih Tanggal</span>
+                  <Datepicker 
+                    onChange={handleArrivalTime}
+                    value={arrivalTime}
+                    disabled={!returnFlight}
+                    {...datePickerOptions}
+                  />
                   <div className="w-full h-[1px] bg-neutral-2"></div>
-                </button>
+                </div>
                 <div className="flex items-center gap-7 w-full">
                   <div className="hidden items-center gap-3 text-neutral-3 2lg:flex">
                     <span className="material-icons-round">airline_seat_recline_normal</span>
                     <span className="text-sm">To</span>
                   </div>
-                  <button type="button" className="flex flex-col items-start gap-2 w-full">
+                  <button 
+                    type="button" 
+                    data-modal-target="flight-seat" 
+                    data-modal-toggle="flight-seat"
+                    className="flex flex-col items-start gap-2 w-full outline-none"
+                  >
                     <span className="font-medium text-sm text-neutral-3 xs:text-base">Passengers</span>
                     <span className="font-medium text-sm text-black xs:text-base">2 Penumpang</span>
                     <div className="w-full h-[1px] bg-neutral-2"></div>
                   </button>
                 </div>
-                <button type="button" className="flex flex-col items-start gap-2 w-full">
+                <button 
+                  type="button" 
+                  data-modal-target="flight-class" 
+                  data-modal-toggle="flight-class"
+                  className="flex flex-col items-start gap-2 w-full outline-none"
+                >
                   <span className="font-medium text-sm text-neutral-3 xs:text-base">Seat Class</span>
                   <span className="font-medium text-sm text-black xs:text-base">Business</span>
                   <div className="w-full h-[1px] bg-neutral-2"></div>
@@ -114,8 +164,13 @@ const Hero = () => {
           Cari Penerbangan
         </Button>
       </form>
+
+      {/* Modals */}
+      <FlightLocationModal />
+      <FlightSeatModal />
+      <FlightClassModal />
     </Container>
   )
 }
 
-export default Hero;
+export default SearchFlight;
