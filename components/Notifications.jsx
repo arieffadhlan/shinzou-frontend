@@ -48,7 +48,7 @@ const Notifications= () => {
             </div>
           <div className="flex gap-1 "></div>
             <span className="text-sm text-neutral-3">5 Maret, 14:04</span>
-            <div class="w-[8px] h-[8px] rounded-full rounded-full bg-rose-500"></div>
+            <div class="w-[8px] h-[8px] rounded-full  bg-rose-500"></div>
         </div>
       </Container>
       </>

@@ -1,6 +1,8 @@
 
 import Container from "./../layouts/Container";
 import Dropdown from "../Drowdown";
+import FlighDetail from "../payments/FlightDetail"
+import Button from "../Button"
 
 const PaymentMethod = () => {
     return(
@@ -22,17 +24,21 @@ const PaymentMethod = () => {
                 </div>
             </div>
             <Container>
-                <div className="mx-[8.4rem]">
-                    <div className="flex flex-wrap py-8">
-                        <div className="w-3/5 px-10 self-center">
+                <div className="mx-28 mt-16">
+                    <div className="flex flex-wrap pb-3">
+                        <div className="w-3/5 px-12">
                             <h2 className="font-bold text-xl pb-4">Isi Data Pembayaran</h2>
                             <div>
                                 <Dropdown/>
+                                <button
+                                    className="bg-primary-4 text-white py-3 w-[28rem] rounded-xl text-xl font-medium"
+                                    type="submit"
+                                >
+                                    Bayar
+                                </button>
                             </div>
                         </div>
-                        <div className="ml-20">
-                            <h2 className="font-bold text-lg">Booking Code: <span className="text-primary-4">6723y2GHK</span></h2>
-                        </div>
+                        <FlighDetail/>
                     </div>
                 </div>
             </Container>
