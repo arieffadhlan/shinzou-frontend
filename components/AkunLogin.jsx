@@ -3,7 +3,7 @@ import Container from "./layouts/Container";
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 
-const akunLogin = () => {
+const AkunLogin = () => {
     return (
       <>
       <section className="shadow-xs">
@@ -55,4 +55,4 @@ const akunLogin = () => {
     )
   }
   
-  export default akunLogin;
+  export default AkunLogin;
