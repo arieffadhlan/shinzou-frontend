@@ -25,10 +25,10 @@ const OrderHistory = () => {
               type="button"
               className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-xs text-black active:bg-primary-5 active:text-neutral-1"
             >
-            <span class="material-icons-round !text-[20px]">filter_alt</span>
+            <span className="material-icons-round !text-[20px]">filter_alt</span>
               Filter
             </button>
-            <span class="material-icons-round text-primary-5 !text-[24px]">
+            <span className="material-icons-round text-primary-5 !text-[24px]">
               search
             </span>
           </div>
