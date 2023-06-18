@@ -7,9 +7,11 @@ import PaymentMethod from '@/components/payments/PaymentMethod';
 const Home = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <SearchFlight />
-      <FavoriteDestination />
+      <FavoriteDestination /> */}
+      <NavbarPayment/>
+      <PaymentMethod/>
     </>   
   )
 }
