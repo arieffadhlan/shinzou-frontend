@@ -76,3 +76,5 @@ export const flights = [
     arrival_time: new Date("2023/03/03 23:30:00"),
   }
 ];
+
+export default flights;
