@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import * as yup from "yup";
 
 import { clearState } from "@/redux/features/auth/authSlice";
-import { forgotPassword } from "@/redux/features/auth/authAction";
+import { resetPassword } from "@/redux/features/auth/authAction";
 
 import AuthFormContainer from "@/components/layouts/AuthFormContainer";
 import Alert from "@/components/Alert";
@@ -17,15 +17,19 @@ import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
 
 const validationSchema = yup.object().shape({
-  email: yup.string()
-    .required("Email wajib diisi!")
-    .email("Email tidak valid!")
+  password: yup.string()
+    .required("Password wajib diisi!")
+    .min(8, "Password min 8 karakter!"),
+  confirmationPassword: yup.string()
+    .required("Konfirmasi password wajib diisi!")
+    .min(8, "Konfirmasi password min 8 karakter!")
 });
 
-const ForgotPassword = () => {  
+const ResetPassword = ({ params }) => {  
   const { loading, user, error, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { token } = params;
 
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
@@ -39,13 +43,14 @@ const ForgotPassword = () => {
   }, [success]);
 
   const handleFormSubmit = (formData) => {
-    dispatch(forgotPassword(formData));
+    formData.token = token;
+    dispatch(resetPassword(formData));
   }
   
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl text-black">
-        Lupa Password
+        Reset Password
       </h1>
       <Form 
         validationSchema={validationSchema} 
@@ -53,8 +58,12 @@ const ForgotPassword = () => {
         className="flex flex-col gap-4"
       >
         <div className="flex flex-col gap-1">
-          <Label id="email">Email</Label>
-          <Input type="email" variant="primary" name="email" placeholder="Masukkan email" autoFocus />
+          <Label id="password">Masukkan Password Baru</Label>
+          <Input type="password" variant="primary" name="password" placeholder="Masukkan password baru" autoFocus />
+        </div>
+        <div className="flex flex-col gap-1">
+          <Label id="confirmationPassword">Ulangi Password Baru</Label>
+          <Input type="password" variant="primary" name="confirmationPassword" placeholder="Ulangi password baru" />
         </div>
         <Button 
           type="submit" 
@@ -65,7 +74,7 @@ const ForgotPassword = () => {
         >
           {loading ? (
             <span className="animate-spin material-icons-round">autorenew</span>
-          ): "Kirim"}
+          ): "Simpan"}
         </Button>
       </Form>
 
@@ -79,4 +88,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword;
+export default ResetPassword;

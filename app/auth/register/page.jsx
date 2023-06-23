@@ -1,14 +1,19 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import AuthContainer from "@/components/layouts/AuthContainer";
+import { clearState } from "@/redux/features/auth/authSlice";
+import { registerUser } from "@/redux/features/auth/authAction";
+
+import AuthFormContainer from "@/components/layouts/AuthFormContainer";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
+import Form from "@/components/forms/Form";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
 
@@ -24,98 +29,77 @@ const validationSchema = yup.object().shape({
 });
 
 const Register = () => {  
-  const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-    reValidateMode: "onSubmit"
-  });
+  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  
+  useEffect(() => {
+    const redirectTimer = setTimeout(() => {
+      if (success) {
+        dispatch(clearState());
+        router.push("/auth/verify");
+      }
+    }, 3000);
+    
+    return () => clearTimeout(redirectTimer);
+  }, [success]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const handleFormSubmit = (formData) => {
+    dispatch(registerUser(formData));
   }
   
   return (
-    <AuthContainer>
+    <AuthFormContainer>
       <h1 className="font-bold text-2xl text-black">
         Daftar
       </h1>
       <div className="flex flex-col gap-10">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+        <Form 
+          validationSchema={validationSchema} 
+          onSubmit={handleFormSubmit} 
+          className="flex flex-col gap-4"
+        >
           <div className="flex flex-col gap-1">
             <Label id="name">Nama</Label>
-            <Input
-              type="text"
-              variant="primary"
-              name="name"
-              register={register}
-              errors={errors}
-              validationSchema={validationSchema}
-              placeholder="Nama Lengkap"
-            />
-            {errors["name"]?.message && <Alert type="error" message={errors["name"].message} />}
+            <Input type="text" variant="primary" name="name" placeholder="Nama Lengkap" autoFocus />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
-            <Input
-              type="email"
-              variant="primary"
-              name="email"
-              register={register}
-              errors={errors}
-              validationSchema={validationSchema}
-              placeholder="Contoh: johndee@gmail.com"
-            />
-            {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
+            <Input type="email" variant="primary" name="email" placeholder="Contoh: johndee@gmail.com" />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="phone_number">Nomor Telepon</Label>
-            <Input
-              type="number"
-              variant="primary"
-              name="phone_number"
-              register={register}
-              errors={errors}
-              validationSchema={validationSchema}
-              placeholder="+62 ."
-            />
-            {errors["phone_number"]?.message && <Alert type="error" message={errors["phone_number"].message} />}
+            <Input type="number" variant="primary" name="phone_number" placeholder="+62 ." />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="password">Buat Password</Label>
-            <Input
-              type="password"
-              variant="primary"
-              name="password"
-              register={register}
-              errors={errors}
-              validationSchema={validationSchema}
-              placeholder="Buat Password"
-            />
-            {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
+            <Input type="password" variant="primary" name="password" placeholder="Buat Password" />
           </div>
           <Button 
             type="submit" 
             size="md" 
             variant="primary" 
             className="w-full mt-2"
+            disabled={loading}
           >
-            Daftar
+            {loading ? (
+              <span className="animate-spin material-icons-round">autorenew</span>
+            ): "Daftar"}
           </Button>
-        </form>
+        </Form>
         <span className="flex justify-center items-center text-sm text-black">
           Sudah punya akun? &nbsp;
           <Link href="/auth/login" className="font-bold text-primary-4">Masuk di sini</Link>
         </span>
       </div>
+
+      {/* Alert */}
+      {success && <Alert type="success" message={user.message} />}
+      {error && <Alert type="error" message={error.message} />}
       <div className="Toastify__toast-auth">
-        <ToastContainer />
+        <ToastContainer draggable={false} />
       </div>
-    </AuthContainer>
+    </AuthFormContainer>
   )
 }
 
