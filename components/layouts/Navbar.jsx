@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
+import { logout } from "@/redux/features/auth/authSlice";
 import InputSearch from "@/components/forms/InputSearch";
 import ButtonLink from "@/components/ButtonLink";
 
 import logo from "@/assets/images/logo.webp";
-import { useDispatch } from "react-redux";
-import { logout } from "@/redux/features/auth/authSlice";
-import { useRouter } from "next/navigation";
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -29,7 +29,8 @@ const Navbar = () => {
 						<Link href="/">
 							<Image 
 								src={logo} 
-								alt="Logo"
+								alt="Logo" 
+								priority={true}
 								className="w-20 lg:w-24" 
 							/>
 						</Link>

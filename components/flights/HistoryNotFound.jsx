@@ -1,36 +1,30 @@
-import ButtonLink from "../ButtonLink";
-import Container from "../layouts/Container";
-import FlightHistoryNotFound from "@/assets/images/flight/history-not-found.svg"
 import Image from "next/image";
+import Container from "../layouts/Container";
+import ButtonLink from "../ButtonLink";
+import flightHistoryNotFound from "@/assets/images/flight/history-not-found.svg";
 
 const HistoryNotFound = () => {
   return (
-    <>
-      <Container className="flex flex-col justify-center items-center gap-9 my-[100px]">
-        <span className="font-medium text-sm text-center text-primary-4">
-          Opps! Riwayat pemesanan kosong! <br />
-          <strong className="font-medium text-black">
-            Anda belum melakukan pemesanan penerbangan!
-          </strong>
-        </span>
-
-        <Image
-        src={FlightHistoryNotFound}
-        alt="FlightHistoryNotFound"
-        >
-
-        </Image>
+    <Container className="my-16">
+      <div className="flex flex-col items-center gap-9 w-full xs:w-fit xs:mx-auto">
+        <div className="flex flex-col items-center gap-4.5">
+          <Image src={flightHistoryNotFound} alt="Flight tickets not found" />
+          <span className="font-medium text-sm text-center text-black">
+            Maaf, pencarian Anda tidak ditemukan <br />
+            <strong className="font-medium text-primary-4">Coba cari perjalanan lainnya!</strong>
+          </span>
+        </div>
         <ButtonLink
-              href="/"
-              size="md"
-              variant="primary"
-              className="!w-[345px]  bg-primary-5 xs:gap-4.5 lg:w-auto xl:flex-[75%]"
-            >
-              Cari Penerbangan
+          href="/"
+          size="md"
+          variant="primary"
+          className="w-full bg-primary-5"
+        >
+          Cari Penerbangan
         </ButtonLink>
-      </Container>
-    </>
-  );
-};
+      </div>
+    </Container>
+  )
+}
 
 export default HistoryNotFound;
