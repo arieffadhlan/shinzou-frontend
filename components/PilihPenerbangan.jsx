@@ -5,7 +5,7 @@ import ButtonLink from "./ButtonLink";
 const PilihPenerbangan = () => {
     return (
       <section className="shadow-xs">
-        <Container htmlTag="div" className="flex flex-col gap-6 pt-[132px] pb-5">
+        <Container htmlTag="div" className="flex flex-col gap-6 pt-[102px] pb-5 sm:pt-[132px]">
           <h1 className="font-bold text-xl">
             Pilih Penerbangan
           </h1>

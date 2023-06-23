@@ -6,11 +6,11 @@ export default function Notification() {
   return (
     <>
       <section className="shadow-xs">
-        <Container htmlTag="div" className="flex flex-col gap-6 pt-[132px] pb-5">
+        <Container htmlTag="div" className="flex flex-col gap-6 pt-[102px] pb-5 sm:pt-[132px]">
           <h1 className="font-bold text-xl">
             Notifikasi
           </h1>
-          <div className="flex flex-col items-center gap-3 w-full lg:flex-row">
+          <div className="flex flex-col items-center gap-5 w-full sm:flex-row sm:gap-3">
             <ButtonLink 
               href="/" 
               size="lg" 
@@ -20,15 +20,17 @@ export default function Notification() {
               <span className="material-icons-round">arrow_back</span>
               Beranda
             </ButtonLink>
-            <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-base text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-neutral-1 active:border-primary-5 active:bg-primary-5 active:text-neutral-1">
-              <span className="material-icons-round !text-[20px]">
-                filter_alt
-              </span>
-              Filter
-            </button>
-            <button className="material-icons-round text-primary-4">
-              search
-            </button>
+            <div className="flex justify-end items-center gap-3 w-full sm:w-auto">
+              <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-base text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-neutral-1 active:border-primary-5 active:bg-primary-5 active:text-neutral-1">
+                <span className="material-icons-round !text-[20px]">
+                  filter_alt
+                </span>
+                Filter
+              </button>
+              <button className="material-icons-round text-primary-4">
+                search
+              </button>
+            </div>
           </div>
         </Container>
       </section>
