@@ -8,7 +8,7 @@ const UserForm = () => {
         Isi Data Pemesan
       </h2>
       <div className="flex flex-col bg-neutral-1 border border-neutral-2 rounded-lg shadow-2xs">
-        <div className="px-4 py-2 rounded-t-lg bg-primary-4">
+        <div className="flex justify-center items-center px-4 py-2 rounded-t-lg bg-primary-4">
           <span className="font-medium text-base text-neutral-1">
             Data Diri Pemesan
           </span>

@@ -11,7 +11,7 @@ export default function OrderHistory() {
       <section className="shadow-xs">
         <Container htmlTag="div" className="flex flex-col gap-6 pt-[102px] pb-5 sm:pt-[132px]">
           <h1 className="font-bold text-xl">
-            Riwayat Pemesanan
+            Pemesanan
           </h1>
           <div className="flex flex-col items-center gap-5 w-full sm:flex-row sm:gap-3">
             <ButtonLink 
@@ -42,7 +42,6 @@ export default function OrderHistory() {
       <Container className="my-12">
         <div className="flex flex-col-reverse gap-6 2md:flex-row 2md:gap-15">
           <CheckoutForm />
-          {/* <PassangerForm /> */}
           <FlightDetails />
         </div>
       </Container>
