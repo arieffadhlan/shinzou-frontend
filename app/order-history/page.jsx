@@ -1,8 +1,11 @@
-import ButtonLink from "@/components/ButtonLink";
-import Container from "@/components/layouts/Container";
-import HistoryNotFound from "@/components/flights/HistoryNotFound";
+"use client";
 
-export default function OrderHistory() {
+import Container from "@/components/layouts/Container";
+import ButtonLink from "@/components/ButtonLink";
+import OrderHistoryCard from "@/components/flights/OrderHistoryCard";
+import OrderHistoryDetails from "@/components/flights/OrderHistoryDetails";
+
+export default function OrderHistory() {  
   return (
     <>
       <section className="shadow-xs">
@@ -34,7 +37,14 @@ export default function OrderHistory() {
           </div>
         </Container>
       </section>
-      <HistoryNotFound />
+
+      {/* Order History List */}
+      <Container className="my-[64px]">
+        <div className="flex gap-15">
+          <OrderHistoryCard />
+          <OrderHistoryDetails className="hidden 2md:flex" />
+        </div>
+      </Container>
     </>
   )
 }

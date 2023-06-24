@@ -21,7 +21,7 @@ const datePickerOptions = {
   toggleClassName: "hidden"
 }
 
-const SearchFlight = () => {
+const SearchTicketForm = () => {
   const [locationSwap, setLocationSwap] = useState(false);
   const [returnFlight, setReturnFlight] = useState(false);
   const [departureTime, setDepartureTime] = useState(""); 
@@ -173,4 +173,4 @@ const SearchFlight = () => {
   )
 }
 
-export default SearchFlight;
+export default SearchTicketForm;

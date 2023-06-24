@@ -1,12 +1,12 @@
 import Navbar from '@/components/layouts/Navbar';
-import SearchFlight from '@/components/flights/SearchFlight';
+import SearchFlightForm from '@/components/flights/SearchFlightForm';
 import FavoriteDestination from '@/components/FavoriteDestination';
 
 const Home = () => {
   return (
     <>
       <Navbar />  
-      <SearchFlight />
+      <SearchFlightForm />
       <FavoriteDestination />
     </>   
   )
