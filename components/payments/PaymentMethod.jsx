@@ -1,49 +1,63 @@
-
-import Container from "./../layouts/Container";
-import Dropdown from "../Drowdown";
-import FlighDetail from "../payments/FlightDetail"
-import Button from "../Button"
+import Image from "next/image";
+import Button from "../Button";
+import gopay from "@/assets/icons/payment-methods/gopay.svg";
+import virtualAccount from "@/assets/icons/payment-methods/virtual-account.svg";
+import creditCard from "@/assets/icons/payment-methods/credit-card.svg";
 
 const PaymentMethod = () => {
-    return(
-        <>
-            <div className="mt-[5.5rem]">
-                <div className="w-full bg-white shadow-md px-[8.5rem] pb-4">
-                    <div className="pt-12 px-32 pb-3">
-                        <div className="flex flex-wrap gap-3 font-bold text-xl">
-                            <h1>Isi Data Diri</h1>
-                            <span className="text-neutral-3">&gt; </span>
-                            <h1>Bayar</h1>
-                            <span className="text-neutral-3">&gt; </span>
-                            <h1 className="text-neutral-3">Selesai</h1>
-                        </div>
-                    </div>
-                    <div className=" mx-[8.5rem] bg-danger p-3 rounded-xl w-[51.5rem]">
-                        <h2 className="text-center text-white font-medium text-base">Selesaikan Pembayaran sampai 10 Maret 2023 12:00</h2>
-                    </div>
-                </div>
-            </div>
-            <Container>
-                <div className="mx-28 mt-16">
-                    <div className="flex flex-wrap pb-3">
-                        <div className="w-3/5 px-12">
-                            <h2 className="font-bold text-xl pb-4">Isi Data Pembayaran</h2>
-                            <div>
-                                <Dropdown/>
-                                <button
-                                    className="bg-primary-4 text-white py-3 w-[28rem] rounded-xl text-xl font-medium"
-                                    type="submit"
-                                >
-                                    Bayar
-                                </button>
-                            </div>
-                        </div>
-                        <FlighDetail/>
-                    </div>
-                </div>
-            </Container>
-        </>
-    )
+	return(
+		<div className="flex flex-[60%] flex-col gap-9">
+			<div className="flex flex-col gap-4">
+				<h2 className="font-bold text-xl">
+					Pilih Metode Pembayaran
+				</h2>
+				{/* Payment Methods */}
+				<div className="flex flex-col gap-4">
+					<div className="cursor-pointer flex items-center gap-4 py-3.5 px-4 border border-neutral-2 rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs">
+						<div className="flex justify-center items-center w-12 xs:w-14">
+							<Image 
+								src={gopay} 
+								alt="Gopay" 
+								priority={true} 
+								width={48}
+							/>
+						</div>
+						<span className="font-medium text-sm xs:text-base">Gopay</span>
+					</div>
+					<div className="cursor-pointer flex items-center gap-4 py-3.5 px-4 border border-neutral-2 rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs">
+						<div className="flex justify-center items-center w-12 xs:w-14">
+							<Image 
+								src={virtualAccount} 
+								alt="Virtual Account" 
+								priority={true} 
+								width={24}
+							/>
+						</div>
+						<span className="font-medium text-sm xs:text-base">Virtual Account</span>
+					</div>
+					<div className="cursor-pointer flex items-center gap-4 py-3.5 px-4 border border-neutral-2 rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs">
+						<div className="flex justify-center items-center w-12 xs:w-14">
+							<Image 
+								src={creditCard} 
+								alt="Credit Card" 
+								priority={true} 
+								width={28}
+							/>
+						</div>
+						<span className="font-medium text-sm xs:text-base">Credit Card</span>
+					</div>
+				</div>
+			</div>
+			<Button 
+        type="submit" 
+        size="xl" 
+        variant="primary" 
+        className="w-full py-3.5 text-sm 2md:py-4 2md:text-xl"
+      >
+				Bayar
+      </Button>
+		</div>
+	)
 }
 
 export default PaymentMethod;
