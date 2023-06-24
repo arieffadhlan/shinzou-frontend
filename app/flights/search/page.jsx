@@ -5,7 +5,7 @@ import TicketsNotFound from "@/components/flights/TicketsNotFound";
 import TicketsSoldOut from "@/components/flights/TicketsSoldOut";
 import FlightFilterModal from "@/components/modals/FlightFilterModal";
 import PilihPenerbangan from "@/components/PilihPenerbangan"
-import FlightCard from "@/components/FlightCard";
+import FlightCard from "@/components/flights/FlightCard";
 
 const SearchFlight = () => {
   const flightTicketsStatus = "available"; 
