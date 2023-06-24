@@ -2,13 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
+import { logout } from "@/redux/features/auth/authSlice";
 import InputSearch from "@/components/forms/InputSearch";
 import ButtonLink from "@/components/ButtonLink";
 
 import logo from "@/assets/images/logo.webp";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    dispatch(logout());
+		router.push("/auth/login");
+  }
+	
   return (
 		<nav className="fixed z-20 top-0 left-0 w-full py-4 bg-white shadow-xs">
 			<div className="flex flex-col gap-5 max-w-8xl px-5 mx-auto sm:px-16 md:px-32">
@@ -18,6 +30,7 @@ const Navbar = () => {
 							<Image 
 								src={logo} 
 								alt="Logo" 
+								priority={true}
 								className="w-20 lg:w-24" 
 							/>
 						</Link>
@@ -40,6 +53,9 @@ const Navbar = () => {
 							<span className="material-icons-round !text-[20px]">login</span>
 							Masuk
 						</ButtonLink>
+						<form onSubmit={handleFormSubmit}>
+							<button type="submit">logout</button>
+						</form>
 						<button 
 							type="button" 
 							data-collapse-toggle="navbar-collapse" 

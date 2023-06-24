@@ -3,11 +3,11 @@ import Container from "./layouts/Container";
 const NotificationItem = () => {
     return (
       <Container className="flex flex-col gap-4 pb-5 mt-12">
-        <div className="flex gap-4 even:border-t even:border-neutral-2">
+        <div className="flex gap-3 even:border-t even:border-neutral-2">
           <span className="material-icons-round text-primary-4/50">
             circle_notifications
           </span>
-          <div className="flex flex-col gap-1 w-full">
+          <div className="flex flex-col gap-2 w-full">
             <div className="flex justify-between items-center">
               <span className="text-sm text-neutral-3">Promosi</span>
               <div className="flex items-center gap-2">
@@ -18,17 +18,14 @@ const NotificationItem = () => {
             <h2 className="text-base text-black">
               Dapatkan Potongan 50% Tiket!
             </h2>
-            <span className="text-sm text-neutral-3">
-              Syarat dan Ketentuan berlaku!
-            </span>
           </div>
         </div>
         <div className="even:w-full even:h-[1px] even:bg-neutral-2"></div>
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <span className="material-icons-round text-primary-4/50">
             circle_notifications
           </span>
-          <div className="flex flex-col gap-1 w-full">
+          <div className="flex flex-col gap-2 w-full">
             <div className="flex justify-between items-center">
               <span className="text-sm text-neutral-3">Notifikasi</span>
               <div className="flex items-center gap-2">

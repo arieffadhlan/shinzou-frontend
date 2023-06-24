@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { twMerge } from "tailwind-merge";
+"use client";
 
-const Input = ({
-  type,
-  variant,
-  name,
-  register,
-  errors,
-  validationSchema,
+import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
+import Alert from "../Alert";
+
+const Input = ({ 
+  type, 
+  variant, 
+  name, 
   className = "",
-  ...rest
+  ...props
 }) => {
+  const { register, formState: { errors } } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
   const inputVariants = {
     primary: "py-3 rounded-2xl",  
@@ -18,6 +20,12 @@ const Input = ({
   };
 
   const pickedVariant = inputVariants[variant];
+  const classNames = twMerge(
+    "input", 
+    pickedVariant, 
+    className, 
+    errors[name]?.message && "border-danger"
+  );
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -31,14 +39,9 @@ const Input = ({
             type={showPassword ? "text" : "password"}
             name={name}
             id={name}
-            className={twMerge(
-              `flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-neutral-3 focus:border-[#929292]`, 
-              pickedVariant, 
-              className,
-              errors[name]?.message && "border-danger"
-            )}
-            {...register(name, validationSchema)}
-            {...rest}
+            className={classNames}
+            {...register(name)}
+            {...props}
           />
           <button 
             type="button" 
@@ -53,16 +56,12 @@ const Input = ({
           type={type}
           name={name}
           id={name}
-          className={twMerge(
-            `flex items-center gap-4 w-full h-12 px-4 outline-none border border-[#D0D0D0] bg-white text-sm text-black transition duration-[0.2s] ease-[cubic-bezier(.4,0,1,1)] placeholder:text-sm placeholder:text-neutral-3 focus:border-[#929292]`, 
-            pickedVariant, 
-            className,
-            errors[name]?.message && "border-danger"
-          )}
-          {...register(name, validationSchema)}
-          {...rest}
+          className={classNames}
+          {...register(name)}
+          {...props}
         />
       )}
+      {errors[name]?.message && <Alert type="error" message={errors[name].message} />}
     </div>
   );
 }

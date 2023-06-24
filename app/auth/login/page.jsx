@@ -1,14 +1,19 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import AuthContainer from "@/components/layouts/AuthContainer";
+import { clearState } from "@/redux/features/auth/authSlice";
+import { loginUser } from "@/redux/features/auth/authAction"
+
+import AuthFormContainer from "@/components/layouts/AuthFormContainer";
 import Input from "@/components/forms/Input";
 import Label from "@/components/forms/Label";
+import Form from "@/components/forms/Form";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 
@@ -18,41 +23,39 @@ const validationSchema = yup.object().shape({
 });
 
 const Login = () => {  
-  const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-    reValidateMode: "onSubmit"
-  });
+  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  const onSubmit = (formData) => {
-    console.log(formData);
-    reset();
+  useEffect(() => {
+    const redirectTimer = setTimeout(() => {
+      if (success) {
+        dispatch(clearState());
+        router.push("/");
+      }
+    }, 3000);
+    
+    return () => clearTimeout(redirectTimer);
+  }, [success]);
+
+  const handleFormSubmit = (formData) => {
+    dispatch(loginUser(formData));
   }
   
   return (
-    <AuthContainer>
+    <AuthFormContainer>
       <h1 className="font-bold text-2xl leading-6 text-black">
         Masuk
       </h1>
       <div className="flex flex-col gap-10">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+        <Form 
+          validationSchema={validationSchema}
+          onSubmit={handleFormSubmit} 
+          className="flex flex-col gap-4"
+        >
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
-            <Input
-              type="email"
-              variant="primary"
-              name="email"
-              register={register}
-              errors={errors}
-              validationSchema={validationSchema}
-              placeholder="Contoh: johndoe@gmail.com"
-              autoFocus
-            />
-            {errors["email"]?.message && <Alert type="error" message={errors["email"].message} />}
+            <Input type="email" variant="primary" name="email" placeholder="Contoh: johndoe@gmail.com" autoFocus />
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
@@ -61,35 +64,33 @@ const Login = () => {
                 Lupa Kata Sandi
               </Link>
             </div>
-            <Input
-              type="password"
-              variant="primary"
-              name="password"
-              register={register}
-              errors={errors}
-              validationSchema={validationSchema}
-              placeholder="Masukkan password"
-            />
-            {errors["password"]?.message && <Alert type="error" message={errors["password"].message} />}
+            <Input type="password" variant="primary" name="password" placeholder="Masukkan password" />
           </div>
           <Button 
             type="submit" 
             size="md" 
             variant="primary" 
             className="w-full mt-2"
+            disabled={loading}
           >
-            Masuk
+            {loading ? (
+              <span className="animate-spin material-icons-round">autorenew</span>
+            ): "Masuk"}
           </Button>
-        </form>
+        </Form>
         <span className="flex justify-center items-center text-sm text-black">
           Belum punya akun? &nbsp;
           <Link href="/auth/register" className="font-bold text-primary-4">Daftar di sini</Link>
         </span>
       </div>
+
+      {/* Alert */}
+      {success && <Alert type="success" message={user.message} />}
+      {error && <Alert type="error" message={error.message} />}
       <div className="Toastify__toast-auth">
         <ToastContainer />
       </div>
-    </AuthContainer>
+    </AuthFormContainer>
   )
 }
 

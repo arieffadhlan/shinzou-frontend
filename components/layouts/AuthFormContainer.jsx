@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import banner from "@/assets/images/auth-banner.webp";
 
 const AuthContainer = ({ children }) => {
@@ -7,9 +6,9 @@ const AuthContainer = ({ children }) => {
     <section className="flex justify-center items-center min-h-screen w-full mx-auto xs:max-w-[25rem] xl:max-w-none">
       <div className="hidden xl:block xl:flex-[50%]">
         <Image
-          priority={true}
           src={banner}
           alt="Banner"
+          priority={true}
           className="w-full h-screen object-cover"
         />
       </div>

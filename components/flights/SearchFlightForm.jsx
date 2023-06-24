@@ -29,7 +29,7 @@ const datePickerOptions = {
   toggleClassName: "hidden"
 }
 
-export default function SearchFlight () {
+const SearchFlightForm = () => {
 
   const dispatch = useDispatch();
 
@@ -200,3 +200,5 @@ export default function SearchFlight () {
     </Container>
   )
 }
+
+export default SearchFlightForm;
