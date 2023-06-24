@@ -12,9 +12,9 @@ import { forgotPassword } from "@/redux/features/auth/authAction";
 import AuthFormContainer from "@/components/layouts/AuthFormContainer";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
-import Form from "@/components/forms/Form";
-import Input from "@/components/forms/Input";
-import Label from "@/components/forms/Label";
+import Form from "@/components/Form";
+import Input from "@/components/Input";
+import Label from "@/components/Label";
 
 const validationSchema = yup.object().shape({
   email: yup.string()

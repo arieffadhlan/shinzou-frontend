@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import Alert from "../Alert";
+import Alert from "./Alert";
 
 const Input = ({ 
   type, 
@@ -16,7 +16,7 @@ const Input = ({
   const [showPassword, setShowPassword] = useState(false);
   const inputVariants = {
     primary: "py-3 rounded-2xl",  
-    secondary: "py-2.5 rounded-[4px]"
+    secondary: "py-2.5 rounded-lg h-10"
   };
 
   const pickedVariant = inputVariants[variant];

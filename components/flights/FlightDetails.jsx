@@ -1,10 +1,10 @@
 import Image from "next/image";
 import airline from "@/assets/icons/airline.svg";
 
-const OrderDetails = () => {
+const FlightDetails = () => {
   return (
     <div className="flex flex-[40%] flex-col gap-3 p-4 rounded-lg bg-white shadow-2xs 2md:p-0 2md:rounded-none 2md:bg-transparent 2md:shadow-none">
-      <span className="font-bold text-sm text-neutral-5 2md:text-lg">Detail Pesanan</span>
+      <span className="font-bold text-sm text-neutral-5 2md:text-lg">Detail Penerbangan</span>
       {/* Departure */}
       <div className="flex flex-col pb-3 border-b border-neutral-2">
         <div className="flex justify-between items-center">
@@ -24,12 +24,9 @@ const OrderDetails = () => {
         <div className="flex flex-col">
           <span className="font-bold text-sm">Informasi:</span>
           <div className="flex flex-col">
-            <span className="font-medium text-sm text-primary-5">Penumpang 1: Mr. Harry Potter</span>
-            <span className="text-sm">ID: 123456789</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-medium text-sm text-primary-5">Penumpang 2: Miss Hermione</span>
-            <span className="text-sm">ID: 987654321</span>
+            <span className="text-sm">Baggage 20 kg</span>
+            <span className="text-sm">Cabin Baggage 20 kg</span>
+            <span className="text-sm">In Flight Entertainment</span>
           </div>
         </div>
       </div>
@@ -62,4 +59,4 @@ const OrderDetails = () => {
   )
 }
 
-export default OrderDetails;
+export default FlightDetails;
