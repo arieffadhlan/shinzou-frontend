@@ -1,8 +1,10 @@
 import * as yup from "yup";
 
-import PassangerForm from "./PassangerForm";
-import UserForm from "./UserForm";
 import Form from "../Form";
+import PassangerForm from "./PassangerForm";
+import SeatForm from "./SeatForm";
+import UserForm from "./UserForm";
+import Button from "../Button";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required("Title wajib diisi!"),
@@ -25,6 +27,15 @@ const validationSchema = yup.object().shape({
     >
       <UserForm />
       <PassangerForm />
+      <SeatForm />
+      <Button 
+        type="submit" 
+        size="xl" 
+        variant="primary" 
+        className="w-full py-3.5 text-sm 2md:py-4 2md:text-xl"
+      >
+				Simpan
+      </Button>
     </Form>
   )
 }
