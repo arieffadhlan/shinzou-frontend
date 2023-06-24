@@ -1,4 +1,12 @@
-"use client";
+'use client'
+
+import { useDispatch } from "react-redux";
+import {
+  fetchData,
+  filterByLocation,
+  filterByDateAndTime,
+  filterByCapacity,
+} from "@/app/features/dataSlices";
 
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
@@ -21,7 +29,27 @@ const datePickerOptions = {
   toggleClassName: "hidden"
 }
 
-const SearchTicketForm = () => {
+const SearchFlightForm = () => {
+
+  const dispatch = useDispatch();
+
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [seatclass, setSeatclass] = useState("");
+  const [capacity, setCapacity] = useState(0);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(fetchData()).then(() => {
+
+      if (date && time)
+        dispatch(filterByDateAndTime(`${date}T${time}:00.000Z`));
+
+      if (capacity) dispatch(filterByCapacity(capacity));
+    });
+  };
+
   const [locationSwap, setLocationSwap] = useState(false);
   const [returnFlight, setReturnFlight] = useState(false);
   const [departureTime, setDepartureTime] = useState(""); 
@@ -45,7 +73,7 @@ const SearchTicketForm = () => {
   
   return (
     <Container className="mt-32">
-      <form className="flex flex-col gap-8 border border-neutral-2 rounded-xl shadow-xs">
+      <form className="flex flex-col gap-8 border border-neutral-2 rounded-xl shadow-xs" onSubmit={handleSearch}>
         <div className="flex flex-col gap-6 px-6 pt-6">
           <h1 className="font-bold text-xl">
             Pilih Jadwal Penerbangan spesial di &nbsp;
@@ -173,4 +201,4 @@ const SearchTicketForm = () => {
   )
 }
 
-export default SearchTicketForm;
+export default SearchFlightForm;

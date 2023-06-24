@@ -1,0 +1,13 @@
+[{
+    "id":"1",
+	"location": "Jakarta",
+	"date": "2023-03-23T15:49:05.563Z",
+	"capacity": "2",
+	"seatclass": "Economy"
+}, {
+    "id":"2",
+    "location": "Melbourne",
+	"date": "2022-03-23T15:49:05.563Z",
+	"capacity": "3",
+	"seatclass": "Business"
+}]
