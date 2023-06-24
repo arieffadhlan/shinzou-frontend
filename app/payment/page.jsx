@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/Container";
-import OrderDetails from "@/components/flights/OrderDetails";
+import FlightDetails from "@/components/flights/FlightDetails";
 import PaymentMethod from "@/components/payments/PaymentMethod";
 
 const Payment = () => {
@@ -13,7 +13,7 @@ const Payment = () => {
       <Container className="my-12">
         <div className="flex flex-col-reverse gap-6 2md:flex-row 2md:gap-15">
           <PaymentMethod />
-          <OrderDetails />
+          <FlightDetails />
         </div>
       </Container>
     </>

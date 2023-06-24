@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import InputSearch from "@/components/forms/InputSearch";
+import InputSearch from "@/components/InputSearch";
 import ButtonLink from "@/components/ButtonLink";
 
 import logo from "@/assets/images/logo.webp";

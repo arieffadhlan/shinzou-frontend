@@ -2,7 +2,7 @@ import OrderHistoryDetails from "./OrderHistoryDetails"
 
 const OrderHistoryCard = () => {	
 	return (
-		<div className="cursor-pointer flex flex-[60%] flex-col gap-4 p-4 border-2 border-transparent rounded-lg bg-white shadow-2xs hocus:border-primary-4/50">
+		<div className="cursor-pointer flex flex-[60%] flex-col gap-4 h-fit p-4 border-2 border-transparent rounded-lg bg-white shadow-2xs hocus:border-primary-4/50">
 			{/* Flight information */}
 			<div className="flex flex-col gap-3">
 				<div className="flex items-center gap-4 w-full">
