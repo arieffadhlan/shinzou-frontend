@@ -8,8 +8,10 @@ const Home = () => {
   return (
     <>
       <Navbar />  
-      <SearchFlightForm />
-      <FavoriteDestination />
+      <main>
+        <SearchFlightForm />
+        <FavoriteDestination />
+      </main>
     </>   
   )
 }
