@@ -97,6 +97,7 @@ const FlightSeatModal = ({ data }) => {
           </div>
           <div className="flex items-center gap-1">
             <button 
+              type="button"
               onClick={() => decrementSeat("adult", adult)} 
               className="material-icons-round count-passangers__button"
             >
@@ -104,6 +105,7 @@ const FlightSeatModal = ({ data }) => {
             </button>
             <div className="count-passangers">{adult}</div>
             <button 
+              type="button"
               onClick={() => incrementSeat("adult", adult)} 
               className="material-icons-round count-passangers__button"
               >
@@ -122,6 +124,7 @@ const FlightSeatModal = ({ data }) => {
           </div>
           <div className="flex items-center gap-1">
             <button 
+              type="button"
               onClick={() => decrementSeat("child", child)} 
               className="material-icons-round count-passangers__button"
             >
@@ -129,6 +132,7 @@ const FlightSeatModal = ({ data }) => {
             </button>
             <div className="count-passangers">{child}</div>
             <button 
+              type="button"
               onClick={() => incrementSeat("child", child)} 
               className="material-icons-round count-passangers__button"
             >
@@ -147,6 +151,7 @@ const FlightSeatModal = ({ data }) => {
           </div>
           <div className="flex items-center gap-1">
             <button 
+              type="button"
               onClick={() => decrementSeat("baby", baby)} 
               className="material-icons-round count-passangers__button"
             >
@@ -154,6 +159,7 @@ const FlightSeatModal = ({ data }) => {
             </button>
             <div className="count-passangers">{baby}</div>
             <button 
+              type="button"
               onClick={() => incrementSeat("baby", baby)} 
               className="material-icons-round count-passangers__button"
             >
