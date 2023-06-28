@@ -74,6 +74,10 @@
     @apply flex justify-center items-center !w-[40px] h-[40px] outline-none border border-[#D0D0D0] rounded-2xl bg-white font-medium text-base leading-5 text-black xs:!w-[42px] xs:h-[42px];
   }
 
+  .checkbox-toggle {
+    @apply w-10 h-6 p-0.5 rounded-full bg-neutral-2 after:content-[''] after:absolute after:w-5 after:h-5 after:rounded-[20px] after:bg-white after:transition-all peer-checked:after:-left-[2px] peer-checked:after:border-white peer-checked:bg-primary-5 peer-checked:after:translate-x-full;
+  }
+
   .datepicker {
     @apply w-full outline-none font-medium text-sm text-black placeholder:text-primary-4 disabled:placeholder:text-neutral-3 xs:text-base;
   }
@@ -92,7 +96,6 @@
 
   .count-passangers {
     @apply flex justify-center items-center w-10 h-10 p-2 border border-neutral-2 rounded font-medium text-sm text-neutral-5 2xs:w-[60px];
-    
   }
 
   .count-passangers__button {
