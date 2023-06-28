@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
+import dayjs from "dayjs";
 
 import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 import { openModal } from "@/redux/features/modal/modalSlice";
@@ -13,14 +13,27 @@ import Modal from "../modals/Modal";
 import FlightClassModal from "../modals/FlightClassModal";
 import FlightLocationModal from "../modals/FlightLocationModal";
 import FlightSeatModal from "../modals/FlightSeatModal";
+import { searchFlight } from "@/redux/features/flight/flightAction";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchFlightForm = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const { searchFlightData, success } = useSelector((state) => state.flight);
+  const { modalId, show } = useSelector((state) => state.modal);
+  const { adult, child, baby } = searchFlightData.passengers;
+
   const [locationSwap, setLocationSwap] = useState(false);
   const [returnFlight, setReturnFlight] = useState(false);
-  const { searchFlight } = useSelector((state) => state.flight);
-  const { id, show } = useSelector((state) => state.modal);
-  const dispatch = useDispatch();
-  const { adult, child, baby } = searchFlight.passengers;
+  const [queryParams, setQueryParams] = useState("");
+
+  useEffect(() => {
+    if (success) {
+      router.push(`/flights/search?${queryParams}`)
+    }
+  }, [success]);
 
   const swapLocationHandler = () => {
     setLocationSwap(!locationSwap);
@@ -29,8 +42,8 @@ const SearchFlightForm = () => {
   const returnFlightHandler = () => {
     if (!returnFlight) {
       dispatch(setSearchFlight({
-        ...searchFlight,
-        return_date: moment(new Date()).format("YYYY-MM-DD"),
+        ...searchFlightData,
+        return_date: dayjs(new Date()).format("YYYY-MM-DD"),
       }));
     }
     setReturnFlight(!returnFlight);
@@ -38,21 +51,34 @@ const SearchFlightForm = () => {
     
   const handleDepartureDate = (event) => {
     dispatch(setSearchFlight({
-      ...searchFlight,
+      ...searchFlightData,
 			departure_date: event.target.value
 		}));
   } 
   
   const handleReturnDate = (event) => {
 		dispatch(setSearchFlight({
-			...searchFlight,
+			...searchFlightData,
 			return_date: event.target.value
 		}));
   } 
 
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+
+    // Set query params
+    const params = new URLSearchParams(searchParams);
+    for (let [key, value] of Object.entries(searchFlightData)) {
+      params.set(key, value);
+    }
+    setQueryParams(params.toString());
+    
+    dispatch(searchFlight(searchFlightData));
+  }
+
   return (
     <Container className="mt-32">
-    <form className="flex flex-col gap-8 border border-neutral-2 rounded-xl shadow-xs">
+    <form onSubmit={handleOnSubmit} className="flex flex-col gap-8 border border-neutral-2 rounded-xl shadow-xs">
       <div className="flex flex-col gap-6 px-6 pt-6">
         <h1 className="font-bold text-xl">
           Pilih Jadwal Penerbangan spesial di &nbsp;
@@ -113,7 +139,7 @@ const SearchFlightForm = () => {
                   <input 
                     type="date"
                     onChange={handleDepartureDate}
-                    value={searchFlight.departure_date}
+                    value={searchFlightData.departure_date}
                     className="datepicker"
                   />
                   <div className="w-full h-[1px] bg-neutral-2"></div>
@@ -125,7 +151,7 @@ const SearchFlightForm = () => {
                 <input 
                   type={`${returnFlight ? "date" : "text"}`}
                   onChange={handleReturnDate}
-                  value={returnFlight ? searchFlight.return_date : ""}
+                  value={returnFlight ? searchFlightData.return_date : ""}
                   className="datepicker"
                   placeholder="Pilih Tanggal"
                   disabled={!returnFlight}
@@ -149,7 +175,7 @@ const SearchFlightForm = () => {
               {/* Class */}
               <button type="button" onClick={() => dispatch(openModal("flight-class"))} className="flex flex-col items-start gap-2 w-full outline-none">
                 <span className="font-medium text-sm text-neutral-3 xs:text-base">Seat Class</span>
-                <span className="font-medium text-sm text-black xs:text-base">{searchFlight.class}</span>
+                <span className="font-medium text-sm text-black xs:text-base">{searchFlightData.seat_class}</span>
                 <div className="w-full h-[1px] bg-neutral-2"></div>
               </button>
             </div>
@@ -169,9 +195,11 @@ const SearchFlightForm = () => {
     {/* Modals */}
     {show && (
       <Modal>
-        {id === "flight-location" ?  <FlightLocationModal data={searchFlight} />
-          : id === "flight-seat" ?  <FlightSeatModal data={searchFlight} />
-          : <FlightClassModal data={searchFlight} />
+        {modalId === "flight-location" 
+          ? <FlightLocationModal data={searchFlightData} />
+          : modalId === "flight-seat" 
+          ? <FlightSeatModal data={searchFlightData} />
+          : <FlightClassModal data={searchFlightData} />
         }
       </Modal>
     )}

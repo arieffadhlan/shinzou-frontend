@@ -6,13 +6,13 @@ import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 
 const FlightClassModal = ({ data }) => {
 	const dispatch = useDispatch();
-	const [selected, setSelected] = useState(data.class);
+	const [selected, setSelected] = useState(data.seat_class);
 
 	const handleSelected = (value) => {
 		setSelected(value);
 		dispatch(setSearchFlight({
 			...data,
-			class: value
+			seat_class: value
 		}));
 	}
 	
