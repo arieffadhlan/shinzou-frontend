@@ -1,4 +1,4 @@
-import ButtonLink from "./ButtonLink";
+import ButtonLink from "./atoms/ButtonLink";
 
 const EditDataProfil = () => {
 	return (

@@ -5,16 +5,17 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import OtpInput from "react-otp-input";
 import { ToastContainer } from "react-toastify";
+
 import { clearState } from "@/redux/features/auth/authSlice";
 import { verifyOTP } from "@/redux/features/auth/authAction";
 
-import Alert from "@/components/Alert";
-import Button from "@/components/Button";
+import Alert from "@/components/atoms/Alert";
+import Button from "@/components/atoms/Button";
 
 const verifyAccount = () => {
-  const { loading, user, error, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { loading, user, error, success } = useSelector((state) => state.auth);
   const [otp, setOtp] = useState("");
 
   useEffect(() => {
@@ -67,14 +68,14 @@ const verifyAccount = () => {
           type="submit" 
           size="md" 
           variant="primary" 
-          className="w-full"
-          disabled={loading}
+          className="w-full mt-2"
+          loading={loading}
         >
-          {loading ? (
-            <span className="animate-spin material-icons-round">autorenew</span>
-          ): "Simpan"}
+          Simpan
         </Button>
       </form>
+      
+      {/* Alert */}
       {success && <Alert type="success" message={user.message} />}
       {error && <Alert type="error" message={error.message} />}
       <ToastContainer />

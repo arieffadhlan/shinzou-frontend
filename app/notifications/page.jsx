@@ -1,6 +1,6 @@
-import Container from "@/components/layouts/Container";
-import ButtonLink from "@/components/ButtonLink";
-import NotificationItem from "@/components/NotificationItem";
+import Container from "@/components/templates/Container";
+import ButtonLink from "@/components/atoms/ButtonLink";
+import NotificationItem from "@/components/organisms/cards/NotificationCard";
 
 export default function Notification() {
   return (

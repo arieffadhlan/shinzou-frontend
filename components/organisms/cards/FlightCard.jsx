@@ -10,7 +10,7 @@ import 'dayjs/locale/id'
 import { searchFlight } from "@/redux/features/flight/flightAction";
 import getTimeDifference from "@/helpers/getTimeDifference";
 
-import Button from "../Button";
+import Button from "../../atoms/Button";
 
 // Set local language
 dayjs.locale("id")

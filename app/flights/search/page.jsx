@@ -1,13 +1,13 @@
 "use client"
 
-import Container from "@/components/layouts/Container";
-import TicketsNotFound from "@/components/flights/TicketsNotFound";
-import TicketsSoldOut from "@/components/flights/TicketsSoldOut";
-import FlightFilterModal from "@/components/modals/FlightFilterModal";
-import PilihPenerbangan from "@/components/PilihPenerbangan"
-import FlightCard from "@/components/flights/FlightCard";
+import Container from "@/components/templates/Container";
+import TicketsNotFound from "@/components/templates/TicketsNotFound";
+import TicketsSoldOut from "@/components/templates/TicketsSoldOut";
+import FlightFilterModal from "@/components/organisms/modals/FlightFilterModal";
+import PilihPenerbangan from "@/components/templates/PilihPenerbangan"
+import FlightCard from "@/components/organisms/cards/FlightCard";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "@/components/modals/Modal";
+import Modal from "@/components/molecules/Modal";
 import { openModal } from "@/redux/features/modal/modalSlice";
 
 const SearchFlight = () => {

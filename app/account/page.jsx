@@ -1,5 +1,5 @@
-import Container from "@/components/layouts/Container";
-import ButtonLink from "@/components/ButtonLink";
+import Container from "@/components/templates/Container";
+import ButtonLink from "@/components/atoms/ButtonLink";
 
 const Account = () => {
   return (

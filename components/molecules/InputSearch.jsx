@@ -6,15 +6,18 @@ const InputSearch = ({
   iconClassName = "",
   ...rest
 }) => {
+  const classNames = twMerge("input-search", className);
+  const IconclassNames = twMerge(`material-icons-round absolute top-3 right-4 text-neutral-3`, iconClassName);
+
   return (  
     <>
       <input 
         type="text"
         name={name}
-        className={twMerge("input-search", className)}
+        className={classNames}
         {...rest}
       />
-      <span className={twMerge(`material-icons-round absolute top-3 right-4 text-neutral-3`, iconClassName)}>
+      <span className={IconclassNames}>
         search
       </span>
     </>

@@ -10,12 +10,13 @@ import * as yup from "yup";
 import { clearState } from "@/redux/features/auth/authSlice";
 import { loginUser } from "@/redux/features/auth/authAction"
 
-import AuthFormContainer from "@/components/layouts/AuthFormContainer";
-import Input from "@/components/Input";
-import Label from "@/components/Label";
-import Form from "@/components/Form";
-import Alert from "@/components/Alert";
-import Button from "@/components/Button";
+import Alert from "@/components/atoms/Alert";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
+import Label from "@/components/atoms/Label";
+import InputPassword from "@/components/molecules/InputPassword";
+import AuthFormContainer from "@/components/templates/AuthFormContainer";
+import Form from "@/components/molecules/Form";
 
 const validationSchema = yup.object().shape({
   email: yup.string().required("Email wajib diisi!"),
@@ -23,9 +24,9 @@ const validationSchema = yup.object().shape({
 });
 
 const Login = () => {  
-  const { loading, user, error, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { loading, user, error, success } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
@@ -38,8 +39,8 @@ const Login = () => {
     return () => clearTimeout(redirectTimer);
   }, [success]);
 
-  const handleFormSubmit = (formData) => {
-    dispatch(loginUser(formData));
+  const handleFormSubmit = (data) => {
+    dispatch(loginUser(data));
   }
   
   return (
@@ -64,23 +65,23 @@ const Login = () => {
                 Lupa Kata Sandi
               </Link>
             </div>
-            <Input type="password" variant="primary" name="password" placeholder="Masukkan password" />
+            <InputPassword variant="primary" name="password" placeholder="Masukkan password" />
           </div>
           <Button 
             type="submit" 
             size="md" 
             variant="primary" 
             className="w-full mt-2"
-            disabled={loading}
+            loading={loading}
           >
-            {loading ? (
-              <span className="animate-spin material-icons-round">autorenew</span>
-            ): "Masuk"}
+            Masuk
           </Button>
         </Form>
         <span className="flex justify-center items-center text-sm text-black">
-          Belum punya akun? &nbsp;
-          <Link href="/auth/register" className="font-bold text-primary-4">Daftar di sini</Link>
+          Belum punya akun?&nbsp;
+          <Link href="/auth/register" className="font-bold text-primary-4">
+            Daftar di sini
+          </Link>
         </span>
       </div>
 

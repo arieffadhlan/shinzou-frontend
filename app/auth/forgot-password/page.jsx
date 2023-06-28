@@ -9,12 +9,12 @@ import * as yup from "yup";
 import { clearState } from "@/redux/features/auth/authSlice";
 import { forgotPassword } from "@/redux/features/auth/authAction";
 
-import AuthFormContainer from "@/components/layouts/AuthFormContainer";
-import Alert from "@/components/Alert";
-import Button from "@/components/Button";
-import Form from "@/components/Form";
-import Input from "@/components/Input";
-import Label from "@/components/Label";
+import Alert from "@/components/atoms/Alert";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
+import Label from "@/components/atoms/Label";
+import AuthFormContainer from "@/components/templates/AuthFormContainer";
+import Form from "@/components/molecules/Form";
 
 const validationSchema = yup.object().shape({
   email: yup.string()
@@ -23,9 +23,9 @@ const validationSchema = yup.object().shape({
 });
 
 const ForgotPassword = () => {  
-  const { loading, user, error, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { loading, user, error, success } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
@@ -38,8 +38,8 @@ const ForgotPassword = () => {
     return () => clearTimeout(redirectTimer);
   }, [success]);
 
-  const handleFormSubmit = (formData) => {
-    dispatch(forgotPassword(formData));
+  const handleFormSubmit = (data) => {
+    dispatch(forgotPassword(data));
   }
   
   return (
@@ -61,11 +61,9 @@ const ForgotPassword = () => {
           size="md" 
           variant="primary" 
           className="w-full mt-2"
-          disabled={loading}
+          loading={loading}
         >
-          {loading ? (
-            <span className="animate-spin material-icons-round">autorenew</span>
-          ): "Kirim"}
+          Kirim
         </Button>
       </Form>
 

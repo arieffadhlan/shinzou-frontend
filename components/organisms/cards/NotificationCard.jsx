@@ -1,4 +1,4 @@
-import Container from "./layouts/Container";
+import Container from "../../templates/Container";
 
 const NotificationItem = () => {
     return (

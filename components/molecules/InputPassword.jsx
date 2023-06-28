@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import Alert from "./Alert";
+import Alert from "../atoms/Alert";
 
-const Input = ({ 
-  type, 
+const InputPassword = ({ 
   variant, 
   name, 
   className = "",
@@ -14,6 +13,7 @@ const Input = ({
 }) => {
   const { register, formState: { errors } } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
+  
   const inputVariants = {
     primary: "py-3 rounded-2xl",  
     secondary: "py-2.5 rounded-lg h-10"
@@ -33,37 +33,26 @@ const Input = ({
 
   return (  
     <div className="flex flex-col">
-      {type === "password" ? (
-        <div className="relative">
-          <input 
-            type={showPassword ? "text" : "password"}
-            name={name}
-            id={name}
-            className={classNames}
-            {...register(name)}
-            {...props}
-          />
-          <button 
-            type="button" 
-            onClick={handleShowPassword}
-            className="material-icons-round absolute top-3 right-4 text-neutral-3"
-          >
-            {showPassword ? "visibility_off" : "visibility"}
-          </button>
-        </div>
-      ) : (
+      <div className="relative">
         <input 
-          type={type}
+          type={showPassword ? "text" : "password"}
           name={name}
           id={name}
           className={classNames}
           {...register(name)}
           {...props}
         />
-      )}
+        <button 
+          type="button" 
+          onClick={handleShowPassword}
+          className="material-icons-round absolute top-3 right-4 text-neutral-3"
+        >
+          {showPassword ? "visibility_off" : "visibility"}
+        </button>
+      </div>
       {errors[name]?.message && <Alert type="error" message={errors[name].message} />}
     </div>
   );
 }
 
-export default Input;
+export default InputPassword;

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Container from "./layouts/Container";
-import Button from "./Button";
-import ButtonLink from "./ButtonLink";
+import Container from "./templates/Container";
+import Button from "./atoms/Button";
+import ButtonLink from "./atoms/ButtonLink";
 
 const AkunLogin = () => {
     return (

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 import airline from "@/assets/icons/airline.svg";
-import Button from "../Button";
+import Button from "../../atoms/Button";
 
 const OrderHistoryDetails = ({ className = "" }) => {
   return (

@@ -1,8 +1,8 @@
 "use client";
 
-import Container from "./layouts/Container";
-import Button from "./Button";
-import DestinationCard from "./DestinationCard";
+import Container from "./Container";
+import Button from "../atoms/Button";
+import DestinationCard from "../organisms/cards/DestinationCard";
 
 const FavoriteDestination = () => {
 	return(

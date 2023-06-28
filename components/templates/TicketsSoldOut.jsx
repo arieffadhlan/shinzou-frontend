@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Container from "@/components/layouts/Container";
+import Container from "@/components/templates/Container";
 import flightTicketsSoldOut from "@/assets/images/flight/tickets-sold-out.svg";
 
 const TicketsSoldOut = () => {

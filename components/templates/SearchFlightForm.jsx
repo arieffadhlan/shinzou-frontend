@@ -7,12 +7,12 @@ import dayjs from "dayjs";
 import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 import { openModal } from "@/redux/features/modal/modalSlice";
 
-import Container from "../layouts/Container";
-import Button from "../Button";
-import Modal from "../modals/Modal";
-import FlightClassModal from "../modals/FlightClassModal";
-import FlightLocationModal from "../modals/FlightLocationModal";
-import FlightSeatModal from "../modals/FlightSeatModal";
+import Container from "./Container";
+import Button from "../atoms/Button";
+import Modal from "../molecules/Modal";
+import FlightClassModal from "../organisms/modals/FlightClassModal";
+import FlightLocationModal from "../organisms/modals/FlightLocationModal";
+import FlightSeatModal from "../organisms/modals/FlightSeatModal";
 import { searchFlight } from "@/redux/features/flight/flightAction";
 import { useRouter, useSearchParams } from "next/navigation";
 
