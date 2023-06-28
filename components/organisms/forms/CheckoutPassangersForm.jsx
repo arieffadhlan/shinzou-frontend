@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Input from "../Input";
-import Label from "../Label";
+import Input from "../../atoms/Input";
+import Label from "../../atoms/Label";
 
 const PassangerForm = () => {
   const [familyName, setFamilyName] = useState(false);

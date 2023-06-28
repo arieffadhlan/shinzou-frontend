@@ -1,4 +1,4 @@
-import TicketsLoading from "@/components/flights/TicketsLoading";
+import TicketsLoading from "@/components/templates/TicketsLoading";
 
 const Loading = () => {
   return <TicketsLoading />

@@ -1,9 +1,9 @@
 "use client";
 
-import Container from "@/components/layouts/Container";
-import FlightDetails from "@/components/flights/FlightDetails";
-import ButtonLink from "@/components/ButtonLink";
-import CheckoutForm from "@/components/forms/CheckoutForm";
+import Container from "@/components/templates/Container";
+import FlightDetails from "@/components/organisms/cards/FlightDetails";
+import ButtonLink from "@/components/atoms/ButtonLink";
+import CheckoutForm from "@/components/templates/CheckoutForm";
 
 export default function OrderHistory() {  
   return (

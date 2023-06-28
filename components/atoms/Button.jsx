@@ -3,12 +3,13 @@
 import { twMerge } from "tailwind-merge";
 
 const Button = ({
+  type,
   size,
   variant,
   children,
-  type = "button",
   className = "",
-  ...rest
+  loading = false,
+  ...props
 }) => {
   const buttonSizes = {
     sm: "button-sm",
@@ -16,7 +17,7 @@ const Button = ({
     lg: "button-lg",
     xl: "button-xl"
   };
-  
+
   const buttonVariants = {
     primary: "button-primary",
     secondary: "button-secondary",
@@ -26,12 +27,26 @@ const Button = ({
 
   const pickedSize = buttonSizes[size];
   const pickedVariant = buttonVariants[variant];
+  const classNames = twMerge("button", pickedSize, pickedVariant, className);
   
-  return (
+  return type === "submit" ? (
     <button
-      type={type}
-      className={twMerge("button", pickedSize, pickedVariant, className)}
-      {...rest}
+      type="submit"
+      className={classNames}
+      disabled={loading}
+      {...props}
+    >
+      {loading ? (
+        <span className="animate-spin material-icons-round">
+          autorenew
+        </span>
+      ): children}
+    </button>
+  ) : (
+    <button
+      type="button"
+      className={classNames}
+      {...props}
     >
       {children}
     </button>

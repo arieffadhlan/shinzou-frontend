@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "../Button";
+import Button from "../atoms/Button";
 import gopay from "@/assets/icons/payment-methods/gopay.svg";
 import virtualAccount from "@/assets/icons/payment-methods/virtual-account.svg";
 import creditCard from "@/assets/icons/payment-methods/credit-card.svg";

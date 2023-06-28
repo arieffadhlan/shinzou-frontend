@@ -2,7 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/features/modal/modalSlice";
-import Button from "../Button";
+import Button from "../atoms/Button";
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();

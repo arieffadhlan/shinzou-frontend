@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import Container from "../layouts/Container";
-import ButtonLink from "../ButtonLink";
-import Button from "../Button";
+import Container from "./Container";
+import ButtonLink from "../atoms/ButtonLink";
+import Button from "../atoms/Button";
 
 import flightHistoryNotFound from "@/assets/images/flight/not-found.svg";
 

@@ -9,12 +9,12 @@ import * as yup from "yup";
 import { clearState } from "@/redux/features/auth/authSlice";
 import { resetPassword } from "@/redux/features/auth/authAction";
 
-import AuthFormContainer from "@/components/layouts/AuthFormContainer";
-import Alert from "@/components/Alert";
-import Button from "@/components/Button";
-import Form from "@/components/Form";
-import Input from "@/components/Input";
-import Label from "@/components/Label";
+import Alert from "@/components/atoms/Alert";
+import Button from "@/components/atoms/Button";
+import Label from "@/components/atoms/Label";
+import InputPassword from "@/components/molecules/InputPassword";
+import AuthFormContainer from "@/components/templates/AuthFormContainer";
+import Form from "@/components/molecules/Form";
 
 const validationSchema = yup.object().shape({
   password: yup.string()
@@ -26,9 +26,9 @@ const validationSchema = yup.object().shape({
 });
 
 const ResetPassword = ({ params }) => {  
-  const { loading, user, error, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { loading, user, error, success } = useSelector((state) => state.auth);
   const { token } = params;
 
   useEffect(() => {
@@ -42,9 +42,9 @@ const ResetPassword = ({ params }) => {
     return () => clearTimeout(redirectTimer);
   }, [success]);
 
-  const handleFormSubmit = (formData) => {
-    formData.token = token;
-    dispatch(resetPassword(formData));
+  const handleFormSubmit = (data) => {
+    data.token = token;
+    dispatch(resetPassword(data));
   }
   
   return (
@@ -59,22 +59,20 @@ const ResetPassword = ({ params }) => {
       >
         <div className="flex flex-col gap-1">
           <Label id="password">Masukkan Password Baru</Label>
-          <Input type="password" variant="primary" name="password" placeholder="Masukkan password baru" autoFocus />
+          <InputPassword variant="primary" name="password" placeholder="Masukkan password baru" autoFocus />
         </div>
         <div className="flex flex-col gap-1">
           <Label id="confirmationPassword">Ulangi Password Baru</Label>
-          <Input type="password" variant="primary" name="confirmationPassword" placeholder="Ulangi password baru" />
+          <InputPassword variant="primary" name="confirmationPassword" placeholder="Ulangi password baru" />
         </div>
         <Button 
           type="submit" 
           size="md" 
           variant="primary" 
           className="w-full mt-2"
-          disabled={loading}
+          loading={loading}
         >
-          {loading ? (
-            <span className="animate-spin material-icons-round">autorenew</span>
-          ): "Simpan"}
+          Simpan
         </Button>
       </Form>
 

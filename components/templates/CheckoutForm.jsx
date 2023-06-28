@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
-import Form from "../Form";
-import PassangerForm from "./PassangerForm";
-import SeatForm from "./SeatForm";
-import UserForm from "./UserForm";
-import Button from "../Button";
+import Form from "../molecules/Form";
+import PassangerForm from "../organisms/forms/CheckoutPassangersForm";
+import SeatForm from "../organisms/forms/CheckoutSeatForm";
+import UserForm from "../organisms/forms/CheckoutUserForm";
+import Button from "../atoms/Button";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required("Title wajib diisi!"),

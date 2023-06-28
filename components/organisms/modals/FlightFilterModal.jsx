@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "../Button";
+import Button from "../../atoms/Button";
 
 const FlightFilterModal = () => {
 	return (

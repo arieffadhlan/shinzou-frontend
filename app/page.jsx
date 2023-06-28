@@ -1,8 +1,8 @@
 "use client"
 
-import Navbar from '@/components/layouts/Navbar';
-import SearchFlightForm from '@/components/forms/SearchFlightForm';
-import FavoriteDestination from '@/components/FavoriteDestination';
+import Navbar from '@/components/organisms/Navbar';
+import SearchFlightForm from '@/components/templates/SearchFlightForm';
+import FavoriteDestination from '@/components/templates/FavoriteDestination';
 
 const Home = () => {
   return (

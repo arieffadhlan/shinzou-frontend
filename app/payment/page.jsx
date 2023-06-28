@@ -1,6 +1,6 @@
-import Container from "@/components/layouts/Container";
-import FlightDetails from "@/components/flights/FlightDetails";
-import PaymentMethod from "@/components/payments/PaymentMethod";
+import Container from "@/components/templates/Container";
+import FlightDetails from "@/components/organisms/cards/FlightDetails";
+import PaymentMethod from "@/components/templates/PaymentMethod";
 
 const Payment = () => {
   return (

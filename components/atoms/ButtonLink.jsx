@@ -9,7 +9,7 @@ const ButtonLink = ({
   variant,
   children,
   className = "",
-  ...rest
+  ...props
 }) => {
   const buttonSizes = {
     sm: "button-sm",
@@ -27,10 +27,11 @@ const ButtonLink = ({
 
   const pickedSize = buttonSizes[size];
   const pickedVariant = buttonVariants[variant];
+  const classNames = twMerge("button", pickedSize, pickedVariant, className);
   
   return (
     <Link href={href} passHref legacyBehavior>
-      <a className={twMerge("button", pickedSize, pickedVariant, className)} {...rest}>
+      <a className={classNames} {...props}>
         {children}
       </a>
     </Link>

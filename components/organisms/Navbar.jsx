@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
 import { logout } from "@/redux/features/auth/authSlice";
-import InputSearch from "@/components/InputSearch";
-import ButtonLink from "@/components/ButtonLink";
+import InputSearch from "@/components/molecules/InputSearch";
+import ButtonLink from "@/components/atoms/ButtonLink";
 
 import logo from "@/assets/images/logo.webp";
 

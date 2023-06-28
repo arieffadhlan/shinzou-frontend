@@ -1,5 +1,5 @@
-import Input from "../Input";
-import Label from "../Label";
+import Input from "../../atoms/Input";
+import Label from "../../atoms/Label";
 
 const UserForm = () => {
   return (
