@@ -1,7 +1,7 @@
-const { createSlice } = require("@reduxjs/toolkit")
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  id: "",
+  modalId: "",
   show: false
 }
 
@@ -10,11 +10,11 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
-      state.id = action.payload;
+      state.modalId = action.payload;
       state.show = true;
     },
     closeModal: (state) => {
-      state.id = "";
+      state.modalId = "";
       state.show = false;
     }
   }
