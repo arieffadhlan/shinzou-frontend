@@ -1,5 +1,3 @@
-"use client";
-
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import dayjs from "dayjs";
@@ -9,11 +7,13 @@ import 'dayjs/locale/id'
 dayjs.locale("id")
 
 const FlightDetails = () => {
-  const { searchFlightData } = useSelector((state) => state.flight);
+  const { 
+    searchFlightData,
+    selectedDepartureFlight: flight 
+  } = useSelector((state) => state.flight);
+  const { airline, originAirport } = flight;
   const { adult, child, baby } = searchFlightData.passengers;
 
-  const flight = localStorage.getItem("selectedDepartureFlight") || null;
-  const { airline, originAirport } = JSON.parse(flight);
   const departureTime = dayjs(new Date(`${flight.departure_date} ${flight.departure_time}`));
   const arrivalTime = dayjs(new Date(`${flight.arrival_date} ${flight.arrival_time}`));
   
@@ -72,7 +72,7 @@ const FlightDetails = () => {
             {adult + child + baby} Penumpang
           </span>
           <span className="font-medium text-sm text-neutral-5">
-            IDR {flight.price?.toLocaleString("id-ID")}
+            IDR {flight.price.toLocaleString("id-ID")}
           </span>
         </div>
         <div className="flex justify-between items-center">

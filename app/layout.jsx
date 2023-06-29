@@ -3,8 +3,6 @@
 import { Poppins } from "next/font/google";
 import Provider from "@/redux/provider";
 import "./globals.css";
-import { Suspense } from "react";
-import Loading from "./loading";
 
 const poppins = Poppins({ 
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,9 +22,7 @@ const RootLayout = ({ children }) => {
       </head>
       <body>
         <Provider>
-          <Suspense fallback={<Loading />}>
-            {children}
-          </Suspense>
+          {children}
         </Provider>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" defer></script>
       </body>

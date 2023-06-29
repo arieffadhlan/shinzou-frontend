@@ -5,13 +5,13 @@ import { searchFlight } from "./flightAction";
 const searchFlightData = {
   location_from: "Banda Aceh",
   location_to: "Medan",
-  departure_date: dayjs(new Date("2023-12-04")).format("YYYY-MM-DD"),
+  departure_date: dayjs(new Date()).format("YYYY-MM-DD"),
   passengers: {
     adult: 1,
     child: 0,
     baby: 0
   },
-  seat_class: "Premium Economy"
+  seat_class: "Economy"
 }
 
 const initialState = {

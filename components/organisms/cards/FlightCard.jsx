@@ -45,7 +45,6 @@ const FlightCard = ({ flight }) => {
     } 
 
     dispatch(setSelectedDepartureFlight(flight));
-    localStorage.setItem("selectedDepartureFlight", JSON.stringify(flight));
   }
 
   return (
