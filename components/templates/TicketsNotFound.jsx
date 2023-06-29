@@ -7,7 +7,9 @@ const TicketsNotFound = () => {
       <Image src={flightTicketsNotFound} alt="Flight tickets not found" />
       <span className="font-medium text-sm text-center text-black">
         Maaf, pencarian Anda tidak ditemukan <br />
-        <strong className="font-medium text-primary-4">Coba cari perjalanan lainnya!</strong>
+        <strong className="font-medium text-primary-4">
+          Coba cari perjalanan lainnya!
+        </strong>
       </span>
     </div>
   )

@@ -8,7 +8,9 @@ const TicketsSoldOut = () => {
       <Image src={flightTicketsSoldOut} alt="Flight tickets sold out" />
       <span className="font-medium text-sm text-center text-black">
         Maaf, tiket terjual habis! <br />
-        <strong className="font-medium text-primary-4">Coba cari perjalanan lainnya!</strong>
+        <strong className="font-medium text-primary-4">
+          Coba cari perjalanan lainnya!
+        </strong>
       </span>
     </Container>
   )

@@ -1,12 +1,44 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useAirport from "@/hooks/useAirport";
+import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 
 const SearchFlightLocationForm = () => {
+  const dispatch = useDispatch();
+  const { searchFlightData } = useSelector((state) => state.flight);
   const [locationSwap, setLocationSwap] = useState(false);
+  const [airports, setAirports] = useState([]);
+
+  useEffect(() => {
+    const fetchAirports = async () => {
+      const airports = await useAirport();
+      setAirports(airports);
+    }
+
+    fetchAirports();
+  }, []);
 
   const swapLocationHandler = () => {
     setLocationSwap(!locationSwap);
+  }
+
+  const handleSelectLocationFrom = (event) => {
+    dispatch(setSearchFlight({
+			...searchFlightData,
+			location_from: event.target.value
+		}));
+
+    console.log(searchFlightData);
+  }
+  
+  const handleSelectLocationTo = (event) => {
+    dispatch(setSearchFlight({
+      ...searchFlightData,
+			location_to: event.target.value
+		}));
+    console.log(searchFlightData);
   }
 
   return (
@@ -17,10 +49,21 @@ const SearchFlightLocationForm = () => {
           <span className="material-icons-round">flight_takeoff</span>
           <span className="text-xs xs:text-sm">{locationSwap ? "To" : "From"}</span>
         </div>
-        <button type="button" className="flex flex-col items-start gap-3 w-full outline-none">
-          <span className="font-medium text-sm text-black xs:text-lg">Jakarta (JKTA)</span>
+        <div className="flex flex-col items-start gap-3 w-full">
+          <select 
+            onChange={handleSelectLocationFrom}
+            defaultValue={airports[0]?.location} 
+            name="location_from" 
+            className="select-location"
+          >
+            {airports.map((airport, index) => (
+              <option key={index} value={airport.location}>
+                {airport.location} ({airport.location_acronym})
+              </option>
+            ))}
+          </select>
           <div className="hidden w-full h-[1px] bg-neutral-2 2md:block"></div>
-        </button>
+        </div>
       </div>
       {/* Swap location */}
       <div className="flex justify-center items-center gap-3 order-2 w-full 2md:w-auto">
@@ -35,10 +78,21 @@ const SearchFlightLocationForm = () => {
           <span className="material-icons-round">flight_takeoff</span>
           <span className="text-xs xs:text-sm">{locationSwap ? "From" : "To"}</span>
         </div>
-        <button type="button" className="flex flex-col items-start gap-3 w-full outline-none">
-          <span className="font-medium text-sm text-black xs:text-lg">Melbourne (MLB)</span>
+        <div className="flex flex-col items-start gap-3 w-full">
+          <select 
+            onChange={handleSelectLocationTo}
+            defaultValue={airports[1]?.location} 
+            name="location_to" 
+            className="select-location"
+          >
+            {airports.map((airport, index) => (
+              <option key={index} value={airport.location}>
+                {airport.location} ({airport.location_acronym})
+              </option>
+            ))}
+          </select>
           <div className="hidden w-full h-[1px] bg-neutral-2 2md:block"></div>
-        </button>
+        </div>
       </div>
     </div>
   )

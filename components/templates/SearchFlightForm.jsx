@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
@@ -19,15 +19,9 @@ import SearchFlightPassengersForm from "../organisms/forms/SearchFlightPassenger
 const SearchFlightForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { searchFlightData, success } = useSelector((state) => state.flight);
+  const { searchFlightData } = useSelector((state) => state.flight);
   const [returnFlight, setReturnFlight] = useState(false);
   const searchParams = useQueryParams(searchFlightData);
-
-  useEffect(() => {
-    if (success) {
-      router.push(`/flights/search?${searchParams}`)
-    }
-  }, [success]);
   
   const returnFlightHandler = () => {
     if (!returnFlight) {
@@ -42,6 +36,8 @@ const SearchFlightForm = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();    
     dispatch(searchFlight(searchFlightData));
+
+    router.push(`/flights/search?${searchParams}`);
   }
 
   return (

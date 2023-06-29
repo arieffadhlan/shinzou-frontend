@@ -2,8 +2,12 @@ const TicketsLoading = () => {
   return (
     <div className="flex flex-col items-center gap-2 w-full">
       <div className="flex flex-col justify-center items-center gap-6 font-medium text-center">
-        <span className="text-sm text-neutral-3">Mencari penerbangan terbaik...</span>
-        <span className="text-lg text-[#D1D3D4]">Loading...</span>
+        <span className="text-sm text-neutral-3">
+          Mencari penerbangan terbaik...
+        </span>
+        <span className="text-lg text-[#D1D3D4]">
+          Loading...
+        </span>
       </div>
       <div className="text-neutral-1 bg-primary-4 border border-black rounded-lg px-5 py-2.5 flex justify-center items-center">
         <svg aria-hidden="true" role="status" className="inline w-20 h-7 text-neutral-1 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

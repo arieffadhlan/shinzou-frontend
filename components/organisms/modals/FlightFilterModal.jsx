@@ -1,8 +1,8 @@
 "use client"
 
-import Button from "../../atoms/Button";
-
-const FlightFilterModal = () => {
+const FlightFilterModal = ({ data }) => {
+	console.log(data);
+	
 	return (
 		<>
 			<div className="flex flex-col mb-3.5">
