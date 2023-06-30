@@ -9,6 +9,7 @@ import Button from "../atoms/Button";
 import PassangerForm from "../organisms/forms/CheckoutPassangersForm";
 import SeatForm from "../organisms/forms/CheckoutSeatForm";
 import UserForm from "../organisms/forms/CheckoutUserForm";
+import { clearState } from "@/redux/features/flight/flightSlice";
 
  const CheckoutForm = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ import UserForm from "../organisms/forms/CheckoutUserForm";
       passengers,
       ammount: selectedDepartureFlight.price + 100000
     }));
-    
+
     router.push("/");
   }
   

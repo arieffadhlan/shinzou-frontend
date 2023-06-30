@@ -3,6 +3,25 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const url = "http://localhost:8000/api/v1";
 
+export const getTransactions = createAsyncThunk("getTransactions", 
+  async () => {
+    try {      
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(`${url}/transaction`, {
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      return error.response.data
+    }
+  }
+);
+
 export const checkout = createAsyncThunk("transaction", 
   async ({ 
     departure_flight_id,
@@ -20,13 +39,11 @@ export const checkout = createAsyncThunk("transaction",
         ammount
       }, {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
         }
       });
 
-      console.log(response)
-      
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data)

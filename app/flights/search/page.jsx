@@ -1,8 +1,6 @@
 "use client"
 
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 
 import FlightCard from "@/components/organisms/cards/FlightCard";
 import FlightFilterCard from "@/components/organisms/cards/FlightFilterCard";
@@ -12,14 +10,7 @@ import TicketsNotFound from "@/components/templates/TicketsNotFound";
 import TicketsSoldOut from "@/components/templates/TicketsSoldOut";
 
 const SearchFlight = () => {
-  const router = useRouter();
-  const { flights, selectedDepartureFlight } = useSelector((state) => state.flight);
-
-  useEffect(() => {
-    if (Object.keys(selectedDepartureFlight).length !== 0) {
-      router.push("/checkout")
-    }
-  }, [selectedDepartureFlight]);
+  const { flights } = useSelector((state) => state.flight);
   
   return (
     <>

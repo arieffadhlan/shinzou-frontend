@@ -1,27 +1,41 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useAirport from "@/hooks/useAirport";
 import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 
 const SearchFlightLocationForm = () => {
   const dispatch = useDispatch();
+  const locationFromRef = useRef();
+  const locationToRef = useRef();
   const { searchFlightData } = useSelector((state) => state.flight);
   const [locationSwap, setLocationSwap] = useState(false);
   const [airports, setAirports] = useState([]);
 
   useEffect(() => {
     const fetchAirports = async () => {
-      const airports = await useAirport();
-      setAirports(airports);
+      const data = await useAirport();
+      setAirports(data);
     }
-
+    
     fetchAirports();
   }, []);
 
   const swapLocationHandler = () => {
+    // Set select name
+    const locationFromName = locationFromRef.current.name; 
+    locationFromRef.current.name = locationToRef.current.name;
+    locationToRef.current.name = locationFromName;
+    
     setLocationSwap(!locationSwap);
+
+    // Set location value
+    dispatch(setSearchFlight({
+			...searchFlightData,
+			location_from: locationToRef.current.value,
+			location_to: locationFromRef.current.value
+		}));
   }
 
   const handleSelectLocationFrom = (event) => {
@@ -29,8 +43,6 @@ const SearchFlightLocationForm = () => {
 			...searchFlightData,
 			location_from: event.target.value
 		}));
-
-    console.log(searchFlightData);
   }
   
   const handleSelectLocationTo = (event) => {
@@ -38,7 +50,6 @@ const SearchFlightLocationForm = () => {
       ...searchFlightData,
 			location_to: event.target.value
 		}));
-    console.log(searchFlightData);
   }
 
   return (
@@ -51,12 +62,12 @@ const SearchFlightLocationForm = () => {
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
           <select 
-            onChange={handleSelectLocationFrom}
-            defaultValue={airports[0]?.location} 
+            ref={locationFromRef} 
+            onChange={handleSelectLocationFrom} 
             name="location_from" 
             className="select-location"
           >
-            {airports.map((airport, index) => (
+            {airports.map((airport, index) => ( 
               <option key={index} value={airport.location}>
                 {airport.location} ({airport.location_acronym})
               </option>
@@ -80,8 +91,8 @@ const SearchFlightLocationForm = () => {
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
           <select 
-            onChange={handleSelectLocationTo}
-            defaultValue={airports[1]?.location} 
+            ref={locationToRef} 
+            onChange={handleSelectLocationTo} 
             name="location_to" 
             className="select-location"
           >

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
@@ -19,8 +18,6 @@ const SearchFlightForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { searchFlightData, loading } = useSelector((state) => state.flight);
-  const [returnFlight, setReturnFlight] = useState(false);
-
   const { adult, child, baby } = searchFlightData.passengers;
   const searchParams = useQueryParams({
     ...searchFlightData,
@@ -30,7 +27,6 @@ const SearchFlightForm = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();    
     dispatch(searchFlight(searchFlightData));
-
     router.push(`/flights/search?${searchParams}`);
   }
 
@@ -45,10 +41,10 @@ const SearchFlightForm = () => {
         <div className="flex flex-col gap-4 2lg:gap-9">
           <SearchFlightLocationForm />
           <div className="flex flex-col gap-3">
-            <SearchFlightSetReturn returnFlight={returnFlight} setReturnFlight={setReturnFlight} />
+            <SearchFlightSetReturn />
             <div className="grid grid-rows-2 grid-cols-2 place-items-center gap-7 2lg:grid-rows-1 2lg:grid-cols-4">
               <SearchFlightDateForm type="departure" />
-              <SearchFlightDateForm type="return" returnFlight={returnFlight} />
+              <SearchFlightDateForm type="return" />
               <SearchFlightPassengersForm />
               <SearchFlightClassForm />
             </div>

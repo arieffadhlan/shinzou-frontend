@@ -19,6 +19,7 @@ const initialState = {
   flights: [],
   selectedDepartureFlight: {},
   selectedReturnFlight: {},
+  isReturn: false,
   loading: false,
   success: false,
   error: null
@@ -39,8 +40,12 @@ const flightSlice = createSlice({
 
       return state;
     },
+    setIsReturnFlight: (state, action) => {
+      state.isReturn = action.payload;
+      return state;
+    },
     setSearchFlight: (state, action) => {
-      state.searchFlightData = action.payload
+      state.searchFlightData = action.payload;
       return state;
     },
     setSelectedDepartureFlight: (state, action) => {
@@ -64,5 +69,11 @@ const flightSlice = createSlice({
   }
 });
 
-export const { clearState, setSearchFlight, setSelectedDepartureFlight } = flightSlice.actions;
+export const { 
+  clearState, 
+  setIsReturnFlight,
+  setSearchFlight, 
+  setSelectedDepartureFlight 
+} = flightSlice.actions;
+
 export default flightSlice.reducer;

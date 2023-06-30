@@ -1,11 +1,23 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactions } from "@/redux/features/transaction/transactionAction";
+
 import Container from "@/components/templates/Container";
 import ButtonLink from "@/components/atoms/ButtonLink";
 import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
 import OrderHistoryDetails from "@/components/organisms/cards/OrderHistoryDetails";
 
 export default function OrderHistory() {  
+  const dispatch = useDispatch();
+  const { transactions } = useSelector((state) => state.transaction);
+  const [orderId, setOrderId] = useState("");
+  
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [])
+  
   return (
     <>
       <section className="shadow-xs">
@@ -41,8 +53,22 @@ export default function OrderHistory() {
       {/* Order History List */}
       <Container className="my-[64px]">
         <div className="flex gap-15">
-          <OrderHistoryCard />
-          <OrderHistoryDetails className="hidden 2md:flex" />
+          {transactions.map((transaction, index) => (
+            <React.Fragment key={index}>
+              <div className="flex flex-[60%] flex-col gap-4 h-min">
+                <OrderHistoryCard 
+                  data={transaction} 
+                  orderId={index}
+                  setOrderId={setOrderId}
+                />
+              </div>
+              <OrderHistoryDetails className={
+                orderId === `order-${index}` 
+                ? "hidden 2md:flex" 
+                : "hidden"
+              } />
+            </React.Fragment>
+          ))}
         </div>
       </Container>
     </>

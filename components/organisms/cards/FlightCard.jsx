@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import dayjs from "dayjs";
 import 'dayjs/locale/id'
@@ -18,6 +18,7 @@ dayjs.locale("id")
 
 const FlightCard = ({ flight }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { searchFlightData } = useSelector((state) => state.flight);
   const { airline, destinationAirport, originAirport } = flight;
@@ -45,6 +46,7 @@ const FlightCard = ({ flight }) => {
     } 
 
     dispatch(setSelectedDepartureFlight(flight));
+    router.push("/checkout");
   }
 
   return (

@@ -33,7 +33,7 @@ const SeatForm = ({ totalPassengers, passengers, setPassengers }) => {
     "A11", "B11", "C11", "D11", "E11", "F11",
     "A12", "B12", "C12", "D12", "E12", "F12"
   ]);
-  const [reservedSeats, setReservedSeats] = useState(["A1"]);
+  const [reservedSeats, setReservedSeats] = useState(selectedDepartureFlight.seats.map(seat => seat.seat_number));
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const selectedSeatHandler = (seat) => {    

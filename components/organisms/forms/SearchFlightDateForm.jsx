@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { setSearchFlight } from '@/redux/features/flight/flightSlice';
 
-const SearchFlightDateForm = ({ type, returnFlight }) => {
+const SearchFlightDateForm = ({ type }) => {
   const dispatch = useDispatch();
-  const { searchFlightData } = useSelector((state) => state.flight);
+  const { searchFlightData, isReturn } = useSelector((state) => state.flight);
 
   const handleDepartureDate = (event) => {
     dispatch(setSearchFlight({
@@ -42,15 +42,15 @@ const SearchFlightDateForm = ({ type, returnFlight }) => {
     </div>
   ) : (
     // Return Date
-    <div className="relative flex flex-col items-start gap-2 w-full outline-none" disabled={!returnFlight}>
+    <div className="relative flex flex-col items-start gap-2 w-full outline-none" disabled={!isReturn}>
       <span className="font-medium text-sm text-neutral-3 xs:text-base">Return</span>
       <input 
-        type={returnFlight ? "date" : "text"}
+        type={isReturn ? "date" : "text"}
         onChange={handleReturnDate}
-        value={returnFlight ? dayjs(new Date()).format("YYYY-MM-DD") : ""}
+        value={isReturn ? dayjs(new Date()).format("YYYY-MM-DD") : ""}
         className="datepicker"
         placeholder="Pilih Tanggal"
-        disabled={!returnFlight}
+        disabled={!isReturn}
       />
       <div className="w-full h-[1px] bg-neutral-2"></div>
   </div>

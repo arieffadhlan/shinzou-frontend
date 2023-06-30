@@ -6,9 +6,7 @@ import Button from "../atoms/Button";
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();
-  const close = () => {
-    dispatch(closeModal());
-  }
+  const close = () => dispatch(closeModal());
   
   return (
     <div className="fixed z-50 overflow-x-hidden overflow-y-auto top-0 left-0 right-0 flex justify-center items-center max-h-full w-full h-[calc(100%-1rem)] p-4 md:inset-0">
@@ -26,9 +24,9 @@ const Modal = ({ children }) => {
         <div className="flex justify-end px-4 py-4">
           <Button
             onClick={close}
-            size="lg"
+            size="md"
             variant="primary"
-            className="px-11 bg-primary-5"
+            className="bg-primary-5"
           >
             Simpan
           </Button>

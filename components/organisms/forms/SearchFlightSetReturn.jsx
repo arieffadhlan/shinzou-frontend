@@ -1,21 +1,21 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchFlight } from "@/redux/features/flight/flightSlice";
+import { setIsReturnFlight, setSearchFlight } from "@/redux/features/flight/flightSlice";
 
-const SearchFlightSetReturn = ({ returnFlight, setReturnFlight }) => {
+const SearchFlightSetReturn = () => {
   const dispatch = useDispatch();
-  const { searchFlightData } = useSelector((state) => state.flight);
+  const { searchFlightData, isReturn } = useSelector((state) => state.flight);
   
   const returnFlightHandler = () => {
-    if (!returnFlight) {
+    if (!isReturn) {
       dispatch(setSearchFlight({
         ...searchFlightData,
         return_date: null,
       }));
     }
-    
-    setReturnFlight(!returnFlight);
+
+    dispatch(setIsReturnFlight(!isReturn));
   }
   
   return (
