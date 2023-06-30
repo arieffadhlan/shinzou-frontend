@@ -3,10 +3,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import dayjs from "dayjs";
 
 import useQueryParams from "@/hooks/useQueryParams";
-import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 import { searchFlight } from "@/redux/features/flight/flightAction";
 
 import Container from "./Container";
@@ -15,23 +13,19 @@ import SearchFlightClassForm from "../organisms/forms/SearchFlightClassForm";
 import SearchFlightDateForm from "../organisms/forms/SearchFlightDateForm";
 import SearchFlightLocationForm from "../organisms/forms/SearchFlightLocationForm";
 import SearchFlightPassengersForm from "../organisms/forms/SearchFlightPassengersForm";
+import SearchFlightSetReturn from "../organisms/forms/SearchFlightSetReturn";
 
 const SearchFlightForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { searchFlightData } = useSelector((state) => state.flight);
+  const { searchFlightData, loading } = useSelector((state) => state.flight);
   const [returnFlight, setReturnFlight] = useState(false);
-  const searchParams = useQueryParams(searchFlightData);
-  
-  const returnFlightHandler = () => {
-    if (!returnFlight) {
-      dispatch(setSearchFlight({
-        ...searchFlightData,
-        return_date: dayjs(new Date()).format("YYYY-MM-DD"),
-      }));
-    }
-    setReturnFlight(!returnFlight);
-  }
+
+  const { adult, child, baby } = searchFlightData.passengers;
+  const searchParams = useQueryParams({
+    ...searchFlightData,
+    passengers: adult + child + baby
+  });
 
   const handleOnSubmit = (event) => {
     event.preventDefault();    
@@ -51,16 +45,7 @@ const SearchFlightForm = () => {
         <div className="flex flex-col gap-4 2lg:gap-9">
           <SearchFlightLocationForm />
           <div className="flex flex-col gap-3">
-            {/* Set return flight */}
-            <div className="flex justify-between items-center gap-0 2lg:justify-end 2lg:gap-4">
-              <span className="font-medium text-sm text-black xs:text-base">Pulang-Pergi?</span>
-              <div className="relative flex justify-center">
-                <label htmlFor="return" className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" id="return" onChange={returnFlightHandler} className="sr-only peer" readOnly />
-                  <div className="checkbox-toggle"></div>
-                </label>
-              </div>
-            </div>
+            <SearchFlightSetReturn returnFlight={returnFlight} setReturnFlight={setReturnFlight} />
             <div className="grid grid-rows-2 grid-cols-2 place-items-center gap-7 2lg:grid-rows-1 2lg:grid-cols-4">
               <SearchFlightDateForm type="departure" />
               <SearchFlightDateForm type="return" returnFlight={returnFlight} />
@@ -75,6 +60,7 @@ const SearchFlightForm = () => {
         size="lg"
         variant="primary"
         className="rounded-t-none rounded-b-xl font-bold"
+        loading={loading}
       >
         Cari Penerbangan
       </Button>

@@ -7,19 +7,17 @@ import 'dayjs/locale/id'
 dayjs.locale("id")
 
 const FlightDetails = () => {
-  const { 
-    searchFlightData,
-    selectedDepartureFlight: flight 
-  } = useSelector((state) => state.flight);
+  const { searchFlightData, selectedDepartureFlight: flight } = useSelector((state) => state.flight);
   const { airline, originAirport } = flight;
   const { adult, child, baby } = searchFlightData.passengers;
-
   const departureTime = dayjs(new Date(`${flight.departure_date} ${flight.departure_time}`));
   const arrivalTime = dayjs(new Date(`${flight.arrival_date} ${flight.arrival_time}`));
   
   return (
     <div className="flex flex-[40%] flex-col gap-3 p-4 rounded-lg bg-white shadow-2xs 2md:p-0 2md:rounded-none 2md:bg-transparent 2md:shadow-none">
-      <span className="font-bold text-sm text-neutral-5 2md:text-lg">Detail Penerbangan</span>
+      <span className="font-bold text-sm text-neutral-5 2md:text-lg">
+        Detail Penerbangan
+      </span>
       {/* Departure */}
       <div className="flex flex-col pb-3 border-b border-neutral-2">
         <div className="flex justify-between items-center">

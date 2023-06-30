@@ -49,6 +49,9 @@ module.exports = {
        "4.5": "1.125rem",
        "15": "3.75rem"
       },
+      gridTemplateRows: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+      },
       maxWidth: {
         "8xl": "90rem"
       },

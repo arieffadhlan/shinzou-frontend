@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 
-const url = "https://shinzou-api.up.railway.app/api/v1";
+const url = "http://localhost:8000/api/v1";
 
 export const searchFlight = createAsyncThunk("search-flight", 
   async ({ 

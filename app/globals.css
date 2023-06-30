@@ -91,8 +91,12 @@
   }
 
   .seat-number {
-    @apply flex justify-center items-center px-3 py-1.5 rounded-md bg-neutral-2 font-medium text-xs text-neutral-3 2xs:text-sm xs:px-3.5 xs:py-2 xs:text-base;
+    @apply flex justify-center items-center p-1.5 rounded-md  font-medium text-xs 2xs:text-sm xs:p-2 xs:text-base;
   }
+
+  .seat-number.available { @apply cursor-pointer bg-success text-neutral-1; }
+  .seat-number.selected { @apply cursor-pointer bg-primary-4 text-neutral-1; }
+  .seat-number.reserved { @apply cursor-default bg-neutral-2 text-neutral-3; }
 
   .seat-separator {
     @apply flex justify-center items-center h-full px-1.5 py-2 rounded-md bg-[#F0F0F0] text-xs text-neutral-3;

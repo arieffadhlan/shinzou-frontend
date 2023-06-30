@@ -8,11 +8,19 @@ const Input = ({
   type, 
   variant, 
   name, 
+  hookForm = true,
   className = "",
   ...props
 }) => {
-  const { register, formState: { errors } } = useFormContext();
-  
+  let formRegister;
+  let formErrors;
+  if (hookForm) {
+    const { register } = useFormContext();
+    const { formState: { errors } } = useFormContext();
+    formRegister = register;
+    formErrors = errors;
+  }
+
   const inputVariants = {
     primary: "py-3 rounded-2xl",  
     secondary: "py-2.5 rounded-lg h-10"
@@ -23,20 +31,32 @@ const Input = ({
     "input", 
     pickedVariant, 
     className, 
-    errors[name]?.message && "border-danger"
+    formErrors ? formErrors[name]?.message && "border-danger" : ""
   );
 
   return (  
     <div className="flex flex-col">
-      <input 
-        type={type}
-        name={name}
-        id={name}
-        className={classNames}
-        {...register(name)}
-        {...props}
-      />
-      {errors[name]?.message && <Alert type="error" message={errors[name].message} />}
+      {hookForm === false ? (
+        <input 
+          type={type}
+          name={name}
+          id={name}
+          className={classNames}
+          {...props}
+        />
+      ) : (
+        <input 
+          type={type}
+          name={name}
+          id={name}
+          className={classNames}
+          {...formRegister(name)}
+          {...props}
+        />
+      )}
+      {formErrors && formErrors[name]?.message && (
+        <Alert type="error" message={formErrors[name].message} />
+      )}
     </div>
   );
 }

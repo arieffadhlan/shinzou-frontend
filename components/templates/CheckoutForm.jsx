@@ -1,33 +1,57 @@
-import * as yup from "yup";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-import Form from "../molecules/Form";
+import { checkout } from "@/redux/features/transaction/transactionAction";
+
+import Button from "../atoms/Button";
 import PassangerForm from "../organisms/forms/CheckoutPassangersForm";
 import SeatForm from "../organisms/forms/CheckoutSeatForm";
 import UserForm from "../organisms/forms/CheckoutUserForm";
-import Button from "../atoms/Button";
-
-const validationSchema = yup.object().shape({
-  title: yup.string().required("Title wajib diisi!"),
-  name: yup.string().required("Email wajib diisi!"),
-  family_name: yup.string().optional(),
-  phone_number: yup.string().required("Password wajib diisi!"),
-  email: yup.string().required("Password wajib diisi!")
-});
 
  const CheckoutForm = () => {
-  const handleFormSubmit = (formData) => {
-    console.log(formData);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { searchFlightData, selectedDepartureFlight } = useSelector((state) => state.flight);
+  const { adult, child, baby } = searchFlightData.passengers;
+  const totalPassengers = adult + child + baby;
+  const [passengers, setPassengers] = useState(
+    Array.from(Array(totalPassengers), () => ({
+      title: "",
+      name: "",
+      family_name: "",
+      identity_number: "",
+      phone_number: "",
+      seat_number: ""
+    }))
+  );
+  
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch(checkout({
+      departure_flight_id: selectedDepartureFlight.id,
+      passengers,
+      ammount: selectedDepartureFlight.price + 100000
+    }));
+    
+    router.push("/");
   }
   
   return (
-    <Form 
-      validationSchema={validationSchema}
-      onSubmit={handleFormSubmit} 
-      className="flex flex-[60%] flex-col gap-9"
-    >
-      <UserForm />
-      <PassangerForm />
-      <SeatForm />
+    <form onSubmit={handleFormSubmit} className="flex flex-[60%] flex-col gap-9">
+      {/* <UserForm /> */}
+      <PassangerForm 
+        totalPassengers={totalPassengers}
+        passengers={passengers} 
+        setPassengers={setPassengers} 
+      />
+      <SeatForm
+        totalPassengers={totalPassengers}
+        passengers={passengers} 
+        setPassengers={setPassengers} 
+      />
       <Button 
         type="submit" 
         size="xl" 
@@ -36,7 +60,12 @@ const validationSchema = yup.object().shape({
       >
 				Simpan
       </Button>
-    </Form>
+
+      {/* Alert */}
+      <div className="Toastify__toast-auth">
+        <ToastContainer />
+      </div>
+    </form>
   )
 }
 
