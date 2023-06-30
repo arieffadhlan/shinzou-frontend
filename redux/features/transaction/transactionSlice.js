@@ -3,6 +3,7 @@ import { checkout, getTransactions } from "./transactionAction";
 
 const initialState = {
   transactions: [],
+  selectedTransaction: {},
   loading: false,
   success: false,
   error: null

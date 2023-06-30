@@ -6,6 +6,7 @@ const searchFlightData = {
   location_from: "Banda Aceh",
   location_to: "Medan",
   departure_date: dayjs(new Date()).format("YYYY-MM-DD"),
+  return_date: dayjs(new Date()).format("YYYY-MM-DD"),
   passengers: {
     adult: 1,
     child: 0,
@@ -34,24 +35,23 @@ const flightSlice = createSlice({
       state.flights = [],
       state.selectedDepartureFlight = {},
       state.selectedReturnFlight = {},
+      state.isReturn = false,
       state.loading = false,
       state.success = false,
       state.error = null
-
-      return state;
     },
     setIsReturnFlight: (state, action) => {
       state.isReturn = action.payload;
-      return state;
     },
     setSearchFlight: (state, action) => {
       state.searchFlightData = action.payload;
-      return state;
     },
     setSelectedDepartureFlight: (state, action) => {
       state.selectedDepartureFlight = action.payload;
-      return state;
-    }
+    },
+    setSelectedReturnFlight: (state, action) => {
+      state.selectedReturnFlight = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(searchFlight.pending, (state) => {
@@ -73,7 +73,8 @@ export const {
   clearState, 
   setIsReturnFlight,
   setSearchFlight, 
-  setSelectedDepartureFlight 
+  setSelectedDepartureFlight,
+  setSelectedReturnFlight 
 } = flightSlice.actions;
 
 export default flightSlice.reducer;

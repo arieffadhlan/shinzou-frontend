@@ -34,7 +34,7 @@ export const checkout = createAsyncThunk("transaction",
 
       const response = await axios.post(`${url}/transaction`, {
         departure_flight_id,
-        return_flight_id: return_flight_id ?? null,
+        return_flight_id,
         passengers,
         ammount
       }, {

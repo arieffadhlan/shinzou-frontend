@@ -2,6 +2,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { setIsReturnFlight, setSearchFlight } from "@/redux/features/flight/flightSlice";
+import dayjs from "dayjs";
 
 const SearchFlightSetReturn = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const SearchFlightSetReturn = () => {
     if (!isReturn) {
       dispatch(setSearchFlight({
         ...searchFlightData,
-        return_date: null,
+        return_date: dayjs(new Date()).format("YYYY-MM-DD"),
       }));
     }
 

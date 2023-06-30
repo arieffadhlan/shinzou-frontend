@@ -8,13 +8,11 @@ import { checkout } from "@/redux/features/transaction/transactionAction";
 import Button from "../atoms/Button";
 import PassangerForm from "../organisms/forms/CheckoutPassangersForm";
 import SeatForm from "../organisms/forms/CheckoutSeatForm";
-import UserForm from "../organisms/forms/CheckoutUserForm";
-import { clearState } from "@/redux/features/flight/flightSlice";
 
  const CheckoutForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { searchFlightData, selectedDepartureFlight } = useSelector((state) => state.flight);
+  const { searchFlightData, selectedDepartureFlight, selectedReturnFlight } = useSelector((state) => state.flight);
   const { adult, child, baby } = searchFlightData.passengers;
   const totalPassengers = adult + child + baby;
   const [passengers, setPassengers] = useState(
@@ -33,11 +31,12 @@ import { clearState } from "@/redux/features/flight/flightSlice";
 
     dispatch(checkout({
       departure_flight_id: selectedDepartureFlight.id,
+      return_flight_id: !selectedReturnFlight.hasOwnProperty("id") ? null : selectedReturnFlight.id,
       passengers,
       ammount: selectedDepartureFlight.price + 100000
     }));
 
-    router.push("/");
+    router.push("/order-history");
   }
   
   return (

@@ -5,7 +5,7 @@ const useQueryParams = (data) => {
 
   const params = new URLSearchParams(searchParams);
   for (let [key, value] of Object.entries(data)) {
-    params.set(key, value);
+    if (value) params.set(key, value);
   }
 
   return params.toString();

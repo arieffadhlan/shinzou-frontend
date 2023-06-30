@@ -17,10 +17,11 @@ import SearchFlightSetReturn from "../organisms/forms/SearchFlightSetReturn";
 const SearchFlightForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { searchFlightData, loading } = useSelector((state) => state.flight);
+  const { searchFlightData, isReturn, loading } = useSelector((state) => state.flight);
   const { adult, child, baby } = searchFlightData.passengers;
   const searchParams = useQueryParams({
     ...searchFlightData,
+    return_date: isReturn ? searchFlightData.return_date : null,
     passengers: adult + child + baby
   });
 

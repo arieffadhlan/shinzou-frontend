@@ -5,22 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import dayjs from "dayjs";
-import 'dayjs/locale/id'
 
 import { searchFlight } from "@/redux/features/flight/flightAction";
 import getTimeDifference from "@/helpers/getTimeDifference";
 
 import Button from "@/components/atoms/Button";
-import { setSelectedDepartureFlight } from "@/redux/features/flight/flightSlice";
-
-// Set local language
-dayjs.locale("id")
+import { setSelectedDepartureFlight, setSelectedReturnFlight } from "@/redux/features/flight/flightSlice";
 
 const FlightCard = ({ flight }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { searchFlightData } = useSelector((state) => state.flight);
+  const { searchFlightData, selectedDepartureFlight } = useSelector((state) => state.flight);
   const { airline, destinationAirport, originAirport } = flight;
   const [showDetails, setShowDetails] = useState(false);
   
@@ -36,17 +32,25 @@ const FlightCard = ({ flight }) => {
     const isReturnFlight = searchParams.get("return_date");
 
     if (isReturnFlight) {
-      dispatch(searchFlight({
-        location_from: destinationAirport.location, 
-        location_to: originAirport.location, 
-        departure_date: searchFlightData.return_date, 
-        passengers: searchFlightData.passengers, 
-        seat_class: flight.class 
-      }));
-    } 
-
-    dispatch(setSelectedDepartureFlight(flight));
-    router.push("/checkout");
+      if (selectedDepartureFlight.hasOwnProperty("id")) {
+        dispatch(setSelectedReturnFlight(flight));
+        router.push("/checkout");
+      } else {
+        dispatch(setSelectedDepartureFlight(flight));
+        dispatch(searchFlight({
+          location_from: destinationAirport.location, 
+          location_to: originAirport.location, 
+          departure_date: searchFlightData.return_date, 
+          passengers: searchFlightData.passengers, 
+          seat_class: flight.class 
+        }));
+  
+        router.refresh();
+      }
+    } else {
+      dispatch(setSelectedDepartureFlight(flight));
+      router.push("/checkout");
+    }
   }
 
   return (

@@ -2,11 +2,12 @@ import dayjs from "dayjs";
 import 'dayjs/locale/id'
 import getTimeDifference from "@/helpers/getTimeDifference";
 import OrderHistoryDetails from "./OrderHistoryDetails"
+import { twMerge } from "tailwind-merge";
 
 // Set local language
 dayjs.locale("id")
 
-const OrderHistoryCard = ({ data, orderId, setOrderId }) => {	
+const OrderHistoryCard = ({ data, orderId, setOrderId, className = "" }) => {	
 	const { departureFlight } = data;
 	const { originAirport, destinationAirport } = departureFlight;
 
@@ -19,7 +20,7 @@ const OrderHistoryCard = ({ data, orderId, setOrderId }) => {
 	}
 	
 	return (
-		<div onClick={handleOnClick} id={`order-${orderId}`} className="cursor-pointer flex flex-col gap-4 h-fit p-4 border-2 border-transparent rounded-lg bg-white shadow-2xs hocus:border-primary-4/50">
+		<div onClick={handleOnClick} id={`order-${orderId}`} className={twMerge("cursor-pointer flex flex-col gap-4 h-fit p-4 border-2 rounded-lg bg-white shadow-2xs", className)}>
 			{/* Flight information */}
 			<div className="flex flex-col gap-3">
 				<div className="flex items-center gap-4 w-full">

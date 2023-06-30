@@ -1,7 +1,6 @@
 "use client";
 
 import { useDispatch, useSelector } from 'react-redux';
-import dayjs from 'dayjs';
 import { setSearchFlight } from '@/redux/features/flight/flightSlice';
 
 const SearchFlightDateForm = ({ type }) => {
@@ -47,7 +46,7 @@ const SearchFlightDateForm = ({ type }) => {
       <input 
         type={isReturn ? "date" : "text"}
         onChange={handleReturnDate}
-        value={isReturn ? dayjs(new Date()).format("YYYY-MM-DD") : ""}
+        value={isReturn ? searchFlightData.return_date : ""}
         className="datepicker"
         placeholder="Pilih Tanggal"
         disabled={!isReturn}
