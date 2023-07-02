@@ -1,51 +1,65 @@
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+
+import { setSelectedPaymentMethod } from "@/redux/features/transaction/transactionSlice";
+import { payment } from "@/redux/features/transaction/transactionAction";
+import paymentMethods from "@/constants/payment-methods";
+
 import Button from "../atoms/Button";
-import gopay from "@/assets/icons/payment-methods/gopay.svg";
-import virtualAccount from "@/assets/icons/payment-methods/virtual-account.svg";
-import creditCard from "@/assets/icons/payment-methods/credit-card.svg";
 
 const PaymentMethod = () => {
+	const dispatch = useDispatch();
+	const router = useRouter();
+	const { selectedTransaction, selectedPaymentMethod } = useSelector((state) => state.transaction);
+	
+	const handleSelectedPaymentMethod = (paymentMethod) => {
+		dispatch(setSelectedPaymentMethod(paymentMethod));
+	}
+
+	const handleOnSubmit = (event) => {
+		event.preventDefault();
+
+		dispatch(payment({
+			booking_code: selectedTransaction.booking_code,
+			payment_method: selectedPaymentMethod
+		}));
+
+		router.push("/order-history");
+	}
+
 	return(
-		<div className="flex flex-[60%] flex-col gap-9">
+		<form onSubmit={handleOnSubmit} className="flex flex-[60%] flex-col gap-9">
 			<div className="flex flex-col gap-4">
 				<h2 className="font-bold text-xl">
 					Pilih Metode Pembayaran
 				</h2>
 				{/* Payment Methods */}
 				<div className="flex flex-col gap-4">
-					<div className="cursor-pointer flex items-center gap-4 py-3.5 px-4 border border-neutral-2 rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs">
-						<div className="flex justify-center items-center w-12 xs:w-14">
-							<Image 
-								src={gopay} 
-								alt="Gopay" 
-								priority={true} 
-								width={48}
-							/>
-						</div>
-						<span className="font-medium text-sm xs:text-base">Gopay</span>
-					</div>
-					<div className="cursor-pointer flex items-center gap-4 py-3.5 px-4 border border-neutral-2 rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs">
-						<div className="flex justify-center items-center w-12 xs:w-14">
-							<Image 
-								src={virtualAccount} 
-								alt="Virtual Account" 
-								priority={true} 
-								width={24}
-							/>
-						</div>
-						<span className="font-medium text-sm xs:text-base">Virtual Account</span>
-					</div>
-					<div className="cursor-pointer flex items-center gap-4 py-3.5 px-4 border border-neutral-2 rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs">
-						<div className="flex justify-center items-center w-12 xs:w-14">
-							<Image 
-								src={creditCard} 
-								alt="Credit Card" 
-								priority={true} 
-								width={28}
-							/>
-						</div>
-						<span className="font-medium text-sm xs:text-base">Credit Card</span>
-					</div>
+					{paymentMethods.map((paymentMethod) => (
+						<button
+							type="button"
+							key={paymentMethod.id} 
+							onClick={() => handleSelectedPaymentMethod(paymentMethod.name)} 
+							className={`${selectedPaymentMethod === paymentMethod.name 
+								?	"border-primary-4"
+								: "border-neutral-2"}
+								flex items-center gap-4 py-3.5 px-4 border rounded-lg bg-neutral-1 text-neutral-5 shadow-2xs`
+							}
+						>
+							<div className="flex justify-center items-center w-12 xs:w-14">
+								<Image 
+									src={paymentMethod.image} 
+									alt={paymentMethod.name} 
+									priority={true} 
+									width={28} 
+								/>
+							</div>
+							<span className="font-medium text-sm xs:text-base">
+								{paymentMethod.name}
+							</span>
+						</button>
+					))}
 				</div>
 			</div>
 			<Button 
@@ -56,7 +70,7 @@ const PaymentMethod = () => {
       >
 				Bayar
       </Button>
-		</div>
+		</form>
 	)
 }
 

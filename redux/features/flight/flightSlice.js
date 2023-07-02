@@ -30,7 +30,7 @@ const flightSlice = createSlice({
   name: "flight",
   initialState,
   reducers: {
-    clearState: (state) => {
+    clearFlightState: (state) => {
       state.searchFlightData = searchFlightData;
       state.flights = [],
       state.selectedDepartureFlight = {},
@@ -70,7 +70,7 @@ const flightSlice = createSlice({
 });
 
 export const { 
-  clearState, 
+  clearFlightState, 
   setIsReturnFlight,
   setSearchFlight, 
   setSelectedDepartureFlight,

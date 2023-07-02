@@ -3,9 +3,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { clearState } from "@/redux/features/flight/flightSlice";
+import { clearFlightState } from "@/redux/features/flight/flightSlice";
 import { getTransactions } from "@/redux/features/transaction/transactionAction";
-import { setSelectedTransaction } from "@/redux/features/transaction/transactionSlice";
 
 import ButtonLink from "@/components/atoms/ButtonLink";
 import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
@@ -17,7 +16,7 @@ export default function OrderHistory() {
   const { transactions } = useSelector((state) => state.transaction);
   
   useEffect(() => {
-    dispatch(clearState());
+    dispatch(clearFlightState());
     dispatch(getTransactions());
   }, [])
 

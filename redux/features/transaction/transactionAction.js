@@ -50,3 +50,24 @@ export const checkout = createAsyncThunk("transaction",
     }
   }
 );
+
+export const payment = createAsyncThunk("payment", 
+  async ({ booking_code, payment_method }, { rejectWithValue }) => {
+    try {      
+      const token = localStorage.getItem("token");
+
+      const response = await axios.put(`${url}/transaction/${booking_code}`, {
+        payment_method
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+);

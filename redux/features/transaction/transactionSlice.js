@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkout, getTransactions } from "./transactionAction";
+import { checkout, getTransactions, payment } from "./transactionAction";
 
 const initialState = {
   transactions: [],
   selectedTransaction: {},
+  selectedPaymentMethod: null,
   loading: false,
   success: false,
   error: null
@@ -13,8 +14,19 @@ const transactionSlice = createSlice({
   name: "transaction",
   initialState,
   reducers: {
+    clearTransactionState: (state) => {
+      state.transactions = [],
+      state.selectedTransaction = {},
+      state.selectedPaymentMethod = null,
+      state.loading = false,
+      state.success = false,
+      state.error = null
+    },
     setSelectedTransaction: (state, action) => {
       state.selectedTransaction = action.payload;
+    },
+    setSelectedPaymentMethod: (state, action) => {
+      state.selectedPaymentMethod = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -39,7 +51,8 @@ const transactionSlice = createSlice({
     builder.addCase(checkout.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(checkout.fulfilled, (state) => {
+    builder.addCase(checkout.fulfilled, (state, action) => {
+      state.selectedTransaction = action.payload.data;
       state.loading = false;
       state.success = true;
     });
@@ -47,8 +60,25 @@ const transactionSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
+    // Payment
+    builder.addCase(payment.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(payment.fulfilled, (state) => {
+      state.loading = false;
+      state.success = true;
+    });
+    builder.addCase(payment.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
   }
 });
 
-export const { setSelectedTransaction } = transactionSlice.actions;
+export const { 
+  clearTransactionState,
+  setSelectedTransaction, 
+  setSelectedPaymentMethod 
+} = transactionSlice.actions;
+
 export default transactionSlice.reducer;

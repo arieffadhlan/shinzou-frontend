@@ -7,7 +7,7 @@ import Button from "@/components/atoms/Button";
 const OrderHistoryCard = ({ data }) => {	
 	const dispatch = useDispatch();
   const { selectedTransaction } = useSelector((state) => state.transaction);
-	const { departureFlight, returnFlight, tickets } = data;
+	const { departureFlight, returnFlight, tickets, payment_method } = data;
 
 	// Departure Flight
 	const { airline, originAirport, destinationAirport } = departureFlight;
@@ -47,6 +47,12 @@ const OrderHistoryCard = ({ data }) => {
 
 	return (
 		<div onClick={handleSelectedTransaction} className={`cursor-pointer flex flex-col gap-4 h-fit p-4 border-2 rounded-lg bg-white shadow-2xs ${selectedTransaction?.id === data.id ? "border-primary-4/50" : "border-transparent"}`}>
+			{/* Transaction Status */}
+			<div className={`w-fit px-3 py-1 rounded-2xl ${payment_method ? "bg-success" : "bg-danger"}`}>
+				<span className="text-sm text-neutral-1">
+					{payment_method ? "Sukses" : "Belum Dibayar"}
+				</span>
+			</div>
 			{/* Flight information */}
 			<div className="flex flex-col gap-3">
 				<div className="flex items-center gap-4 w-full">

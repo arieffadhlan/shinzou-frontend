@@ -9,7 +9,9 @@ const Payment = () => {
     <>
       <section className="shadow-xs">
         <Container htmlTag="div" className="flex flex-col gap-6 pt-[102px] pb-5 sm:pt-[132px]">
-          <h1 className="font-bold text-xl">Pembayaran</h1>
+          <h1 className="font-bold text-xl">
+            Pembayaran
+          </h1>
         </Container>
       </section>
       <Container className="my-12">

@@ -5,7 +5,7 @@ import Button from "../../atoms/Button";
 
 const OrderHistoryDetails = () => {
   const { selectedTransaction: transaction } = useSelector((state) => state.transaction);
-	const { departureFlight, returnFlight, tickets } = transaction;
+	const { departureFlight, returnFlight, tickets, payment_method } = transaction;
 
 	// Departure Flight
 	const { airline, originAirport, destinationAirport } = departureFlight;
@@ -42,7 +42,15 @@ const OrderHistoryDetails = () => {
   return (
     <div className="hidden flex-[40%] flex-col gap-3 pt-4 border-t border-neutral-2 2md:flex 2md:pt-0 2md:border-0">
       <div className="flex flex-col gap-2">
-        <span className="font-bold text-sm text-neutral-5 2md:text-lg">Detail Pesanan</span>
+        <div className="flex justify-between items-center">
+          <span className="font-bold text-sm text-neutral-5 2md:text-lg">Detail Pesanan</span>
+          {/* Transaction Status */}
+          <div className={`w-fit px-3 py-1 rounded-2xl ${payment_method ? "bg-success" : "bg-danger"}`}>
+            <span className="text-sm text-neutral-1">
+              {payment_method ? "Sukses" : "Belum Dibayar"}
+            </span>
+          </div>
+        </div>
         {/* Booking code */}
         <span className="text-sm text-neutral-5 2md:text-base">
           Booking Code:&nbsp;
