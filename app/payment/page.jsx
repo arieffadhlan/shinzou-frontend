@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "@/components/templates/Container";
 import FlightDetails from "@/components/organisms/cards/FlightDetails";
 import PaymentMethod from "@/components/templates/PaymentMethod";

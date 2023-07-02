@@ -26,6 +26,10 @@ const transactionSlice = createSlice({
       state.transactions = action.payload.data;
       state.loading = false;
       state.success = true;
+      
+      if (state.transactions.length > 0) {
+        state.selectedTransaction = state.transactions[0];
+      }
     });
     builder.addCase(getTransactions.rejected, (state, action) => {
       state.loading = false;

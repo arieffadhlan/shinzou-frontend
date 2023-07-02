@@ -19,7 +19,6 @@ export default function OrderHistory() {
   useEffect(() => {
     dispatch(clearState());
     dispatch(getTransactions());
-    dispatch(setSelectedTransaction(transactions[0]));
   }, [])
 
   return (

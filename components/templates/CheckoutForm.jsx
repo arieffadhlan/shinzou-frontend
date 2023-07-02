@@ -38,7 +38,7 @@ import SeatForm from "../organisms/forms/CheckoutSeatForm";
         : selectedDepartureFlight.price + 100000  
     }));
 
-    router.push("/order-history");
+    router.push("/payment");
   }
   
   return (
