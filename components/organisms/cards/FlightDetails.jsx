@@ -1,10 +1,6 @@
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import dayjs from "dayjs";
-import 'dayjs/locale/id'
-
-// Set local language
-dayjs.locale("id")
+import getConvertFlightTime from "@/helpers/getConvertFlightTime";
 
 const FlightDetails = () => {
   const { searchFlightData, selectedDepartureFlight: flight } = useSelector((state) => state.flight);
@@ -12,8 +8,12 @@ const FlightDetails = () => {
   const { airline, originAirport } = flight;
   const { adult, child, baby } = searchFlightData.passengers;
   
-  const departureTime = dayjs(new Date(`${flight.departure_date} ${flight.departure_time}`));
-  const arrivalTime = dayjs(new Date(`${flight.arrival_date} ${flight.arrival_time}`));
+  const flightDateTime = getConvertFlightTime(
+		`${flight.departure_date} ${flight.departure_time}`,
+		`${flight.arrival_date} ${flight.arrival_time}`,
+		false
+	);
+	const { departureTime, arrivalTime } = flightDateTime;
   
   return (
     <div className="flex flex-[40%] flex-col gap-3 p-4 rounded-lg bg-white shadow-2xs 2md:p-0 2md:rounded-none 2md:bg-transparent 2md:shadow-none">
