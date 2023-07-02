@@ -11,7 +11,7 @@ const SearchFlightPassengersForm = () => {
   const { searchFlightData } = useSelector((state) => state.flight);
   const { modalId, show } = useSelector((state) => state.modal);
   const { adult, child, baby } = searchFlightData.passengers;
-  
+
   return (
     <>
       <div className="flex items-center gap-7 w-full">

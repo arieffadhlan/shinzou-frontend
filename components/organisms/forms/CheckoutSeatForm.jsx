@@ -53,7 +53,7 @@ const SeatForm = ({ totalPassengers, passengers, setPassengers }) => {
     } else {
       if (reservedSeats.indexOf(seat) > -1) {
         setAvailableSeats(availableseats.filter(availableSeat => availableSeat !== seat))
-      } else if (selectedSeats.length < 2) {
+      } else if (selectedSeats.length < totalPassengers) {
         let newArray = [...passengers];
     
         for (let i = 0; i < totalPassengers; i++) {

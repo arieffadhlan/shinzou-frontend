@@ -12,7 +12,11 @@ const initialState = {
 const transactionSlice = createSlice({
   name: "transaction",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedTransaction: (state, action) => {
+      state.selectedTransaction = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // Get transactions
     builder.addCase(getTransactions.pending, (state) => {
@@ -42,4 +46,5 @@ const transactionSlice = createSlice({
   }
 });
 
+export const { setSelectedTransaction } = transactionSlice.actions;
 export default transactionSlice.reducer;

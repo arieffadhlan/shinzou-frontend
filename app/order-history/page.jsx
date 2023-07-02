@@ -1,25 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTransactions } from "@/redux/features/transaction/transactionAction";
 
-import Container from "@/components/templates/Container";
+import { clearState } from "@/redux/features/flight/flightSlice";
+import { getTransactions } from "@/redux/features/transaction/transactionAction";
+import { setSelectedTransaction } from "@/redux/features/transaction/transactionSlice";
+
 import ButtonLink from "@/components/atoms/ButtonLink";
 import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
 import OrderHistoryDetails from "@/components/organisms/cards/OrderHistoryDetails";
-import { clearState } from "@/redux/features/auth/authSlice";
+import Container from "@/components/templates/Container";
 
 export default function OrderHistory() {  
   const dispatch = useDispatch();
   const { transactions } = useSelector((state) => state.transaction);
-  const [orderId, setOrderId] = useState("");
   
   useEffect(() => {
-    dispatch(clearState());  
+    dispatch(clearState());
     dispatch(getTransactions());
+    dispatch(setSelectedTransaction(transactions[0]));
   }, [])
-  
+
   return (
     <>
       <section className="shadow-xs">
@@ -54,26 +56,18 @@ export default function OrderHistory() {
 
       {/* Order History List */}
       <Container className="my-[64px]">
-        <div className="flex gap-15">
-          <div className="flex flex-[60%] flex-col gap-4">
-            {transactions.map((transaction, index) => (
-              <OrderHistoryCard 
-                key={index}
-                data={transaction} 
-                orderId={`order-${index}`}
-                setOrderId={setOrderId}
-                className={orderId !== "" && orderId === `order-${index}` ? "border-primary-4/50" : "border-transparent"}
-              />
-            ))}
-          </div>
-          {orderId !== "" ? (
-            <OrderHistoryDetails className="hidden 2md:flex" />
-          ) : (
-            <div className="hidden flex-[40%] justify-center items-center p-4 border-0 border-neutral-2 rounded-lg bg-white shadow-2xs text-center 2md:flex">
-              Silakan pilih riwayat pemesanan untuk melihat detail.
+        {transactions.length > 0 ? (
+          <div className="flex gap-10">
+            <div className="flex flex-[60%] flex-col gap-4">
+              {transactions.map((transaction, index) => (
+                <OrderHistoryCard key={index} data={transaction} />
+              ))}
             </div>
-          )}
-        </div>
+            <OrderHistoryDetails />
+          </div>
+        ) : (
+          <div>riwayat transaksi kosong</div>
+        )}
       </Container>
     </>
   )

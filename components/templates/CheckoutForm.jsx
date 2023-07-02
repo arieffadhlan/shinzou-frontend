@@ -25,15 +25,17 @@ import SeatForm from "../organisms/forms/CheckoutSeatForm";
       seat_number: ""
     }))
   );
-  
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
     dispatch(checkout({
       departure_flight_id: selectedDepartureFlight.id,
-      return_flight_id: !selectedReturnFlight.hasOwnProperty("id") ? null : selectedReturnFlight.id,
+      return_flight_id: selectedReturnFlight.hasOwnProperty("id") ? selectedReturnFlight.id : null,
       passengers,
-      ammount: selectedDepartureFlight.price + 100000
+      ammount: selectedReturnFlight.hasOwnProperty("id") 
+        ? selectedDepartureFlight.price + selectedReturnFlight.price + 100000
+        : selectedDepartureFlight.price + 100000  
     }));
 
     router.push("/order-history");
