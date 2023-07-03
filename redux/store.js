@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import authReducer from "./features/auth/authSlice";
 import flightReducer from "./features/flight/flightSlice";
 import modalReducer from "./features/modal/modalSlice";
+import notificationReducer from "./features/notification/notificationSlice";
 import transactionReducer from "./features/transaction/transactionSlice";
 
 const createNoopStorage = () => {
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   flight: flightReducer,
   modal: modalReducer,
+  notification: notificationReducer,
   transaction: transactionReducer
 });
 

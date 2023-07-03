@@ -1,8 +1,21 @@
+"use client";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNotifications } from "@/redux/features/notification/notificationAction";
+
 import Container from "@/components/templates/Container";
 import ButtonLink from "@/components/atoms/ButtonLink";
 import NotificationItem from "@/components/organisms/cards/NotificationCard";
 
 export default function Notification() {
+  const dispatch = useDispatch();
+  const { notifications } = useSelector((state) => state.notification);
+  
+  useEffect(() => {
+    dispatch(getNotifications());
+  }, [])
+
   return (
     <>
       <section className="shadow-xs">
@@ -34,7 +47,17 @@ export default function Notification() {
           </div>
         </Container>
       </section>
-      <NotificationItem />
+      
+      {/* Notifications */}
+      <Container className="flex flex-col gap-4 pb-5 mt-12">
+        {notifications.length > 0 ? (
+          notifications.map((notification, index) => (
+            <NotificationItem key={index} data={notification} />
+          ))
+        ) : (
+          <div>Notifikasi kosong</div>
+        )}
+      </Container>
     </>
   )
 }
