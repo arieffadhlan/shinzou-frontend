@@ -8,6 +8,28 @@ const config = {
   }
 }
 
+export const updateProfile = createAsyncThunk("updateProfile", 
+  async ({ id, name, email, phone_number }, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.put(`${url}/user/${id}`, {
+        name,
+        email,
+        phone_number,
+      }, {
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+);
+
 export const registerUser = createAsyncThunk("auth/register", 
   async ({ name, email, phone_number, password }, { rejectWithValue }) => {
     try {
@@ -47,7 +69,7 @@ export const loginUser = createAsyncThunk("auth/login",
         password
       }, config);
 
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.data.token);
 
       return response.data;
     } catch (error) {

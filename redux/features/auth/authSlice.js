@@ -4,6 +4,7 @@ import {
   loginUser, 
   registerUser, 
   resetPassword, 
+  updateProfile, 
   verifyOTP 
 } from "./authAction";
 
@@ -19,7 +20,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     clearState: (state) => {
-      state.user = {};
       state.loading = false;
       state.success = false;
       state.error = null;
@@ -32,6 +32,19 @@ const authSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    // Update Profile
+    builder.addCase(updateProfile.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateProfile.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+      state.success = true;
+    });
+    builder.addCase(updateProfile.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
     // Register
     builder.addCase(registerUser.pending, (state) => {
       state.loading = true;
