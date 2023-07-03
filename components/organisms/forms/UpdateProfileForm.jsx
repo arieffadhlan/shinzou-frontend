@@ -66,7 +66,7 @@ const UpdateProfileForm = () => {
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email" className="font-medium text-sm">Email</Label>
-            <Input type="email" variant="secondary" name="email" value={user.data.email} placeholder="EmailContoh: johndee@gmail.com" readOnly disabled />
+            <Input type="email" variant="secondary" name="email" value={user.data.email} placeholder="Contoh: johndee@gmail.com" readOnly disabled />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="phone_number" className="font-medium text-sm">Nomor Telepon</Label>

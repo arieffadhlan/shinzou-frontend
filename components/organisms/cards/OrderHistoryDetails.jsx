@@ -98,10 +98,11 @@ const OrderHistoryDetails = () => {
       </div>
       {/* Airline and passangers information */}
       <div className="flex flex-col gap-4 pb-3 border-b border-neutral-2">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           <Image src={airline.airline_image} alt="Airline" width={24} height={24} />
-          <span className="font-medium text-xs text-neutral-5">
-            {airline.airline_name} - {departureFlight.class}
+          <span className="font-bold text-sm text-neutral-5">
+            {airline.airline_name} - {departureFlight.class} <br /> 
+            {departureFlight.flight_number}
           </span>
         </div>
         <div className="flex flex-col">
@@ -157,10 +158,11 @@ const OrderHistoryDetails = () => {
           </div>
           {/* Airline and passangers information */}
           <div className="flex flex-col gap-4 pb-3 border-b border-neutral-2">
-            <div className="flex flex-col">
-              <Image src={returnAirline.airline_image} alt="Airline" width={24} height={24} />
-              <span className="font-medium text-xs text-neutral-5">
-                {returnAirline.airline_name} - {returnFlight.class}
+            <div className="flex flex-col gap-1">
+              <Image src={airline.airline_image} alt="Airline" width={24} height={24} />
+              <span className="font-bold text-sm text-neutral-5">
+                {airline.airline_name} - {returnFlight.class} <br /> 
+                {returnFlight.flight_number}
               </span>
             </div>
             <div className="flex flex-col">
