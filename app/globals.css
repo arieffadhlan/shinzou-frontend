@@ -30,6 +30,15 @@
     width: 100%;
     opacity: 0;
   }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    padding-left: 4px;
+  }
 }
 
 @layer utilities {

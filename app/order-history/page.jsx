@@ -10,16 +10,17 @@ import ButtonLink from "@/components/atoms/ButtonLink";
 import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
 import OrderHistoryDetails from "@/components/organisms/cards/OrderHistoryDetails";
 import Container from "@/components/templates/Container";
+import TicketsLoading from "@/components/templates/PageLoading";
 
 export default function OrderHistory() {  
   const dispatch = useDispatch();
-  const { transactions } = useSelector((state) => state.transaction);
+  const { transactions, loading } = useSelector((state) => state.transaction);
   
   useEffect(() => {
     dispatch(clearFlightState());
     dispatch(getTransactions());
-  }, [])
-
+  }, []);
+  
   return (
     <>
       <section className="shadow-xs">
