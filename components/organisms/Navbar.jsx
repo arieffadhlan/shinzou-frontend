@@ -26,14 +26,6 @@ const Navbar = () => {
 								className="w-20 lg:w-24" 
 							/>
 						</Link>
-						<div className="relative">
-							<InputSearch 
-								name="search-flight" 
-								placeholder="Cari di sini ..."
-								className="hidden lg:flex lg:w-[444px]"
-								iconClassName="!hidden lg:!inline-block"
-							/>
-						</div>
 					</div>
 					<div className="flex items-center gap-4">
 						{token ? (
@@ -68,14 +60,6 @@ const Navbar = () => {
 				{/* Navbar Collapse Contents */}
 				<div className="hidden lg:hidden">
 					<div className="flex flex-col gap-5">
-						<div className="relative w-full">
-							<InputSearch 
-								name="search-flight" 
-								placeholder="Cari di sini ..."
-								className="w-full lg:hidden"
-								iconClassName="!inline-block lg:!hidden"
-							/>
-						</div>
 						{token ? (
 							<>
 								<Link href="/order-history" className={`${pathname === "/order-history" ? "text-primary-4" : ""} material-icons-round`}>

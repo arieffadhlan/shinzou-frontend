@@ -11,7 +11,11 @@ import NotificationItem from "@/components/organisms/cards/NotificationCard";
 export default function Notification() {
   const dispatch = useDispatch();
   const { notifications } = useSelector((state) => state.notification);
-  
+  const { user } = useSelector((state) => state.auth);
+  const userNotifications = notifications.filter((notification) => {
+    return notification.user_id === user.data.id
+  });
+
   useEffect(() => {
     dispatch(getNotifications());
   }, [])
@@ -49,9 +53,9 @@ export default function Notification() {
       </section>
       
       {/* Notifications */}
-      <Container className="flex flex-col gap-4 pb-5 mt-12">
-        {notifications.length > 0 ? (
-          notifications.map((notification, index) => (
+      <Container className="flex flex-col gap-4 pb-5 my-12">
+        {userNotifications.length > 0 ? (
+          userNotifications.map((notification, index) => (
             <NotificationItem key={index} data={notification} />
           ))
         ) : (
