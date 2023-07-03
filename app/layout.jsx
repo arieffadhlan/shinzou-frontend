@@ -18,11 +18,6 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-export const metadata = { 
-  title: "Shinzou",
-  description: "Final Project Binar Academy"
-};
-
 const RootLayout = ({ children }) => {
   const protectedRoutes = [
     "/account",
@@ -35,6 +30,12 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="id" className={poppins.className}>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Shinzou Team" />
+        <meta name="description" content="E-Flight Ticket: Shinzou" />
+        <meta name="keyword" content="Shinzou, shinzou, tiket pesawat, pemesanan tiket pesawat" />
+        <title>Shinzou</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
       </head>
       <body>
