@@ -2,24 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { usePathname } from 'next/navigation'
 
-import { logout } from "@/redux/features/auth/authSlice";
 import InputSearch from "@/components/molecules/InputSearch";
 import ButtonLink from "@/components/atoms/ButtonLink";
 
 import logo from "@/assets/images/logo.webp";
 
 const Navbar = () => {
-	const dispatch = useDispatch();
-  const router = useRouter();
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    dispatch(logout());
-		router.push("/auth/login");
-  }
+	const pathname = usePathname();
+	const token = localStorage.getItem("token");
 	
   return (
 		<nav className="fixed z-20 top-0 left-0 w-full py-4 bg-white shadow-xs">
@@ -44,32 +36,37 @@ const Navbar = () => {
 						</div>
 					</div>
 					<div className="flex items-center gap-4">
-						<ButtonLink 
-							href="/auth/login" 
-							size="md" 
-							variant="primary" 
-							className="hidden px-4 rounded-xl lg:flex"
-						>
-							<span className="material-icons-round !text-[20px]">login</span>
-							Masuk
-						</ButtonLink>
-						<form onSubmit={handleFormSubmit}>
-							<button type="submit">logout</button>
-						</form>
-						<button 
-							type="button" 
-							data-collapse-toggle="navbar-collapse" 
-							aria-controls="navbar-collapse" 
-							aria-expanded="false"
-							className="material-icons-round !text-[32px] lg:!hidden"
-						>
+						{token ? (
+							<>
+								<Link href="/order-history" className={`${pathname === "/order-history" ? "text-primary-4" : ""} material-icons-round`}>
+									format_list_bulleted
+								</Link>
+								<Link href="/notifications" className={`${pathname === "/notifications" ? "text-primary-4" : ""} material-icons-round`}>
+									notifications
+								</Link>
+								<Link href="/account" className={`${pathname === "/account" ? "text-primary-4" : ""} material-icons-round`}>
+									person
+								</Link>
+							</>
+						) : (
+							<ButtonLink 
+								href="/auth/login" 
+								size="md" 
+								variant="primary" 
+								className="hidden px-4 rounded-xl lg:flex"
+							>
+								<span className="material-icons-round !text-[20px]">login</span>
+								Masuk
+							</ButtonLink>
+						)}
+						<Link href="/" className="material-icons-round !text-[32px] lg:!hidden">
 							menu
-						</button>
+						</Link>
 					</div>
 				</div>
 				
 				{/* Navbar Collapse Contents */}
-				<div id="navbar-collapse" className="hidden lg:hidden">
+				<div className="hidden lg:hidden">
 					<div className="flex flex-col gap-5">
 						<div className="relative w-full">
 							<InputSearch 
@@ -79,15 +76,29 @@ const Navbar = () => {
 								iconClassName="!inline-block lg:!hidden"
 							/>
 						</div>
-						<ButtonLink 
-							href="/auth/login" 
-							size="md" 
-							variant="primary" 
-							className="px-4 rounded-xl lg:hidden"
-						>
-							<span className="material-icons-round !text-[20px]">login</span>
-							Masuk
-						</ButtonLink>
+						{token ? (
+							<>
+								<Link href="/order-history" className={`${pathname === "/order-history" ? "text-primary-4" : ""} material-icons-round`}>
+									format_list_bulleted
+								</Link>
+								<Link href="/notifications" className={`${pathname === "/notifications" ? "text-primary-4" : ""} material-icons-round`}>
+									notifications
+								</Link>
+								<Link href="/account" className={`${pathname === "/account" ? "text-primary-4" : ""} material-icons-round`}>
+									person
+								</Link>
+							</>
+						) : (
+							<ButtonLink 
+								href="/auth/login" 
+								size="md" 
+								variant="primary" 
+								className="px-4 rounded-xl lg:hidden"
+							>
+								<span className="material-icons-round !text-[20px]">login</span>
+								Masuk
+							</ButtonLink>
+						)}
 					</div>
 				</div>
 			</div>

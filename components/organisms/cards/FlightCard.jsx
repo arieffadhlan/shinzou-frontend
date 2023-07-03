@@ -4,13 +4,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import dayjs from "dayjs";
 
+import { setSelectedDepartureFlight, setSelectedReturnFlight } from "@/redux/features/flight/flightSlice";
 import { searchFlight } from "@/redux/features/flight/flightAction";
-import getTimeDifference from "@/helpers/getTimeDifference";
+import getConvertFlightTime from "@/helpers/getConvertFlightTime";
 
 import Button from "@/components/atoms/Button";
-import { setSelectedDepartureFlight, setSelectedReturnFlight } from "@/redux/features/flight/flightSlice";
 
 const FlightCard = ({ flight }) => {
   const dispatch = useDispatch();
@@ -20,9 +19,12 @@ const FlightCard = ({ flight }) => {
   const { airline, destinationAirport, originAirport } = flight;
   const [showDetails, setShowDetails] = useState(false);
   
-  const departureTime = dayjs(new Date(`${flight.departure_date} ${flight.departure_time}`));
-  const arrivalTime = dayjs(new Date(`${flight.arrival_date} ${flight.arrival_time}`));
-  const timeDifference = getTimeDifference(departureTime, arrivalTime);
+  const flightDateTime = getConvertFlightTime(
+		`${flight.departure_date} ${flight.departure_time}`,
+		`${flight.arrival_date} ${flight.arrival_time}`,
+		true
+	);
+	const { departureTime, arrivalTime, timeDifference } = flightDateTime;
   
   const handleShowDetails = () => {
     setShowDetails(!showDetails);

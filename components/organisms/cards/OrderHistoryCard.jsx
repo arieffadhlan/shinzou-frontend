@@ -1,11 +1,16 @@
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+
 import { setSelectedTransaction } from "@/redux/features/transaction/transactionSlice";
 import getConvertFlightTime from "@/helpers/getConvertFlightTime";
+
 import Button from "@/components/atoms/Button";
+import { setSelectedDepartureFlight, setSelectedReturnFlight } from "@/redux/features/flight/flightSlice";
 
 const OrderHistoryCard = ({ data }) => {	
 	const dispatch = useDispatch();
+	const router = useRouter();
   const { selectedTransaction } = useSelector((state) => state.transaction);
 	const { departureFlight, returnFlight, tickets, payment_method } = data;
 
@@ -43,6 +48,15 @@ const OrderHistoryCard = ({ data }) => {
 
 	const handleSelectedTransaction = () => {
 		dispatch(setSelectedTransaction(data));
+	}
+
+	const handleCompletePayment = () => {
+		if (returnFlight) {
+			dispatch(setSelectedReturnFlight(returnFlight));
+		}
+
+		dispatch(setSelectedDepartureFlight(departureFlight));
+		router.push("/payment");
 	}
 
 	return (
@@ -310,14 +324,25 @@ const OrderHistoryCard = ({ data }) => {
 						IDR {selectedTransaction.ammount.toLocaleString("id-ID")}
 					</span>
 				</div>
-				<Button 
-					type="submit" 
-					size="xl" 
-					variant="primary" 
-					className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"
-				>
-					Cetak Tiket
-				</Button>
+				{payment_method ? (
+					<Button 
+						type="submit" 
+						size="xl" 
+						variant="primary" 
+						className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"
+					>
+						Cetak Tiket
+					</Button>
+				) : (
+					<Button
+						onClick={handleCompletePayment}
+						size="xl" 
+						variant="danger" 
+						className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"
+					>
+						Lanjut Bayar
+					</Button>
+				)}
 			</div>
 		</div>
 	);

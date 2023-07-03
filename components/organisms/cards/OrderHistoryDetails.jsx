@@ -1,11 +1,17 @@
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+
+import { setSelectedDepartureFlight, setSelectedReturnFlight } from "@/redux/features/flight/flightSlice";
 import getConvertFlightTime from "@/helpers/getConvertFlightTime";
-import Button from "../../atoms/Button";
+
+import Button from "@/components/atoms/Button";
 
 const OrderHistoryDetails = () => {
-  const { selectedTransaction: transaction } = useSelector((state) => state.transaction);
-	const { departureFlight, returnFlight, tickets, payment_method } = transaction;
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { selectedTransaction } = useSelector((state) => state.transaction);
+	const { departureFlight, returnFlight, tickets, payment_method } = selectedTransaction;
 
 	// Departure Flight
 	const { airline, originAirport, destinationAirport } = departureFlight;
@@ -39,6 +45,15 @@ const OrderHistoryDetails = () => {
 
   const passengers = tickets.filter((ticket) => ticket.seat.flight_id === departureFlight.id).length;
   
+  const handleCompletePayment = () => {
+		if (returnFlight) {
+			dispatch(setSelectedReturnFlight(returnFlight));
+		}
+
+		dispatch(setSelectedDepartureFlight(departureFlight));
+		router.push("/payment");
+	}
+  
   return (
     <div className="hidden flex-[40%] flex-col gap-3 pt-4 border-t border-neutral-2 2md:flex 2md:pt-0 2md:border-0">
       <div className="flex flex-col gap-2">
@@ -55,7 +70,7 @@ const OrderHistoryDetails = () => {
         <span className="text-sm text-neutral-5 2md:text-base">
           Booking Code:&nbsp;
           <span className="font-bold text-primary-5">
-            {transaction.booking_code}
+            {selectedTransaction.booking_code}
           </span>
         </span>
       </div>
@@ -232,17 +247,28 @@ const OrderHistoryDetails = () => {
       <div className="flex justify-between items-center">
         <span className="font-bold text-sm text-neutral-5 2md:text-base">Total</span>
         <span className="font-bold text-sm text-primary-4 2md:text-base">
-          IDR {transaction.ammount.toLocaleString("id-ID")}
+          IDR {selectedTransaction.ammount.toLocaleString("id-ID")}
         </span>
       </div>
-      <Button 
-        type="submit" 
-        size="xl" 
-        variant="primary" 
-        className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"
-      >
-        Cetak Tiket
-      </Button>
+      {payment_method ? (
+        <Button 
+          type="submit" 
+          size="xl" 
+          variant="primary" 
+          className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"
+        >
+          Cetak Tiket
+        </Button>
+      ) : (
+        <Button
+          onClick={handleCompletePayment}
+          size="xl" 
+          variant="danger" 
+          className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"
+        >
+          Lanjut Bayar
+        </Button>
+      )}
     </div>
   );
 }

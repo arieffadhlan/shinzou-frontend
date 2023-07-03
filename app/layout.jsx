@@ -5,6 +5,7 @@ import Provider from "@/redux/provider";
 import dayjs from "dayjs";
 import "dayjs/locale/id"
 import "./globals.css";
+import PrivateRoute from "@/components/templates/PrivateRoute";
 
 dayjs.locale("id")
 
@@ -19,6 +20,14 @@ export const metadata = {
 };
 
 const RootLayout = ({ children }) => {
+  const protectedRoutes = [
+    "/account",
+    "/checkout",
+    "/notifications",
+    "/order-history",
+    "/payment",
+  ];
+  
   return (
     <html lang="id" className={poppins.className}>
       <head>
@@ -26,7 +35,9 @@ const RootLayout = ({ children }) => {
       </head>
       <body>
         <Provider>
-          {children}
+          <PrivateRoute protectedRoutes={protectedRoutes}>
+            {children}
+          </PrivateRoute>
         </Provider>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" defer></script>
       </body>
