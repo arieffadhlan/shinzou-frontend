@@ -19,9 +19,9 @@ const OrderHistoryCard = ({ data }) => {
 	const flightDateTime = getConvertFlightTime(
 		`${departureFlight.departure_date} ${departureFlight.departure_time}`,
 		`${departureFlight.arrival_date} ${departureFlight.arrival_time}`,
-		false
+		true
 	);
-	const { departureTime, arrivalTime } = flightDateTime;
+	const { departureTime, arrivalTime, timeDifference } = flightDateTime;
 
 	// Return Flight
 	const { 
@@ -35,13 +35,14 @@ const OrderHistoryCard = ({ data }) => {
 		returnFlightDateTime = getConvertFlightTime(
 			`${returnFlight?.departure_date} ${returnFlight?.departure_time}`,
 			`${returnFlight?.arrival_date} ${returnFlight?.arrival_time}`,
-			false
+			true
 		);
 	}
 
 	const { 
 		departureTime: returnDepartureTime, 
 		arrivalTime: returnArrivalTime, 
+		timeDifference: returnTimeDifference
 	} = returnFlightDateTime || {};
 
   const passengers = tickets.filter((ticket) => ticket.seat.flight_id === departureFlight.id).length;
@@ -69,57 +70,97 @@ const OrderHistoryCard = ({ data }) => {
 			</div>
 			{/* Flight information */}
 			<div className="flex flex-col gap-3">
-				<div className="flex items-center gap-4 w-full">
-					{/* Location from */}
-					<div className="flex gap-2">
-						<span className="material-icons-round !hidden !text-[20px] text-neutral-3 xs:!inline-block">place</span>
-						<div className="flex flex-col">
-							<span className="font-bold text-sm text-neutral-5">
-								{originAirport.location}
-							</span>
-							<span className="font-medium text-xs text-neutral-5">
-								{departureTime.format("D MMM YYYY")}
-							</span>
-							<span className="font-medium text-xs text-neutral-5">
-								{departureTime.format("HH:mm")}
-							</span>
-						</div>
-					</div>
-					{/* Duration */}
-					<div className="flex flex-2 flex-col justify-center items-center">
-						<span className="font-medium text-xs text-neutral-3">
-							{returnFlight ? "Round Trip" : "One Way"}
-						</span>
-						<div className="flex items-center w-full">
-							<div className="w-full h-[1px] bg-[#8A8A8A] mt-[0.5px]"></div>
-							<span className="material-icons-round -ml-[5px] !font-bold !text-[8px] text-neutral-3">
-								arrow_forward_ios
-							</span>
-						</div>
-						{returnFlight && (
-							<div className="flex items-center w-full">
-								<span className="material-icons-round -mr-[5px] !font-bold !text-[8px] text-neutral-3">
-									arrow_back_ios
+				<div className="flex flex-col gap-5">
+					<div className="flex items-center gap-4 w-full">
+						{/* Location from */}
+						<div className="flex gap-2">
+							<span className="material-icons-round !hidden !text-[20px] text-neutral-3 xs:!inline-block">place</span>
+							<div className="flex flex-col">
+								<span className="font-bold text-sm text-neutral-5">
+									{originAirport.location}
 								</span>
-								<div className="w-full h-[1px] bg-[#8A8A8A] mt-[0.5px]"></div>
+								<span className="font-medium text-xs text-neutral-5">
+									{departureTime.format("D MMM YYYY")}
+								</span>
+								<span className="font-medium text-xs text-neutral-5">
+									{departureTime.format("HH:mm")}
+								</span>
 							</div>
-						)}
-					</div>
-					{/* Location to */}
-					<div className="flex gap-2">
-						<span className="material-icons-round !hidden !text-[20px] text-neutral-3 xs:!inline-block">place</span>
-						<div className="flex flex-col">
-							<span className="font-bold text-sm text-neutral-5">
-								{destinationAirport.location}
+						</div>
+						{/* Duration */}
+						<div className="flex flex-2 flex-col justify-center items-center">
+							<span className="font-medium text-xs text-neutral-3">
+								{timeDifference.hourDifference}h {timeDifference.minuteDifference}m
 							</span>
-							<span className="font-medium text-xs text-neutral-5">
-								{arrivalTime.format("D MMM YYYY")}
-							</span>
-							<span className="font-medium text-xs text-neutral-5">
-								{arrivalTime.format("HH:mm")}
-							</span>
+							<div className="flex items-center w-full">
+								<div className="w-full h-[1px] bg-[#8A8A8A] mt-[0.5px]"></div>
+								<span className="material-icons-round -ml-[5px] !font-bold !text-[8px] text-neutral-3">
+									arrow_forward_ios
+								</span>
+							</div>
+						</div>
+						{/* Location to */}
+						<div className="flex gap-2">
+							<span className="material-icons-round !hidden !text-[20px] text-neutral-3 xs:!inline-block">place</span>
+							<div className="flex flex-col">
+								<span className="font-bold text-sm text-neutral-5">
+									{destinationAirport.location}
+								</span>
+								<span className="font-medium text-xs text-neutral-5">
+									{arrivalTime.format("D MMM YYYY")}
+								</span>
+								<span className="font-medium text-xs text-neutral-5">
+									{arrivalTime.format("HH:mm")}
+								</span>
+							</div>
 						</div>
 					</div>
+					{returnFlight && (
+						<div className="flex items-center gap-4 w-full">
+							{/* Location from */}
+							<div className="flex gap-2">
+								<span className="material-icons-round !hidden !text-[20px] text-neutral-3 xs:!inline-block">place</span>
+								<div className="flex flex-col">
+									<span className="font-bold text-sm text-neutral-5">
+										{returnOriginAirport.location}
+									</span>
+									<span className="font-medium text-xs text-neutral-5">
+										{returnDepartureTime.format("D MMM YYYY")}
+									</span>
+									<span className="font-medium text-xs text-neutral-5">
+										{returnDepartureTime.format("HH:mm")}
+									</span>
+								</div>
+							</div>
+							{/* Duration */}
+							<div className="flex flex-2 flex-col justify-center items-center">
+								<span className="font-medium text-xs text-neutral-3">
+									{returnTimeDifference.hourDifference}h {returnTimeDifference.minuteDifference}m
+								</span>
+								<div className="flex items-center w-full">
+									<div className="w-full h-[1px] bg-[#8A8A8A] mt-[0.5px]"></div>
+									<span className="material-icons-round -ml-[5px] !font-bold !text-[8px] text-neutral-3">
+										arrow_forward_ios
+									</span>
+								</div>
+							</div>
+							{/* Location to */}
+							<div className="flex gap-2">
+								<span className="material-icons-round !hidden !text-[20px] text-neutral-3 xs:!inline-block">place</span>
+								<div className="flex flex-col">
+									<span className="font-bold text-sm text-neutral-5">
+										{returnDestinationAirport.location}
+									</span>
+									<span className="font-medium text-xs text-neutral-5">
+										{returnArrivalTime.format("D MMM YYYY")}
+									</span>
+									<span className="font-medium text-xs text-neutral-5">
+										{returnArrivalTime.format("HH:mm")}
+									</span>
+								</div>
+							</div>
+						</div>
+					)}
 				</div>
 				<div className="flex justify-between items-center pt-3 border-t border-neutral-2">
 					{/* Booking code */}

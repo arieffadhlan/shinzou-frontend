@@ -33,8 +33,8 @@ module.exports = {
         "secondary-4": "#D4C2A8",
         "secondary-5": "#AA9B87",
         "warning": "#F9CC00",
-        "danger": "#FF0000",
-        "success": "#73CA5C"
+        "danger": "#B91C1C",
+        "success": "#047857"
       },
       fontSize: {
         "2xs": ["0.625rem", "0.875rem"],
