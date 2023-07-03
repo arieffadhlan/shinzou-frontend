@@ -45,7 +45,11 @@ const PassangerForm = ({ totalPassengers, passengers, setPassengers }) => {
             <div className="flex flex-col gap-4 p-4">
               <div className="flex flex-col gap-1">
                 <Label id={`title-${index}`} className="font-medium text-sm">Title</Label>
-                <Input onChange={(event) => handleInputChange(event, index)} type="text" variant="secondary" name={`title-${index}`} hookForm={false} placeholder="Pilih title" />
+                <select onChange={(event) => handleInputChange(event, index)} name={`title-${index}`} id={`title-${index}`} placeholder="Pilih title" className="input py-2.5 rounded-lg h-10">
+                  <option value="" selected disabled hidden>Pilih title</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                </select>
               </div>
               <div className="flex flex-col gap-1">
                 <Label id={`name-${index}`} className="font-medium text-sm">Nama Lengkap</Label>

@@ -67,6 +67,7 @@ const PaymentMethod = () => {
         size="xl" 
         variant="primary" 
         className="w-full py-3.5 text-sm 2md:py-4 2md:text-xl"
+				disabled={!selectedPaymentMethod ? true : false}
       >
 				Bayar
       </Button>

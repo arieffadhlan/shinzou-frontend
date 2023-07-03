@@ -8,6 +8,7 @@ import { checkout } from "@/redux/features/transaction/transactionAction";
 import Button from "../atoms/Button";
 import PassangerForm from "../organisms/forms/CheckoutPassangersForm";
 import SeatForm from "../organisms/forms/CheckoutSeatForm";
+import UserForm from "../organisms/forms/CheckoutUserForm";
 
  const CheckoutForm = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ import SeatForm from "../organisms/forms/CheckoutSeatForm";
   
   return (
     <form onSubmit={handleFormSubmit} className="flex flex-[60%] flex-col gap-9">
-      {/* <UserForm /> */}
+      <UserForm />
       <PassangerForm 
         totalPassengers={totalPassengers}
         passengers={passengers} 

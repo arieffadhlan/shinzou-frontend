@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const url = "http://localhost:8000/api/v1";
+const url = "https://shinzou-api.up.railway.app/api/v1";
 const config = {
   headers: {
     "Content-Type": "application/json"

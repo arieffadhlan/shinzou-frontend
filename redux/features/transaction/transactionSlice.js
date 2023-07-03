@@ -15,12 +15,15 @@ const transactionSlice = createSlice({
   initialState,
   reducers: {
     clearTransactionState: (state) => {
-      state.transactions = [],
-      state.selectedTransaction = {},
-      state.selectedPaymentMethod = null,
-      state.loading = false,
-      state.success = false,
-      state.error = null
+      state.transactions = [];
+      state.selectedTransaction = {};
+      state.selectedPaymentMethod = null;
+      state.loading = false;
+      state.success = false;
+      state.error = null;
+    },    
+    clearSelectedPaymentMethod: (state) => {
+      state.selectedPaymentMethod = null;
     },
     setSelectedTransaction: (state, action) => {
       state.selectedTransaction = action.payload;
@@ -77,6 +80,7 @@ const transactionSlice = createSlice({
 
 export const { 
   clearTransactionState,
+  clearSelectedPaymentMethod,
   setSelectedTransaction, 
   setSelectedPaymentMethod 
 } = transactionSlice.actions;

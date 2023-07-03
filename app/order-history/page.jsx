@@ -4,20 +4,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { clearFlightState } from "@/redux/features/flight/flightSlice";
+import { clearSelectedPaymentMethod } from "@/redux/features/transaction/transactionSlice";
 import { getTransactions } from "@/redux/features/transaction/transactionAction";
 
 import ButtonLink from "@/components/atoms/ButtonLink";
 import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
 import OrderHistoryDetails from "@/components/organisms/cards/OrderHistoryDetails";
 import Container from "@/components/templates/Container";
-import TicketsLoading from "@/components/templates/PageLoading";
 
 export default function OrderHistory() {  
   const dispatch = useDispatch();
-  const { transactions, loading } = useSelector((state) => state.transaction);
+  const { transactions } = useSelector((state) => state.transaction);
   
   useEffect(() => {
     dispatch(clearFlightState());
+    dispatch(clearSelectedPaymentMethod());
     dispatch(getTransactions());
   }, []);
   

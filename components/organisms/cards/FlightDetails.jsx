@@ -62,7 +62,7 @@ const FlightDetails = () => {
       {/* Departure Flight */}
       {/* Departure */}
       <div className="flex flex-col pb-3 border-b border-neutral-2">
-        {returnFlight && (
+        {returnFlight.hasOwnProperty("id") && (
           <span className="mb-1.5 font-semibold text-sm text-primary-4">
             Penerbangan Pergi:
           </span>
@@ -113,7 +113,7 @@ const FlightDetails = () => {
       </div>
 
       {/* Return Flight */}
-      {returnFlight && (
+      {returnFlight.hasOwnProperty("id") && (
         <>
           {/* Departure */}
           <div className="flex flex-col pb-3 border-b border-neutral-2">
@@ -136,9 +136,9 @@ const FlightDetails = () => {
           {/* Airline and passangers information */}
           <div className="flex flex-col gap-4 pb-3 border-b border-neutral-2">
             <div className="flex flex-col gap-1">
-              <Image src={airline.airline_image} alt="Airline" width={24} height={24} />
+              <Image src={returnAirline.airline_image} alt="Airline" width={24} height={24} />
               <span className="font-bold text-sm text-neutral-5">
-                {airline.airline_name} - {returnFlight.class} <br /> 
+                {returnAirline.airline_name} - {returnFlight.class} <br /> 
                 {returnFlight.flight_number}
               </span>
             </div>
@@ -170,7 +170,7 @@ const FlightDetails = () => {
       {/* Payment */}
       <div className="flex flex-col gap-1 pb-3 border-b border-neutral-2">
         <span className="font-bold text-sm text-neutral-5">Rincian Harga</span>
-        {returnFlight ? (
+        {returnFlight.hasOwnProperty("id") ? (
           <>
             <div className="flex flex-col gap-1">
               <span className="font-semibold text-sm text-primary-4">
@@ -202,7 +202,7 @@ const FlightDetails = () => {
         ) : (
           <div className="flex justify-between items-center">
             <span className="font-medium text-sm text-neutral-5">
-              {passengers} Penumpang
+              {adult + child + baby} Penumpang
             </span>
             <span className="font-medium text-sm text-neutral-5">
               IDR {departureFlight.price.toLocaleString("id-ID")}
