@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNotifications } from "./notificationAction";
+import { getNotifications, markAsRead } from "./notificationAction";
 
 const initialState = {
   notifications: [],
@@ -23,6 +23,19 @@ const notificationSlice = createSlice({
       state.success = true;
     });
     builder.addCase(getNotifications.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    // Mark as read
+    builder.addCase(markAsRead.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(markAsRead.fulfilled, (state, action) => {
+      state.notifications = action.payload.data;
+      state.loading = false;
+      state.success = true;
+    });
+    builder.addCase(markAsRead.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });

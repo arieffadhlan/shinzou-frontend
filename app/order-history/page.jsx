@@ -15,6 +15,10 @@ import Container from "@/components/templates/Container";
 export default function OrderHistory() {  
   const dispatch = useDispatch();
   const { transactions } = useSelector((state) => state.transaction);
+  const { user } = useSelector((state) => state.auth);
+  const userTransactions = transactions.filter((transaction) => {
+    return transaction.user_id === user.data.id
+  });
   
   useEffect(() => {
     dispatch(clearFlightState());
@@ -56,10 +60,10 @@ export default function OrderHistory() {
 
       {/* Order History List */}
       <Container className="my-[64px]">
-        {transactions.length > 0 ? (
+        {userTransactions.length > 0 ? (
           <div className="flex gap-10">
             <div className="flex flex-[60%] flex-col gap-4">
-              {transactions.map((transaction, index) => (
+              {userTransactions.map((transaction, index) => (
                 <OrderHistoryCard key={index} data={transaction} />
               ))}
             </div>

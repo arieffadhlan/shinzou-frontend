@@ -4,14 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
-import InputSearch from "@/components/molecules/InputSearch";
 import ButtonLink from "@/components/atoms/ButtonLink";
 
 import logo from "@/assets/images/logo.webp";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
 	const pathname = usePathname();
+	const { notifications } = useSelector((state) => state.notification);
+  const { user } = useSelector((state) => state.auth);
 	const token = localStorage.getItem("token");
+
+  const userNotifications = notifications.filter((notification) => {
+		if (notification.user_id === user.data.id) {
+			return notification.mark_as_read === false;
+		}
+  });
 	
   return (
 		<nav className="fixed z-20 top-0 left-0 w-full py-4 bg-white shadow-xs">
@@ -33,8 +41,11 @@ const Navbar = () => {
 								<Link href="/order-history" className={`${pathname === "/order-history" ? "text-primary-4" : ""} material-icons-round`}>
 									format_list_bulleted
 								</Link>
-								<Link href="/notifications" className={`${pathname === "/notifications" ? "text-primary-4" : ""} material-icons-round`}>
-									notifications
+								<Link href="/notifications" className={`${pathname === "/notifications" ? "text-primary-4" : ""} relative w-min h-6`}>
+									<span className="relative material-icons-round">notifications</span>
+									<span className={`${userNotifications.length === 0 ? "hidden" : "inline-flex"} absolute top-0 right-0 items-center justify-center px-2 py-1 rounded-full bg-danger font-bold text-xs leading-none text-neutral-1 transform translate-x-1/2 -translate-y-1/2`}>
+										{userNotifications.length}
+									</span>
 								</Link>
 								<Link href="/account" className={`${pathname === "/account" ? "text-primary-4" : ""} material-icons-round`}>
 									person
@@ -60,19 +71,7 @@ const Navbar = () => {
 				{/* Navbar Collapse Contents */}
 				<div className="hidden lg:hidden">
 					<div className="flex flex-col gap-5">
-						{token ? (
-							<>
-								<Link href="/order-history" className={`${pathname === "/order-history" ? "text-primary-4" : ""} material-icons-round`}>
-									format_list_bulleted
-								</Link>
-								<Link href="/notifications" className={`${pathname === "/notifications" ? "text-primary-4" : ""} material-icons-round`}>
-									notifications
-								</Link>
-								<Link href="/account" className={`${pathname === "/account" ? "text-primary-4" : ""} material-icons-round`}>
-									person
-								</Link>
-							</>
-						) : (
+						{!token && (
 							<ButtonLink 
 								href="/auth/login" 
 								size="md" 

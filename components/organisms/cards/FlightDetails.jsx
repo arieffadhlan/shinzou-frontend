@@ -10,7 +10,9 @@ const FlightDetails = () => {
   } = useSelector((state) => state.flight);
   const { selectedTransaction: transaction } = useSelector((state) => state.transaction);
   const { adult, child, baby } = searchFlightData.passengers;
-  const tax = ((departureFlight.price * (10/100)) + (returnFlight.price * (10/100)));
+  const tax = returnFlight.hasOwnProperty("id") 
+    ? ((departureFlight.price * (10/100)) + (returnFlight.price * (10/100)))
+    : departureFlight.price * (10/100)
 
   // Departure Flight
   const { airline, originAirport, destinationAirport } = departureFlight;
@@ -218,9 +220,15 @@ const FlightDetails = () => {
       </div>
       <div className="flex justify-between items-center">
         <span className="font-bold text-sm text-neutral-5 2md:text-base">Total</span>
-        <span className="font-bold text-sm text-primary-4 2md:text-base">
-          IDR {(departureFlight.price + returnFlight.price + tax).toLocaleString("id-ID")}
-        </span>
+        {returnFlight.hasOwnProperty("id")  ? (
+          <span className="font-bold text-sm text-primary-4 2md:text-base">
+            IDR {(departureFlight.price + returnFlight.price + tax).toLocaleString("id-ID")}
+          </span>
+        ) : (
+          <span className="font-bold text-sm text-primary-4 2md:text-base">
+            IDR {(departureFlight.price + tax).toLocaleString("id-ID")}
+          </span>
+        )}
       </div>
     </div>
   )
