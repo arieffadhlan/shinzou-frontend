@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { clearFlightState } from "@/redux/features/flight/flightSlice";
@@ -11,20 +11,37 @@ import ButtonLink from "@/components/atoms/ButtonLink";
 import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
 import OrderHistoryDetails from "@/components/organisms/cards/OrderHistoryDetails";
 import Container from "@/components/templates/Container";
+import Input from "@/components/atoms/Input";
 
 export default function OrderHistory() {  
   const dispatch = useDispatch();
   const { transactions } = useSelector((state) => state.transaction);
   const { user } = useSelector((state) => state.auth);
-  const userTransactions = transactions.filter((transaction) => {
-    return transaction.user_id === user.data.id
-  });
+  const [bookingCode, setBookingCode] = useState("");
   
   useEffect(() => {
     dispatch(clearFlightState());
     dispatch(clearSelectedPaymentMethod());
     dispatch(getTransactions());
   }, []);
+  
+  const userTransactions = transactions.filter((transaction) => {
+    return transaction.user_id === user.data.id
+  });
+
+  const userTransactionsFiltered = userTransactions.filter((transaction) => {
+    if (transaction.booking_code === bookingCode) {
+      return transactions;
+    }
+    
+    if (transaction.returnFlight && transaction.booking_code === bookingCode) {
+      return transactions;
+    }
+  });
+
+  const handleOnChange = (event) => {
+    setBookingCode(event.target.value);
+  }
   
   return (
     <>
@@ -38,39 +55,47 @@ export default function OrderHistory() {
               href="/" 
               size="lg" 
               variant="primary" 
-              className="justify-start gap-3 w-full px-4 bg-primary-3 xs:gap-4.5"
+              className="flex-[60%] justify-start gap-3 w-full px-4 bg-primary-3 xs:gap-4.5"
             >
               <span className="material-icons-round">arrow_back</span>
               Beranda
             </ButtonLink>
-            <div className="flex justify-end items-center gap-3 w-full sm:w-auto">
-              <button type="button" className="flex items-center gap-2 px-3 py-1.5 border border-primary-4 rounded-2xl font-medium text-base text-primary-4 hocus:border-primary-3 hocus:bg-primary-3 hocus:text-neutral-1 active:border-primary-5 active:bg-primary-5 active:text-neutral-1">
-                <span className="material-icons-round !text-[20px]">
-                  filter_alt
-                </span>
-                Filter
-              </button>
-              <button className="material-icons-round text-primary-4">
-                search
-              </button>
-            </div>
+            <Input 
+              type="text" 
+              onChange={handleOnChange} 
+              variant="secondary" 
+              name="flight_number" 
+              hookForm={false} 
+              placeholder="Cari kode transaksi..." 
+              className="w-full" />
           </div>
         </Container>
       </section>
 
       {/* Order History List */}
       <Container className="my-[64px]">
-        {userTransactions.length > 0 ? (
+        {bookingCode !== "" && userTransactionsFiltered.length > 0 ? (
           <div className="flex gap-10">
             <div className="flex flex-[60%] flex-col gap-4">
-              {userTransactions.map((transaction, index) => (
+              {userTransactionsFiltered.map((transaction, index) => (
                 <OrderHistoryCard key={index} data={transaction} />
               ))}
             </div>
             <OrderHistoryDetails />
           </div>
         ) : (
-          <div>riwayat transaksi kosong</div>
+          userTransactions.length > 0 ? (
+            <div className="flex gap-10">
+              <div className="flex flex-[60%] flex-col gap-4">
+                {userTransactions.map((transaction, index) => (
+                  <OrderHistoryCard key={index} data={transaction} />
+                ))}
+              </div>
+              <OrderHistoryDetails />
+            </div>
+          ) : (
+            <div>riwayat transaksi kosong</div>
+          )
         )}
       </Container>
     </>
