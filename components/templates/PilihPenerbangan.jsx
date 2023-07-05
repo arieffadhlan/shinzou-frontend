@@ -137,7 +137,7 @@ const PilihPenerbangan = () => {
       {showSearchForm && (
         <div className="fixed z-50 overflow-x-hidden overflow-y-auto top-0 left-0 right-0 flex justify-center items-center max-h-full w-full h-[calc(100%-1rem)] p-4 md:inset-0">
           <div className="z-10">
-            <SearchFlightForm className="!p-0 !m-0" />
+            <SearchFlightForm setShowSearchForm={setShowSearchForm} className="!p-0 !m-0" />
           </div>
           <div onClick={handleSearchFlightForm} className="fixed inset-0 opacity-[60%] bg-black"></div>
         </div>

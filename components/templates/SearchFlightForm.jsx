@@ -15,7 +15,7 @@ import SearchFlightPassengersForm from "../organisms/forms/SearchFlightPassenger
 import SearchFlightSetReturn from "../organisms/forms/SearchFlightSetReturn";
 import { twMerge } from "tailwind-merge";
 
-const SearchFlightForm = ({ className = "" }) => {
+const SearchFlightForm = ({ setShowSearchForm = function(){}, className = "" }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { searchFlightData, isReturn, loading } = useSelector((state) => state.flight);
@@ -30,6 +30,7 @@ const SearchFlightForm = ({ className = "" }) => {
     event.preventDefault();    
     dispatch(searchFlight(searchFlightData));
     router.push(`/flights/search?${searchParams}`);
+    setShowSearchForm(false);
   }
 
   return (

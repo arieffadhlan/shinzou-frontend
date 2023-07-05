@@ -19,15 +19,15 @@ const UserForm = () => {
         <div className="flex flex-col gap-4 p-4">
           <div className="flex flex-col gap-1">
             <Label id="name" className="font-medium text-sm">Nama Lengkap</Label>
-            <Input type="text" variant="secondary" name="name" hookForm={false} value={user.data.name} placeholder="Pilih title" readOnly disabled />
+            <Input type="text" variant="secondary" name="name" hookForm={false} value={user?.data?.name ?? ""} placeholder="Pilih title" readOnly disabled />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email" className="font-medium text-sm">Email</Label>
-            <Input type="email" variant="secondary" name="email" hookForm={false} value={user.data.email} placeholder="Contoh: johndee@gmail.com" readOnly disabled />
+            <Input type="email" variant="secondary" name="email" hookForm={false} value={user?.data?.email ?? ""} placeholder="Contoh: johndee@gmail.com" readOnly disabled />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="phone_number" className="font-medium text-sm">Nomor Telepon</Label>
-            <Input type="number" variant="secondary" name="phone_number" hookForm={false} value={user.data.phone_number} placeholder="+62 ." readOnly disabled />
+            <Input type="number" variant="secondary" name="phone_number" hookForm={false} value={user?.data?.phone_number ?? ""} placeholder="+62 ." readOnly disabled />
           </div>
         </div>
       </div>
