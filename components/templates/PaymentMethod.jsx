@@ -25,7 +25,7 @@ const PaymentMethod = () => {
 			payment_method: selectedPaymentMethod
 		}));
 
-		router.push("/order-history");
+		router.push("/payment/payment-success");
 	}
 
 	return(

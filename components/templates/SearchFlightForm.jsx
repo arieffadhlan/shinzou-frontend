@@ -18,7 +18,7 @@ import { twMerge } from "tailwind-merge";
 const SearchFlightForm = ({ setShowSearchForm = function(){}, className = "" }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { searchFlightData, isReturn, loading } = useSelector((state) => state.flight);
+  const { selectedDepartureFlight, searchFlightData, isReturn, loading } = useSelector((state) => state.flight);
   const { adult, child, baby } = searchFlightData.passengers;
   let searchParams = useQueryParams({
     ...searchFlightData,
@@ -32,8 +32,20 @@ const SearchFlightForm = ({ setShowSearchForm = function(){}, className = "" }) 
     if (!isReturn) {
       searchParams = searchParams.split("return_date").join("");
     }
+
+    if (selectedDepartureFlight.hasOwnProperty("id")) {
+      dispatch(searchFlight({
+        ...searchFlightData,
+        location_from: searchFlightData.location_to, 
+        location_to: searchFlightData.location_from, 
+        departure_date: searchFlightData.return_date, 
+        passengers: searchFlightData.passengers, 
+        seat_class: searchFlightData.class 
+      }));
+    } else {
+      dispatch(searchFlight(searchFlightData));
+    }
     
-    dispatch(searchFlight(searchFlightData));
     router.push(`/flights/search?${searchParams}`);
 
     setShowSearchForm(false);

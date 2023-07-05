@@ -30,16 +30,24 @@ import UserForm from "../organisms/forms/CheckoutUserForm";
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(checkout({
-      departure_flight_id: selectedDepartureFlight.id,
-      return_flight_id: selectedReturnFlight.hasOwnProperty("id") ? selectedReturnFlight.id : null,
-      passengers,
-      ammount: selectedReturnFlight.hasOwnProperty("id") 
-        ? selectedDepartureFlight.price + selectedReturnFlight.price + 100000
-        : selectedDepartureFlight.price + 100000  
-    }));
+    const check = passengers.filter((e) => {
+      return e.title === "" || e.name === "" || e.identity_number === "" || e.phone_number === "" || e.seat_number === "";
+    });
 
-    router.push("/payment");
+    if (check.length > 0) {
+      alert("semua form harus diisi");
+    } else {
+      dispatch(checkout({
+        departure_flight_id: selectedDepartureFlight.id,
+        return_flight_id: selectedReturnFlight.hasOwnProperty("id") ? selectedReturnFlight.id : null,
+        passengers,
+        ammount: selectedReturnFlight.hasOwnProperty("id") 
+          ? selectedDepartureFlight.price + selectedReturnFlight.price + 100000
+          : selectedDepartureFlight.price + 100000  
+      }));
+  
+      router.push("/payment");
+    }
   }
   
   return (

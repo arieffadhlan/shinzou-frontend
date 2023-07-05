@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import * as yup from "yup";
 
-import { clearState } from "@/redux/features/auth/authSlice";
+import { clearAuthError, clearState } from "@/redux/features/auth/authSlice";
 import { forgotPassword } from "@/redux/features/auth/authAction";
 
 import Alert from "@/components/atoms/Alert";
@@ -25,8 +25,12 @@ const validationSchema = yup.object().shape({
 const ForgotPassword = () => {  
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const { user, loading, success, error } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if (error) dispatch(clearAuthError());
+  }, [error]);
+  
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
       if (success) {
@@ -45,7 +49,7 @@ const ForgotPassword = () => {
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl text-black">
-        Lupa Password
+        Forgot Password
       </h1>
       <Form 
         validationSchema={validationSchema} 
@@ -54,7 +58,7 @@ const ForgotPassword = () => {
       >
         <div className="flex flex-col gap-1">
           <Label id="email">Email</Label>
-          <Input type="email" variant="primary" name="email" placeholder="Masukkan email" autoFocus />
+          <Input type="email" variant="primary" name="email" placeholder="Your email" autoFocus />
         </div>
         <Button 
           type="submit" 
@@ -63,7 +67,7 @@ const ForgotPassword = () => {
           className="w-full mt-2"
           loading={loading}
         >
-          Kirim
+          Continue
         </Button>
       </Form>
 

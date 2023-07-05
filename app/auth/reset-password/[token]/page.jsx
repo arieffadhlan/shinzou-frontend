@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import * as yup from "yup";
 
-import { clearState } from "@/redux/features/auth/authSlice";
+import { clearAuthError, clearState } from "@/redux/features/auth/authSlice";
 import { resetPassword } from "@/redux/features/auth/authAction";
 
 import Alert from "@/components/atoms/Alert";
@@ -28,9 +28,13 @@ const validationSchema = yup.object().shape({
 const ResetPassword = ({ params }) => {  
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const { user, loading, success, error } = useSelector((state) => state.auth);
   const { token } = params;
 
+  useEffect(() => {
+    if (error) dispatch(clearAuthError());
+  }, [error]);
+  
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
       if (success) {
@@ -58,12 +62,12 @@ const ResetPassword = ({ params }) => {
         className="flex flex-col gap-4"
       >
         <div className="flex flex-col gap-1">
-          <Label id="password">Masukkan Password Baru</Label>
-          <InputPassword variant="primary" name="password" placeholder="Masukkan password baru" autoFocus />
+          <Label id="password">New Password</Label>
+          <InputPassword variant="primary" name="password" placeholder="New Password" autoFocus />
         </div>
         <div className="flex flex-col gap-1">
-          <Label id="confirmationPassword">Ulangi Password Baru</Label>
-          <InputPassword variant="primary" name="confirmationPassword" placeholder="Ulangi password baru" />
+          <Label id="confirmationPassword">Repeat New Password</Label>
+          <InputPassword variant="primary" name="confirmationPassword" placeholder="Repeat New Password" />
         </div>
         <Button 
           type="submit" 
@@ -72,7 +76,7 @@ const ResetPassword = ({ params }) => {
           className="w-full mt-2"
           loading={loading}
         >
-          Simpan
+          Continue
         </Button>
       </Form>
 

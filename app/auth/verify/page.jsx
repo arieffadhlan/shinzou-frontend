@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import OtpInput from "react-otp-input";
 import { ToastContainer } from "react-toastify";
 
-import { clearState } from "@/redux/features/auth/authSlice";
+import { clearAuthError, clearState } from "@/redux/features/auth/authSlice";
 import { verifyOTP } from "@/redux/features/auth/authAction";
 
 import Alert from "@/components/atoms/Alert";
@@ -15,9 +15,13 @@ import Button from "@/components/atoms/Button";
 const verifyAccount = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const { user, loading, success, error } = useSelector((state) => state.auth);
   const [otp, setOtp] = useState("");
 
+  useEffect(() => {
+    if (error) dispatch(clearAuthError());
+  }, [error]);
+  
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
       if (success) {
@@ -42,12 +46,12 @@ const verifyAccount = () => {
     <section className="flex justify-center items-center min-h-screen w-full mx-auto xs:max-w-xl xl:max-w-none">
       <form onSubmit={handleFormSubmit} className="flex flex-col gap-4 w-[576px] px-6 xs:px-0">
         <h1 className="font-bold text-2xl leading-9 text-black">
-          Masukkan OTP
+          Enter OTP
         </h1>
         <div className="flex flex-col justify-center items-center gap-6 py-6 mb-16">
           <div className="flex flex-col justify-center items-center gap-11">
             <p className="mb-0 text-sm text-center text-neutral-5">
-              Ketik 6 digit kode yang telah dikirim ke alamat email yang kamu daftarkan pada saat registrasi.
+              Type in the 6 digit code that was sent to the email address you registered at registration.
             </p>
             <OtpInput
               value={otp}
@@ -61,7 +65,7 @@ const verifyAccount = () => {
             />
           </div>
           <span className="text-sm text-center text-neutral-5">
-            Kirim Ulang OTP dalam 60 detik
+            Resend OTP in 60 seconds
           </span>
         </div>
         <Button 
@@ -71,7 +75,7 @@ const verifyAccount = () => {
           className="w-full mt-2"
           loading={loading}
         >
-          Simpan
+          Continue
         </Button>
       </form>
       

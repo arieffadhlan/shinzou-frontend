@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import * as yup from "yup";
 
-import { clearState } from "@/redux/features/auth/authSlice";
+import { clearAuthError, clearState } from "@/redux/features/auth/authSlice";
 import { registerUser } from "@/redux/features/auth/authAction";
 
 import Alert from "@/components/atoms/Alert";
@@ -32,7 +32,11 @@ const validationSchema = yup.object().shape({
 const Register = () => {  
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const { user, loading, success, error } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (error) dispatch(clearAuthError());
+  }, [error]);
   
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
@@ -52,7 +56,7 @@ const Register = () => {
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl text-black">
-        Daftar
+        Register
       </h1>
       <div className="flex flex-col gap-10">
         <Form 
@@ -61,20 +65,20 @@ const Register = () => {
           className="flex flex-col gap-4"
         >
           <div className="flex flex-col gap-1">
-            <Label id="name">Nama</Label>
-            <Input type="text" variant="primary" name="name" placeholder="Nama Lengkap" autoFocus />
+            <Label id="name">Name</Label>
+            <Input type="text" variant="primary" name="name" placeholder="Name" autoFocus />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
-            <Input type="email" variant="primary" name="email" placeholder="Contoh: johndee@gmail.com" />
+            <Input type="email" variant="primary" name="email" placeholder="example@gmail.com" />
           </div>
           <div className="flex flex-col gap-1">
-            <Label id="phone_number">Nomor Telepon</Label>
-            <Input type="number" variant="primary" name="phone_number" placeholder="+62 ." />
+            <Label id="phone_number">Phone Number</Label>
+            <Input type="number" variant="primary" name="phone_number" placeholder="08123456789" />
           </div>
           <div className="flex flex-col gap-1">
-            <Label id="password">Buat Password</Label>
-            <InputPassword variant="primary" name="password" placeholder="Buat Password" />
+            <Label id="password">Password</Label>
+            <InputPassword variant="primary" name="password" placeholder="Password" />
           </div>
           <Button 
             type="submit" 
@@ -83,13 +87,13 @@ const Register = () => {
             className="w-full mt-2"
             loading={loading}
           >
-            Daftar
+            Continue
           </Button>
         </Form>
         <span className="flex justify-center items-center text-sm text-black">
-          Sudah punya akun?&nbsp;
+          Already have an account?&nbsp;
           <Link href="/auth/login" className="font-bold text-primary-4">
-            Masuk di sini
+            Login
           </Link>
         </span>
       </div>

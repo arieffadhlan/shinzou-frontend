@@ -47,7 +47,7 @@ const InputPassword = ({
           onClick={handleShowPassword}
           className="material-icons-round absolute top-3 right-4 text-neutral-3"
         >
-          {showPassword ? "visibility_off" : "visibility"}
+          {showPassword ? "visibility" : "visibility_off"}
         </button>
       </div>
       {errors[name]?.message && <Alert type="error" message={errors[name].message} />}

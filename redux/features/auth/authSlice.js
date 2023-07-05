@@ -24,6 +24,9 @@ const authSlice = createSlice({
       state.success = false;
       state.error = null;
     },
+    clearAuthError: (state) => {
+      state.error = null;
+    },
     logout: (state) => {
       localStorage.removeItem("token");
       state.user = {};
@@ -39,6 +42,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.loading = false;
       state.success = true;
+      state.error = null;
     });
     builder.addCase(updateProfile.rejected, (state, action) => {
       state.loading = false;
@@ -52,6 +56,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.loading = false;
       state.success = true;
+      state.error = null;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.loading = false;
@@ -65,6 +70,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.loading = false;
       state.success = true;
+      state.error = null;
     });
     builder.addCase(verifyOTP.rejected, (state, action) => {
       state.loading = false;
@@ -79,6 +85,7 @@ const authSlice = createSlice({
       state.isAuthenticate = true;
       state.loading = false;
       state.success = true;
+      state.error = null;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = false;
@@ -92,6 +99,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.loading = false;
       state.success = true;
+      state.error = null;
     });
     builder.addCase(forgotPassword.rejected, (state, action) => {
       state.loading = false;
@@ -105,6 +113,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.loading = false;
       state.success = true;
+      state.error = null;
     });
     builder.addCase(resetPassword.rejected, (state, action) => {
       state.loading = false;
@@ -113,5 +122,10 @@ const authSlice = createSlice({
   }
 });
 
-export const { clearState, logout } = authSlice.actions;
+export const { 
+  clearState,
+  clearAuthError,
+  logout 
+} = authSlice.actions;
+
 export default authSlice.reducer;

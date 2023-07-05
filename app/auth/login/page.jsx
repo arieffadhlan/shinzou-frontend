@@ -7,16 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import * as yup from "yup";
 
-import { clearState } from "@/redux/features/auth/authSlice";
+import { clearAuthError, clearState } from "@/redux/features/auth/authSlice";
 import { loginUser } from "@/redux/features/auth/authAction"
 
 import Alert from "@/components/atoms/Alert";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
 import Label from "@/components/atoms/Label";
+import Form from "@/components/molecules/Form";
 import InputPassword from "@/components/molecules/InputPassword";
 import AuthFormContainer from "@/components/templates/AuthFormContainer";
-import Form from "@/components/molecules/Form";
 
 const validationSchema = yup.object().shape({
   email: yup.string().required("Email wajib diisi!"),
@@ -26,8 +26,12 @@ const validationSchema = yup.object().shape({
 const Login = () => {  
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, user, error, success } = useSelector((state) => state.auth);
+  const { user, loading, success, error } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if (error) dispatch(clearAuthError());
+  }, [error]);
+  
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
       if (success) {
@@ -46,7 +50,7 @@ const Login = () => {
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl leading-6 text-black">
-        Masuk
+        Login
       </h1>
       <div className="flex flex-col gap-10">
         <Form 
@@ -56,7 +60,7 @@ const Login = () => {
         >
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
-            <Input type="email" variant="primary" name="email" placeholder="Contoh: johndoe@gmail.com" autoFocus />
+            <Input type="email" variant="primary" name="email" placeholder="example@gmail.com" autoFocus />
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
@@ -65,7 +69,7 @@ const Login = () => {
                 Lupa Kata Sandi
               </Link>
             </div>
-            <InputPassword variant="primary" name="password" placeholder="Masukkan password" />
+            <InputPassword variant="primary" name="password" placeholder="Password" />
           </div>
           <Button 
             type="submit" 
@@ -74,13 +78,13 @@ const Login = () => {
             className="w-full mt-2"
             loading={loading}
           >
-            Masuk
+            Continue
           </Button>
         </Form>
         <span className="flex justify-center items-center text-sm text-black">
-          Belum punya akun?&nbsp;
+          No account?&nbsp;
           <Link href="/auth/register" className="font-bold text-primary-4">
-            Daftar di sini
+            Create One
           </Link>
         </span>
       </div>
