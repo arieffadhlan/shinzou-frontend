@@ -3,11 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
+import { useSelector } from "react-redux";
 
 import ButtonLink from "@/components/atoms/ButtonLink";
-
-import logo from "@/assets/images/logo.webp";
-import { useSelector } from "react-redux";
+import logo from "@/assets/icons/logo.svg";
 
 const Navbar = () => {
 	const pathname = usePathname();
@@ -31,7 +30,7 @@ const Navbar = () => {
 								src={logo} 
 								alt="Logo" 
 								priority={true}
-								className="w-20 lg:w-24" 
+								className="w-12" 
 							/>
 						</Link>
 					</div>
