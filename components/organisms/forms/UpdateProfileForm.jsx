@@ -25,14 +25,10 @@ const UpdateProfileForm = () => {
   const { user, loading, success } = useSelector((state) => state.auth);
   
   useEffect(() => {
-    const redirectTimer = setTimeout(() => {
-      if (success) {
-        dispatch(clearState());
-        router.refresh();
-      }
-    }, 3000);
-    
-    return () => clearTimeout(redirectTimer);
+    if (success) {
+      dispatch(clearState());
+      router.refresh();
+    }
   }, [success]);
 
   const handleFormSubmit = (data) => {

@@ -10,7 +10,6 @@ import {
 
 const initialState = {
   user: {},
-  isAuthenticate: false,
   loading: false,
   success: false,
   error: null
@@ -21,12 +20,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     clearState: (state) => {
-      state.isAuthenticate = false;
       state.loading = false;
       state.success = false;
       state.error = null;
-
-      return state;
     },
     logout: (state) => {
       localStorage.removeItem("token");
