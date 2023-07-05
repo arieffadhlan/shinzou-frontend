@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import OtpInput from "react-otp-input";
 import { ToastContainer } from "react-toastify";
 
 import { clearAuthError, clearState } from "@/redux/features/auth/authSlice";
-import { verifyOTP } from "@/redux/features/auth/authAction";
+import { resendOTP, verifyOTP } from "@/redux/features/auth/authAction";
 
 import Alert from "@/components/atoms/Alert";
 import Button from "@/components/atoms/Button";
@@ -15,8 +15,18 @@ import Button from "@/components/atoms/Button";
 const verifyAccount = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const countdownRef = useRef();
   const { user, loading, success, error } = useSelector((state) => state.auth);
   const [otp, setOtp] = useState("");
+  const [countdown, setCountdown] = useState(60);
+
+  useEffect(() => {
+    countdownRef.current = !success && countdown > 0 && setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1);
+    }, 1000);
+
+    return () => clearInterval(countdownRef.current);
+  }, [(countdown > 0), success])
 
   useEffect(() => {
     if (error) dispatch(clearAuthError());
@@ -36,6 +46,12 @@ const verifyAccount = () => {
   const handleOTPChange = (otp) => {
     setOtp(otp);
   }
+
+  const handleResendOTP = () => {
+    dispatch(resendOTP({
+      id: user.data.id
+    }));
+  }
   
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -51,7 +67,8 @@ const verifyAccount = () => {
         <div className="flex flex-col justify-center items-center gap-6 py-6 mb-16">
           <div className="flex flex-col justify-center items-center gap-11">
             <p className="mb-0 text-sm text-center text-neutral-5">
-              Type in the 6 digit code that was sent to the email address you registered at registration.
+              Type in the 6 digit code sent to&nbsp;
+              <span className="font-bold">{user?.data?.email}</span>
             </p>
             <OtpInput
               value={otp}
@@ -65,7 +82,14 @@ const verifyAccount = () => {
             />
           </div>
           <span className="text-sm text-center text-neutral-5">
-            Resend OTP in 60 seconds
+            {countdown > 0 
+              ? `Resend OTP in ${countdown} seconds`
+              : (
+                <button type="button" onClick={handleResendOTP} className="border-0 outline-none bg-transparent font-semibold text-sm text-danger">
+                  Resend OTP
+                </button>
+              )
+            }
           </span>
         </div>
         <Button 

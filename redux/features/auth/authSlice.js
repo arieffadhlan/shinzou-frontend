@@ -3,6 +3,7 @@ import {
   forgotPassword, 
   loginUser, 
   registerUser, 
+  resendOTP, 
   resetPassword, 
   updateProfile, 
   verifyOTP 
@@ -73,6 +74,18 @@ const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(verifyOTP.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    // Resend OTP
+    builder.addCase(resendOTP.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(resendOTP.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(resendOTP.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
