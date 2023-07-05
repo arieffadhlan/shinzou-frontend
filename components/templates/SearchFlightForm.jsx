@@ -20,7 +20,7 @@ const SearchFlightForm = ({ setShowSearchForm = function(){}, className = "" }) 
   const router = useRouter();
   const { searchFlightData, isReturn, loading } = useSelector((state) => state.flight);
   const { adult, child, baby } = searchFlightData.passengers;
-  const searchParams = useQueryParams({
+  let searchParams = useQueryParams({
     ...searchFlightData,
     return_date: isReturn ? searchFlightData.return_date : null,
     passengers: adult + child + baby
@@ -28,8 +28,14 @@ const SearchFlightForm = ({ setShowSearchForm = function(){}, className = "" }) 
 
   const handleOnSubmit = (event) => {
     event.preventDefault();    
+
+    if (!isReturn) {
+      searchParams = searchParams.split("return_date").join("");
+    }
+    
     dispatch(searchFlight(searchFlightData));
     router.push(`/flights/search?${searchParams}`);
+
     setShowSearchForm(false);
   }
 

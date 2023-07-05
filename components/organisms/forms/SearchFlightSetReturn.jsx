@@ -24,7 +24,7 @@ const SearchFlightSetReturn = () => {
       <span className="font-medium text-sm text-black xs:text-base">Round Trip?</span>
       <div className="relative flex justify-center">
         <label htmlFor="return" className="relative inline-flex items-center cursor-pointer">
-          <input onChange={returnFlightHandler} type="checkbox" id="return" className="sr-only peer" readOnly />
+          <input type="checkbox" onChange={returnFlightHandler} checked={isReturn} id="return" className="sr-only peer" readOnly />
           <div className="checkbox-toggle"></div>
         </label>
       </div>
