@@ -54,8 +54,8 @@ const UpdateProfileForm = () => {
         <Form 
           validationSchema={validationSchema} 
           initialValues={{
-            name: user.data.name,
-            phone_number: user.data.phone_number
+            name: user?.data?.name ?? "",
+            phone_number: user?.data?.phone_number ?? ""
           }}
           onSubmit={handleFormSubmit} 
           className="flex flex-col gap-4 p-4"
@@ -66,7 +66,7 @@ const UpdateProfileForm = () => {
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email" className="font-medium text-sm">Email</Label>
-            <Input type="email" variant="secondary" name="email" value={user.data.email} placeholder="Contoh: johndee@gmail.com" readOnly disabled />
+            <Input type="email" variant="secondary" name="email" value={user?.data?.email ?? ""} placeholder="Contoh: johndee@gmail.com" readOnly disabled />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="phone_number" className="font-medium text-sm">Nomor Telepon</Label>

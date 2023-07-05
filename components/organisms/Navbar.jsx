@@ -15,7 +15,7 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
 	const token = localStorage.getItem("token");
 
-  const userNotifications = notifications.filter((notification) => {
+  const userNotifications = token && notifications.filter((notification) => {
 		if (notification.user_id === user.data.id) {
 			return notification.mark_as_read === false;
 		}

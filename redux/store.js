@@ -40,6 +40,7 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
+  devTools: process.env.NODE_ENV !== "production",
   reducer: persistedReducer,
   middleware: [thunk],
 });

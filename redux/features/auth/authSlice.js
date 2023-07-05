@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   user: {},
+  isAuthenticate: false,
   loading: false,
   success: false,
   error: null
@@ -20,14 +21,16 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     clearState: (state) => {
+      state.isAuthenticate = false;
       state.loading = false;
       state.success = false;
       state.error = null;
 
       return state;
     },
-    logout: () => {
+    logout: (state) => {
       localStorage.removeItem("token");
+      state.user = {};
       clearState();
     }
   },
@@ -77,6 +80,7 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
+      state.isAuthenticate = true;
       state.loading = false;
       state.success = true;
     });
@@ -114,5 +118,4 @@ const authSlice = createSlice({
 });
 
 export const { clearState, logout } = authSlice.actions;
-
 export default authSlice.reducer;
