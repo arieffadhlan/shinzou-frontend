@@ -102,7 +102,7 @@ const Register = () => {
       {success && <Alert type="success" message={user.message} />}
       {error && <Alert type="error" message={error.message} />}
       <div className="Toastify__toast-auth">
-        <ToastContainer draggable={false} />
+        <ToastContainer />
       </div>
     </AuthFormContainer>
   )

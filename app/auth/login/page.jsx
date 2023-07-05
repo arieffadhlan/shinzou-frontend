@@ -66,7 +66,7 @@ const Login = () => {
             <div className="flex justify-between items-center">
               <Label id="password">Password</Label>
               <Link href="/auth/forgot-password" className="font-medium text-xs text-primary-4">
-                Lupa Kata Sandi
+                Forgot Password
               </Link>
             </div>
             <InputPassword variant="primary" name="password" placeholder="Password" />

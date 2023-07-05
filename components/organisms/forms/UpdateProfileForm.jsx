@@ -81,7 +81,7 @@ const UpdateProfileForm = () => {
       </div>
 
       <div className="Toastify__toast-auth">
-        <ToastContainer draggable={false} />
+        <ToastContainer />
       </div>
     </div>
   );

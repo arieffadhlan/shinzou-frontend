@@ -8,6 +8,7 @@ const Alert = ({
   const toastOptions = {
     autoClose: 1500,
     closeButton: false,
+    draggable: false,
     icon: false,
     position: toast.POSITION.BOTTOM_CENTER
   }
