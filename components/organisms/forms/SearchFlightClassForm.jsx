@@ -19,7 +19,9 @@ const SearchFlightClassForm = () => {
         className="flex flex-col items-start gap-2 w-full outline-none"
       >
         <span className="font-medium text-sm text-neutral-3 xs:text-base">Seat Class</span>
-        <span className="font-medium text-sm text-black xs:text-base">{searchFlightData.seat_class}</span>
+        <span className="font-medium text-sm text-black xs:text-base">
+          {searchFlightData.seat_class}
+        </span>
         <div className="w-full h-[1px] bg-neutral-2"></div>
       </button>
       {show && modalId === "flight-class" && (

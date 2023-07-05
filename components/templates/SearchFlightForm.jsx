@@ -36,8 +36,8 @@ const SearchFlightForm = () => {
     <form onSubmit={handleOnSubmit} className="flex flex-col gap-8 border border-neutral-2 rounded-xl shadow-xs">
       <div className="flex flex-col gap-6 px-6 pt-6">
         <h1 className="font-bold text-xl">
-          Pilih Jadwal Penerbangan spesial di &nbsp;
-          <span className="text-primary-4">Tiketku!</span>
+          Choose a special Flight Schedule on&nbsp;
+          <span className="text-primary-4">Shinzou!</span>
         </h1>
         <div className="flex flex-col gap-4 2lg:gap-9">
           <SearchFlightLocationForm />

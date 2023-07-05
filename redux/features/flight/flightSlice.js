@@ -16,10 +16,10 @@ const searchFlightData = {
 }
 
 const initialState = {
-  searchFlightData,
   flights: [],
   selectedDepartureFlight: {},
   selectedReturnFlight: {},
+  searchFlightData,
   isReturn: false,
   loading: false,
   success: false,
@@ -31,29 +31,29 @@ const flightSlice = createSlice({
   initialState,
   reducers: {
     clearFlightState: (state) => {
+      state.flights = [];
+      state.selectedDepartureFlight = {};
+      state.selectedReturnFlight = {};
       state.searchFlightData = searchFlightData;
-      state.flights = [],
-      state.selectedDepartureFlight = {},
-      state.selectedReturnFlight = {},
-      state.isReturn = false,
-      state.loading = false,
-      state.success = false,
-      state.error = null
-    },
-    setIsReturnFlight: (state, action) => {
-      state.isReturn = action.payload;
+      state.isReturn = false;
+      state.loading = false;
+      state.success = false;
+      state.error = null;
     },
     setFlights: (state, action) => {
       state.flights = action.payload;
-    },
-    setSearchFlight: (state, action) => {
-      state.searchFlightData = action.payload;
     },
     setSelectedDepartureFlight: (state, action) => {
       state.selectedDepartureFlight = action.payload;
     },
     setSelectedReturnFlight: (state, action) => {
       state.selectedReturnFlight = action.payload;
+    },
+    setSearchFlight: (state, action) => {
+      state.searchFlightData = action.payload;
+    },
+    setIsReturnFlight: (state, action) => {
+      state.isReturn = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -74,11 +74,11 @@ const flightSlice = createSlice({
 
 export const { 
   clearFlightState, 
-  setIsReturnFlight,
   setFlights,
-  setSearchFlight, 
   setSelectedDepartureFlight,
-  setSelectedReturnFlight 
+  setSelectedReturnFlight, 
+  setSearchFlight, 
+  setIsReturnFlight
 } = flightSlice.actions;
 
 export default flightSlice.reducer;

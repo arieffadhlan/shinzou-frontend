@@ -84,7 +84,7 @@
   }
 
   .select-location {
-    @apply cursor-pointer w-full outline-none font-medium text-sm text-black xs:text-lg;
+    @apply cursor-pointer w-full outline-none font-medium text-sm text-neutral-5 xs:text-lg;
   }
 
   .checkbox-toggle {

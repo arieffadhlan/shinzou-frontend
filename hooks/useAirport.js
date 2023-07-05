@@ -5,7 +5,7 @@ const useAirport = async () => {
     const response = await axios.get("https://shinzou-api.up.railway.app/api/v1/airport")
     return response.data.data;
   } catch (error) {
-    return error;
+    throw error;
   }
 }
 

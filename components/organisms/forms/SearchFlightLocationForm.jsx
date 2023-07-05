@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import useAirport from "@/hooks/useAirport";
 import { setSearchFlight } from "@/redux/features/flight/flightSlice";
 
@@ -11,12 +12,16 @@ const SearchFlightLocationForm = () => {
   const locationToRef = useRef();
   const { searchFlightData } = useSelector((state) => state.flight);
   const [locationSwap, setLocationSwap] = useState(false);
+  const [airportsLoading, setAirportsLoading] = useState(false);
   const [airports, setAirports] = useState([]);
 
   useEffect(() => {
     const fetchAirports = async () => {
+      setAirportsLoading(true);
       const data = await useAirport();
+      
       setAirports(data);
+      setAirportsLoading(false);
     }
     
     fetchAirports();
@@ -61,18 +66,24 @@ const SearchFlightLocationForm = () => {
           <span className="text-xs xs:text-sm">{locationSwap ? "To" : "From"}</span>
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
-          <select 
-            ref={locationFromRef} 
-            onChange={handleSelectLocationFrom} 
-            name="location_from" 
-            className="select-location"
-          >
-            {airports.map((airport, index) => ( 
-              <option key={index} value={airport.location}>
-                {airport.location} ({airport.location_acronym})
-              </option>
-            ))}
-          </select>
+          {airportsLoading ? (
+            <span className="font-medium text-sm text-neutral-5">
+              ... (...)
+            </span>
+          ) : (
+            <select 
+              ref={locationFromRef} 
+              onChange={handleSelectLocationFrom} 
+              name="location_from" 
+              className="select-location"
+            >
+              {airports.map((airport, index) => ( 
+                <option key={index} value={airport.location}>
+                  {airport.location} ({airport.location_acronym})
+                </option>
+              ))}
+            </select>
+          )}
           <div className="hidden w-full h-[1px] bg-neutral-2 2md:block"></div>
         </div>
       </div>
@@ -90,18 +101,24 @@ const SearchFlightLocationForm = () => {
           <span className="text-xs xs:text-sm">{locationSwap ? "From" : "To"}</span>
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
-          <select 
-            ref={locationToRef} 
-            onChange={handleSelectLocationTo} 
-            name="location_to" 
-            className="select-location"
-          >
-            {airports.map((airport, index) => (
-              <option key={index} value={airport.location}>
-                {airport.location} ({airport.location_acronym})
-              </option>
-            ))}
-          </select>
+          {airportsLoading ? (
+            <span className="font-medium text-sm text-neutral-5">
+              ... (...)
+            </span>
+          ) : (
+            <select 
+              ref={locationToRef} 
+              onChange={handleSelectLocationTo} 
+              name="location_to" 
+              className="select-location"
+            >
+              {airports.map((airport, index) => (
+                <option key={index} value={airport.location}>
+                  {airport.location} ({airport.location_acronym})
+                </option>
+              ))}
+            </select>
+          )}
           <div className="hidden w-full h-[1px] bg-neutral-2 2md:block"></div>
         </div>
       </div>

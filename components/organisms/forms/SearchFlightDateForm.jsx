@@ -48,7 +48,7 @@ const SearchFlightDateForm = ({ type }) => {
         onChange={handleReturnDate}
         value={isReturn ? searchFlightData.return_date : ""}
         className="datepicker"
-        placeholder="Pilih Tanggal"
+        placeholder="Select Date"
         disabled={!isReturn}
       />
       <div className="w-full h-[1px] bg-neutral-2"></div>
