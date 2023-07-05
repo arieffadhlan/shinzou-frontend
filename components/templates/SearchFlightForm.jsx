@@ -13,8 +13,9 @@ import SearchFlightDateForm from "../organisms/forms/SearchFlightDateForm";
 import SearchFlightLocationForm from "../organisms/forms/SearchFlightLocationForm";
 import SearchFlightPassengersForm from "../organisms/forms/SearchFlightPassengersForm";
 import SearchFlightSetReturn from "../organisms/forms/SearchFlightSetReturn";
+import { twMerge } from "tailwind-merge";
 
-const SearchFlightForm = () => {
+const SearchFlightForm = ({ className = "" }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { searchFlightData, isReturn, loading } = useSelector((state) => state.flight);
@@ -32,8 +33,8 @@ const SearchFlightForm = () => {
   }
 
   return (
-    <Container className="mt-32">
-    <form onSubmit={handleOnSubmit} className="flex flex-col gap-8 border border-neutral-2 rounded-xl shadow-xs">
+    <Container className={twMerge("mt-32", className)}>
+    <form onSubmit={handleOnSubmit} className="flex flex-col gap-8 border border-neutral-2 rounded-xl bg-neutral-1 shadow-xs">
       <div className="flex flex-col gap-6 px-6 pt-6">
         <h1 className="font-bold text-xl">
           Choose a special Flight Schedule on&nbsp;
