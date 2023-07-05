@@ -13,7 +13,7 @@ import Button from "../atoms/Button";
 import ButtonLink from "../atoms/ButtonLink";
 import SearchFlightForm from "./SearchFlightForm";
 
-const PilihPenerbangan = () => {
+const ChooseFlight = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const params = useSearchParams();
@@ -54,7 +54,6 @@ const PilihPenerbangan = () => {
           
           setCurrentDates(generateDatesResult);
         }
-
       } else {
         generateDatesResult = generateDates(
           new Date(departureDate), 
@@ -68,12 +67,19 @@ const PilihPenerbangan = () => {
 
   const handleSearchFlight = (date) => {
     if (currentFlight === "return") {
-      dispatch(searchFlight({
-        ...searchFlightData,
-        location_from: searchFlightData.location_to, 
-        location_to: searchFlightData.location_from, 
-        departure_date: dayjs(date).format("YYYY-MM-DD"), 
-      }));
+      if (selectedDepartureFlight.hasOwnProperty("id")) {
+        dispatch(searchFlight({
+          ...searchFlightData,
+          departure_date: dayjs(date).format("YYYY-MM-DD")
+        }));
+      } else {
+        dispatch(searchFlight({
+          ...searchFlightData,
+          location_from: searchFlightData.location_to, 
+          location_to: searchFlightData.location_from, 
+          departure_date: dayjs(date).format("YYYY-MM-DD"), 
+        }));
+      }
     } else {
       dispatch(searchFlight({
         ...searchFlightData,
@@ -146,4 +152,4 @@ const PilihPenerbangan = () => {
   );
 }
   
-export default PilihPenerbangan;
+export default ChooseFlight;

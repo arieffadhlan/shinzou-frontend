@@ -63,12 +63,14 @@ const SearchFlightLocationForm = () => {
       <div className={`flex items-center gap-5 w-full xs:gap-7 ${locationSwap ? "order-3" : "order-1"}`}>
         <div className="flex items-center gap-3 text-neutral-3">
           <span className="material-icons-round">flight_takeoff</span>
-          <span className="text-xs xs:text-sm">{locationSwap ? "To" : "From"}</span>
+          <span className="text-xs xs:text-sm">
+            {locationSwap ? "To" : "From"}
+          </span>
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
           {airportsLoading ? (
             <span className="font-medium text-sm text-neutral-5">
-              ... (...)
+              ... (...)  
             </span>
           ) : (
             <select 
@@ -98,7 +100,9 @@ const SearchFlightLocationForm = () => {
       <div className={`flex items-center gap-5 w-full xs:gap-7 ${locationSwap ? "order-1" : "order-3"}`}>
         <div className="flex items-center gap-3 text-neutral-3">
           <span className="material-icons-round">flight_takeoff</span>
-          <span className="text-xs xs:text-sm">{locationSwap ? "From" : "To"}</span>
+          <span className="text-xs xs:text-sm">
+            {locationSwap ? "From" : "To"}
+          </span>
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
           {airportsLoading ? (
