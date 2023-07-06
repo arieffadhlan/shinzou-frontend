@@ -14,6 +14,10 @@ const OrderHistoryCard = ({ data }) => {
   const { selectedTransaction } = useSelector((state) => state.transaction);
 	const { departureFlight, returnFlight, tickets, payment_method } = data;
 
+	const tax = returnFlight
+  ? ((departureFlight.price * (10/100)) + (returnFlight.price * (10/100)))
+  : departureFlight.price * (10/100)
+
 	// Departure Flight
 	const { airline, originAirport, destinationAirport } = departureFlight;
 	const flightDateTime = getConvertFlightTime(
@@ -355,7 +359,7 @@ const OrderHistoryCard = ({ data }) => {
 					<div className="flex justify-between items-center">
 						<span className="font-medium text-sm text-neutral-5">Pajak</span>
 						<span className="font-medium text-sm text-neutral-5">
-							IDR 100.000
+							IDR {tax.toLocaleString("id-ID")}
 						</span>
 					</div>
 				</div>

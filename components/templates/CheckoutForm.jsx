@@ -27,6 +27,10 @@ import UserForm from "../organisms/forms/CheckoutUserForm";
     }))
   );
 
+  const tax = selectedReturnFlight.hasOwnProperty("id") 
+  ? ((selectedDepartureFlight.price * (10/100)) + (selectedReturnFlight.price * (10/100)))
+  : selectedDepartureFlight.price * (10/100)
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
@@ -42,8 +46,8 @@ import UserForm from "../organisms/forms/CheckoutUserForm";
         return_flight_id: selectedReturnFlight.hasOwnProperty("id") ? selectedReturnFlight.id : null,
         passengers,
         ammount: selectedReturnFlight.hasOwnProperty("id") 
-          ? selectedDepartureFlight.price + selectedReturnFlight.price + 100000
-          : selectedDepartureFlight.price + 100000  
+          ? selectedDepartureFlight.price + selectedReturnFlight.price + tax
+          : selectedDepartureFlight.price + tax  
       }));
   
       router.push("/payment");
