@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 
 import { clearFlightState } from "@/redux/features/flight/flightSlice";
-import { clearSelectedPaymentMethod, clearTransactionMessage } from "@/redux/features/transaction/transactionSlice";
+import { clearSelectedPaymentMethod, clearTransactionMessage, setSelectedTransaction } from "@/redux/features/transaction/transactionSlice";
 import { getTransactions } from "@/redux/features/transaction/transactionAction";
 
 import ButtonLink from "@/components/atoms/ButtonLink";
@@ -30,10 +30,14 @@ export default function OrderHistory() {
     dispatch(clearSelectedPaymentMethod());
     dispatch(getTransactions());
   }, []);
-  
+
   const userTransactions = transactions.filter((transaction) => {
     return transaction.user_id === user.data.id
   });
+
+  useEffect(() => {
+    if (userTransactions.length > 0) dispatch(setSelectedTransaction(userTransactions[0]));
+  }, [userTransactions])
 
   const userTransactionsFiltered = userTransactions.filter((transaction) => {
     if (transaction.booking_code === bookingCode) {
