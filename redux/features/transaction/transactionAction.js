@@ -71,3 +71,22 @@ export const payment = createAsyncThunk("payment",
     }
   }
 );
+
+export const printTicket = createAsyncThunk("printTicket", 
+  async ({ transaction_id }, { rejectWithValue }) => {
+    try {      
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(`${url}/print-ticket`, { transaction_id }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+);

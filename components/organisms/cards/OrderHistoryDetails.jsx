@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
 import { setSelectedDepartureFlight, setSelectedReturnFlight } from "@/redux/features/flight/flightSlice";
+import { printTicket } from "@/redux/features/transaction/transactionAction";
 import getConvertFlightTime from "@/helpers/getConvertFlightTime";
 
 import Button from "@/components/atoms/Button";
@@ -53,6 +54,12 @@ const OrderHistoryDetails = () => {
 		dispatch(setSelectedDepartureFlight(departureFlight));
 		router.push("/payment");
 	}
+
+  const handlePrintTicket = () => {
+    dispatch(printTicket({
+      transaction_id: selectedTransaction.id
+    }));
+  }
   
   return (
     <div className="hidden flex-[40%] flex-col gap-3 pt-4 border-t border-neutral-2 2md:flex 2md:pt-0 2md:border-0">
@@ -159,9 +166,9 @@ const OrderHistoryDetails = () => {
           {/* Airline and passangers information */}
           <div className="flex flex-col gap-4 pb-3 border-b border-neutral-2">
             <div className="flex flex-col gap-1">
-              <Image src={airline.airline_image} alt="Airline" width={24} height={24} />
+              <Image src={returnAirline.airline_image} alt="Airline" width={24} height={24} />
               <span className="font-bold text-sm text-neutral-5">
-                {airline.airline_name} - {returnFlight.class} <br /> 
+                {returnAirline.airline_name} - {returnFlight.class} <br /> 
                 {returnFlight.flight_number}
               </span>
             </div>
@@ -254,7 +261,7 @@ const OrderHistoryDetails = () => {
       </div>
       {payment_method ? (
         <Button 
-          type="submit" 
+          onClick={handlePrintTicket}
           size="xl" 
           variant="primary" 
           className="w-full mt-6 py-3.5 text-sm 2md:py-4 2md:text-xl"

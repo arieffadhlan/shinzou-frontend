@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 import { clearFlightState } from "@/redux/features/flight/flightSlice";
-import { clearSelectedPaymentMethod } from "@/redux/features/transaction/transactionSlice";
+import { clearSelectedPaymentMethod, clearTransactionMessage } from "@/redux/features/transaction/transactionSlice";
 import { getTransactions } from "@/redux/features/transaction/transactionAction";
 
 import ButtonLink from "@/components/atoms/ButtonLink";
@@ -12,12 +13,17 @@ import OrderHistoryCard from "@/components/organisms/cards/OrderHistoryCard";
 import OrderHistoryDetails from "@/components/organisms/cards/OrderHistoryDetails";
 import Container from "@/components/templates/Container";
 import Input from "@/components/atoms/Input";
+import Alert from "@/components/atoms/Alert";
 
 export default function OrderHistory() {  
   const dispatch = useDispatch();
-  const { transactions } = useSelector((state) => state.transaction);
+  const { transactions, transactionData, success, error } = useSelector((state) => state.transaction);
   const { user } = useSelector((state) => state.auth);
   const [bookingCode, setBookingCode] = useState("");
+
+  useEffect(() => {
+    if (transactionData.hasOwnProperty("status")) dispatch(clearTransactionMessage());
+  }, [transactionData]);
   
   useEffect(() => {
     dispatch(clearFlightState());
@@ -97,6 +103,14 @@ export default function OrderHistory() {
             <div>riwayat transaksi kosong</div>
           )
         )}
+
+        {/* Alert */}
+        {success && <Alert type="success" message={transactionData?.message} />}
+        {error && <Alert
+         type="error" message={transactionData?.message} />}
+        <div className="Toastify__toast-auth">
+          <ToastContainer />
+        </div>
       </Container>
     </>
   )

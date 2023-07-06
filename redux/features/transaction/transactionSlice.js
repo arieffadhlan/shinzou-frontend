@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkout, getTransactions, payment } from "./transactionAction";
+import { checkout, getTransactions, payment, printTicket } from "./transactionAction";
 
 const initialState = {
   transactions: [],
+  transactionData: {},
   selectedTransaction: {},
   selectedPaymentMethod: null,
   loading: false,
@@ -16,11 +17,16 @@ const transactionSlice = createSlice({
   reducers: {
     clearTransactionState: (state) => {
       state.transactions = [];
+      state.transactionData = [];
       state.selectedTransaction = {};
       state.selectedPaymentMethod = null;
       state.loading = false;
       state.success = false;
       state.error = null;
+    },    
+    clearTransactionMessage: (state) => {
+      state.transactionData = {};
+      state.success = false;
     },    
     clearSelectedPaymentMethod: (state) => {
       state.selectedPaymentMethod = null;
@@ -75,11 +81,25 @@ const transactionSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
+    // Print Ticket
+    builder.addCase(printTicket.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(printTicket.fulfilled, (state, action) => {
+      state.transactionData = action.payload;
+      state.loading = false;
+      state.success = true;
+    });
+    builder.addCase(printTicket.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
   }
 });
 
 export const { 
   clearTransactionState,
+  clearTransactionMessage,
   clearSelectedPaymentMethod,
   setSelectedTransaction, 
   setSelectedPaymentMethod 
