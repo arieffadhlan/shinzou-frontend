@@ -18,7 +18,7 @@ const Navbar = () => {
 	const token = localStorage.getItem("token");
 
 	useEffect(() => {
-    dispatch(getNotifications());
+		if (token) dispatch(getNotifications());
   }, [])
 
   const userNotifications = token && notifications.filter((notification) => {
