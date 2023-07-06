@@ -2,6 +2,8 @@ import IconsPractical from "@/assets/images/travel/practical.png"
 import IconsService from "@/assets/images/travel/service.png"
 import IconsPayment from "@/assets/images/travel/payment.png"
 import IconsGuarante from "@/assets/images/travel/guarante.png"
+import Container from "./templates/Container"
+import Image from "next/image"
 
 const TravelReason = () => {
     return (

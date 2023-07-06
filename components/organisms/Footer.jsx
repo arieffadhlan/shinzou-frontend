@@ -15,7 +15,7 @@ const Footer = () => {
     <Container htmlTag="footer" className="px-6 py-12 mt-20 bg-sky-950 sm:px-8 sm:py-15">
       <div className="flex flex-col justify-start items-start gap-10 lg:flex-row lg:gap-32">
         <div className="flex flex-col gap-y-6">
-          <Image src={logo} width={64} height={64} />
+          <Image src={logo} width={64} height={64} alt="logo" />
         </div>
         <div className="grid grid-cols-1 gap-x-28 gap-y-10 xs:grid-cols-2 sm:grid-cols-3 sm:gap-28">
           <div className="flex flex-col items-start">
