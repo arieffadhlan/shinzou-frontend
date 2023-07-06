@@ -9,6 +9,7 @@ import { clearTransactionState } from '@/redux/features/transaction/transactionS
 import Navbar from '@/components/organisms/Navbar';
 import SearchFlightForm from '@/components/templates/SearchFlightForm';
 import FavoriteDestination from '@/components/templates/FavoriteDestination';
+import Footer from '@/components/organisms/Footer';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Home = () => {
         <SearchFlightForm />
         <FavoriteDestination />
       </main>
+      <Footer />
     </>   
   )
 }
