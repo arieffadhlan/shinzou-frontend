@@ -26,10 +26,10 @@ const SearchFlightDateForm = ({ type }) => {
     <div className="flex items-center gap-7 w-full">
       <div className="hidden items-center gap-3 text-neutral-3 2lg:flex">
         <span className="material-icons-round">calendar_month</span>
-        <span className="text-sm">Date</span>
+        <span className="text-sm">Waktu</span>
       </div>
       <div className="relative flex flex-col items-start gap-2 w-full outline-none">
-        <span className="font-medium text-sm text-neutral-3 xs:text-base">Departure</span>
+        <span className="font-medium text-sm text-neutral-3 xs:text-base">Kepergian</span>
         <input 
           type="date"
           onChange={handleDepartureDate}
@@ -42,7 +42,7 @@ const SearchFlightDateForm = ({ type }) => {
   ) : (
     // Return Date
     <div className="relative flex flex-col items-start gap-2 w-full outline-none" disabled={!isReturn}>
-      <span className="font-medium text-sm text-neutral-3 xs:text-base">Return</span>
+      <span className="font-medium text-sm text-neutral-3 xs:text-base">Kepulangan</span>
       <input 
         type={isReturn ? "date" : "text"}
         onChange={handleReturnDate}

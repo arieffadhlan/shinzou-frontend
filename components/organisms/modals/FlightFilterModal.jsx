@@ -55,14 +55,6 @@ const FlightFilterModal = ({ data }) => {
 						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
 					</div>
 				</button>
-				<button type="button" className="group flex flex-col gap-2 px-6 pt-3 outline-none bg-white hover:bg-primary-5">
-					<div className="flex justify-between items-center w-full pb-3 border-b border-neutral-2">
-						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">
-							Durasi&nbsp; <span className="font-medium group-hover:font-bold">- Terpendek</span>
-						</span>
-						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
-					</div>
-				</button>
 				<button type="button" onClick={() => handleFilterByDeparture("earliest")} className="group flex flex-col gap-2 px-6 pt-3 outline-none bg-white hover:bg-primary-5">
 					<div className="flex justify-between items-center w-full pb-3 border-b border-neutral-2">
 						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">

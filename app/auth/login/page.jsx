@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl leading-6 text-black">
-        Login
+        Masuk
       </h1>
       <div className="flex flex-col gap-10">
         <Form 
@@ -60,13 +60,13 @@ const Login = () => {
         >
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
-            <Input type="email" variant="primary" name="email" placeholder="example@gmail.com" autoFocus />
+            <Input type="email" variant="primary" name="email" placeholder="contoh@gmail.com" autoFocus />
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex justify-between items-center">
               <Label id="password">Password</Label>
               <Link href="/auth/forgot-password" className="font-medium text-xs text-primary-4">
-                Forgot Password
+                Lupa Password
               </Link>
             </div>
             <InputPassword variant="primary" name="password" placeholder="Password" />
@@ -78,13 +78,13 @@ const Login = () => {
             className="w-full mt-2"
             loading={loading}
           >
-            Continue
+            Masuk
           </Button>
         </Form>
         <span className="flex justify-center items-center text-sm text-black">
-          No account?&nbsp;
+          Belum punya akun?&nbsp;
           <Link href="/auth/register" className="font-bold text-primary-4">
-            Create One
+            Daftar di sini
           </Link>
         </span>
       </div>

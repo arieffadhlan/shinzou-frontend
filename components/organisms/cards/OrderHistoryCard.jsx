@@ -90,7 +90,7 @@ const OrderHistoryCard = ({ data }) => {
 						{/* Duration */}
 						<div className="flex flex-2 flex-col justify-center items-center">
 							<span className="font-medium text-xs text-neutral-3">
-								{timeDifference.hourDifference}h {timeDifference.minuteDifference}m
+								{timeDifference.hourDifference}j {timeDifference.minuteDifference}m
 							</span>
 							<div className="flex items-center w-full">
 								<div className="w-full h-[1px] bg-[#8A8A8A] mt-[0.5px]"></div>
@@ -135,7 +135,7 @@ const OrderHistoryCard = ({ data }) => {
 							{/* Duration */}
 							<div className="flex flex-2 flex-col justify-center items-center">
 								<span className="font-medium text-xs text-neutral-3">
-									{returnTimeDifference.hourDifference}h {returnTimeDifference.minuteDifference}m
+									{returnTimeDifference.hourDifference}j {returnTimeDifference.minuteDifference}m
 								</span>
 								<div className="flex items-center w-full">
 									<div className="w-full h-[1px] bg-[#8A8A8A] mt-[0.5px]"></div>
@@ -165,7 +165,7 @@ const OrderHistoryCard = ({ data }) => {
 				<div className="flex justify-between items-center pt-3 border-t border-neutral-2">
 					{/* Booking code */}
 					<div className="flex flex-col">
-						<span className="font-bold text-sm text-neutral-5">Booking Code:</span>
+						<span className="font-bold text-sm text-neutral-5">Kode Booking:</span>
 						<span className="text-sm text-neutral-5">
 							{data.booking_code}
 						</span>
@@ -183,7 +183,7 @@ const OrderHistoryCard = ({ data }) => {
 					<span className="font-bold text-sm text-neutral-5 2md:text-lg">Detail Pesanan</span>
 					{/* Booking code */}
 					<span className="text-sm text-neutral-5 2md:text-base">
-						Booking Code:&nbsp;
+						Kode Booking:&nbsp;
 						<span className="font-bold text-primary-5">
 							{selectedTransaction.booking_code}
 						</span>

@@ -56,7 +56,7 @@ const Register = () => {
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl text-black">
-        Register
+        Daftar
       </h1>
       <div className="flex flex-col gap-10">
         <Form 
@@ -65,15 +65,15 @@ const Register = () => {
           className="flex flex-col gap-4"
         >
           <div className="flex flex-col gap-1">
-            <Label id="name">Name</Label>
-            <Input type="text" variant="primary" name="name" placeholder="Name" autoFocus />
+            <Label id="name">Nama</Label>
+            <Input type="text" variant="primary" name="name" placeholder="Nama lengkap" autoFocus />
           </div>
           <div className="flex flex-col gap-1">
             <Label id="email">Email</Label>
-            <Input type="email" variant="primary" name="email" placeholder="example@gmail.com" />
+            <Input type="email" variant="primary" name="email" placeholder="contoh@gmail.com" />
           </div>
           <div className="flex flex-col gap-1">
-            <Label id="phone_number">Phone Number</Label>
+            <Label id="phone_number">Nomor Telepon</Label>
             <Input type="number" variant="primary" name="phone_number" placeholder="08123456789" />
           </div>
           <div className="flex flex-col gap-1">
@@ -87,13 +87,13 @@ const Register = () => {
             className="w-full mt-2"
             loading={loading}
           >
-            Continue
+            Daftar
           </Button>
         </Form>
         <span className="flex justify-center items-center text-sm text-black">
-          Already have an account?&nbsp;
+          Sudah punya akun?&nbsp;
           <Link href="/auth/login" className="font-bold text-primary-4">
-            Login
+            Masuk di sini
           </Link>
         </span>
       </div>

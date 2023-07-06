@@ -75,7 +75,7 @@ const OrderHistoryDetails = () => {
         </div>
         {/* Booking code */}
         <span className="text-sm text-neutral-5 2md:text-base">
-          Booking Code:&nbsp;
+          Kode Booking:&nbsp;
           <span className="font-bold text-primary-5">
             {selectedTransaction.booking_code}
           </span>

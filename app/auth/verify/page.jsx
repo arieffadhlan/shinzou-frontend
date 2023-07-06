@@ -62,13 +62,12 @@ const verifyAccount = () => {
     <section className="flex justify-center items-center min-h-screen w-full mx-auto xs:max-w-xl xl:max-w-none">
       <form onSubmit={handleFormSubmit} className="flex flex-col gap-4 w-[576px] px-6 xs:px-0">
         <h1 className="font-bold text-2xl leading-9 text-black">
-          Enter OTP
+          Masukkan OTP
         </h1>
         <div className="flex flex-col justify-center items-center gap-6 py-6 mb-16">
           <div className="flex flex-col justify-center items-center gap-11">
             <p className="mb-0 text-sm text-center text-neutral-5">
-              Type in the 6 digit code sent to&nbsp;
-              <span className="font-bold">{user?.data?.email}</span>
+              Ketik 6 digit kode yang telah dikirim ke alamat email yang kamu daftarkan pada saat registrasi.
             </p>
             <OtpInput
               value={otp}
@@ -86,7 +85,7 @@ const verifyAccount = () => {
               ? `Resend OTP in ${countdown} seconds`
               : (
                 <button type="button" onClick={handleResendOTP} className="border-0 outline-none bg-transparent font-semibold text-sm text-danger">
-                  Resend OTP
+                  Kirim ulang OTP
                 </button>
               )
             }
@@ -99,7 +98,7 @@ const verifyAccount = () => {
           className="w-full mt-2"
           loading={loading}
         >
-          Continue
+          Lanjut
         </Button>
       </form>
       

@@ -53,7 +53,7 @@ const FlightDetails = () => {
         {/* Booking code */}
         {transaction.hasOwnProperty("id") && (
           <span className="text-sm text-neutral-5 2md:text-base">
-            Booking Code:&nbsp;
+            Kode Booking:&nbsp;
             <span className="font-bold text-primary-5">
               {transaction.booking_code}
             </span>

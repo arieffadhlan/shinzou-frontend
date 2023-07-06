@@ -12,7 +12,7 @@ const NotFound = () => {
         variant="primary" 
         className="px-4 rounded-xl"
       >
-        Back to Home
+        Beranda
       </ButtonLink>
     </div>
   )

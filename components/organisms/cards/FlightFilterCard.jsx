@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/redux/features/modal/modalSlice";
 import Modal from "@/components/molecules/Modal";
 import FlightFilterModal from "../modals/FlightFilterModal";
-import { useState } from "react";
 
 const FlightFilterCard = () => {
   const dispatch = useDispatch();

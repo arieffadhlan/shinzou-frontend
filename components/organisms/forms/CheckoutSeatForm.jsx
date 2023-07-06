@@ -78,7 +78,7 @@ const SeatForm = ({ totalPassengers, passengers, setPassengers }) => {
       <div className="flex flex-col bg-neutral-1 border border-neutral-2 rounded-lg shadow-2xs">
         <div className="flex justify-center items-center px-4 py-2 rounded-t-lg bg-primary-4">
           <span className="font-medium text-base text-neutral-1">
-            Economy
+            {selectedDepartureFlight.class}
           </span>
         </div>
         <div className="grid grid-rows-[13] justify-center items-center gap-2.5 px-4 pt-4 pb-9">

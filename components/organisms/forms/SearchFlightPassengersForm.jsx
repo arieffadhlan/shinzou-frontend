@@ -17,10 +17,10 @@ const SearchFlightPassengersForm = () => {
       <div className="flex items-center gap-7 w-full">
         <div className="hidden items-center gap-3 text-neutral-3 2lg:flex">
           <span className="material-icons-round">airline_seat_recline_normal</span>
-          <span className="text-sm">To</span>
+          <span className="text-sm">Ke</span>
         </div>
         <button type="button" onClick={() => dispatch(openModal("flight-seat"))} className="flex flex-col items-start gap-2 w-full outline-none">
-          <span className="font-medium text-sm text-neutral-3 xs:text-base">Passengers</span>
+          <span className="font-medium text-sm text-neutral-3 xs:text-base">Penumpang</span>
           <span className="font-medium text-sm text-black xs:text-base">
             {adult + child + baby} Penumpang
           </span>

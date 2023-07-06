@@ -49,7 +49,7 @@ const ForgotPassword = () => {
   return (
     <AuthFormContainer>
       <h1 className="font-bold text-2xl text-black">
-        Forgot Password
+        Lupa Password
       </h1>
       <Form 
         validationSchema={validationSchema} 
@@ -58,7 +58,7 @@ const ForgotPassword = () => {
       >
         <div className="flex flex-col gap-1">
           <Label id="email">Email</Label>
-          <Input type="email" variant="primary" name="email" placeholder="Your email" autoFocus />
+          <Input type="email" variant="primary" name="email" placeholder="Email" autoFocus />
         </div>
         <Button 
           type="submit" 
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
           className="w-full mt-2"
           loading={loading}
         >
-          Continue
+          Kirim
         </Button>
       </Form>
 

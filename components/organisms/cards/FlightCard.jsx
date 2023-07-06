@@ -102,7 +102,7 @@ const FlightCard = ({ flight }) => {
                         arrow_forward_ios
                       </span>
                     </div>
-                    <span className="font-medium text-xs text-neutral-3">Direct</span>
+                    <span className="font-medium text-xs text-neutral-3">Langsung</span>
                   </div>
                   {/* Arrival */}
                   <div className="flex flex-1 flex-col justify-center items-center gap-1 max-w-[48px]">

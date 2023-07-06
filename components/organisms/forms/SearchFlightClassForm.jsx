@@ -18,7 +18,7 @@ const SearchFlightClassForm = () => {
         onClick={() => dispatch(openModal("flight-class"))} 
         className="flex flex-col items-start gap-2 w-full outline-none"
       >
-        <span className="font-medium text-sm text-neutral-3 xs:text-base">Seat Class</span>
+        <span className="font-medium text-sm text-neutral-3 xs:text-base">Kelas</span>
         <span className="font-medium text-sm text-black xs:text-base">
           {searchFlightData.seat_class}
         </span>

@@ -60,7 +60,7 @@ const Navbar = () => {
 								className="px-4 rounded-xl"
 							>
 								<span className="material-icons-round !text-[20px]">login</span>
-								Login
+								Masuk
 							</ButtonLink>
 						)}
 					</div>

@@ -64,7 +64,7 @@ const SearchFlightLocationForm = () => {
         <div className="flex items-center gap-3 text-neutral-3">
           <span className="material-icons-round">flight_takeoff</span>
           <span className="text-xs xs:text-sm">
-            {locationSwap ? "To" : "From"}
+            {locationSwap ? "Ke" : "Dari"}
           </span>
         </div>
         <div className="flex flex-col items-start gap-3 w-full">
@@ -101,7 +101,7 @@ const SearchFlightLocationForm = () => {
         <div className="flex items-center gap-3 text-neutral-3">
           <span className="material-icons-round">flight_takeoff</span>
           <span className="text-xs xs:text-sm">
-            {locationSwap ? "From" : "To"}
+            {locationSwap ? "Dari" : "Ke"}
           </span>
         </div>
         <div className="flex flex-col items-start gap-3 w-full">

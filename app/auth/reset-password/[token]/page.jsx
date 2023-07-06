@@ -62,12 +62,12 @@ const ResetPassword = ({ params }) => {
         className="flex flex-col gap-4"
       >
         <div className="flex flex-col gap-1">
-          <Label id="password">New Password</Label>
-          <InputPassword variant="primary" name="password" placeholder="New Password" autoFocus />
+          <Label id="password">Password Baru</Label>
+          <InputPassword variant="primary" name="password" placeholder="Password baru" autoFocus />
         </div>
         <div className="flex flex-col gap-1">
-          <Label id="confirmationPassword">Repeat New Password</Label>
-          <InputPassword variant="primary" name="confirmationPassword" placeholder="Repeat New Password" />
+          <Label id="confirmationPassword">Ulangi Password Baru</Label>
+          <InputPassword variant="primary" name="confirmationPassword" placeholder="Ulangi password baru" />
         </div>
         <Button 
           type="submit" 
@@ -76,7 +76,7 @@ const ResetPassword = ({ params }) => {
           className="w-full mt-2"
           loading={loading}
         >
-          Continue
+          Lanjut
         </Button>
       </Form>
 
