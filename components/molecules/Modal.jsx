@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/features/modal/modalSlice";
 import Button from "../atoms/Button";
 
-const Modal = ({ children }) => {
+const Modal = ({ children, saveButton = true }) => {
   const dispatch = useDispatch();
   const close = () => dispatch(closeModal());
   
@@ -21,16 +21,18 @@ const Modal = ({ children }) => {
           </button>
         </div>
         {children}
-        <div className="flex justify-end px-4 py-4">
-          <Button
-            onClick={close}
-            size="md"
-            variant="primary"
-            className="bg-primary-5"
-          >
-            Simpan
-          </Button>
-        </div>
+        {saveButton && (
+          <div className="flex justify-end px-4 py-4">
+            <Button
+              onClick={close}
+              size="md"
+              variant="primary"
+              className="bg-primary-5"
+            >
+              Simpan
+            </Button>
+          </div>
+        )}
       </div>
       {/* Backdrop */}
       <div onClick={close} className="fixed inset-0 opacity-[60%] bg-black"></div>

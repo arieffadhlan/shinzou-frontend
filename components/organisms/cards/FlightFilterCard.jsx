@@ -13,19 +13,16 @@ const FlightFilterCard = () => {
   return (
     <>
       <div className="flex flex-col gap-2 w-full h-fit p-6 rounded-2xl shadow-xs 2md:w-[268px]">
-        <h2 className="font-medium text-base text-black">
-          Filter
-        </h2>
         <button 
           onClick={() => dispatch(openModal("flight-filter"))}
-          className="flex items-center gap-2 pt-4 border-t border-neutral-2"
+          className="flex items-center gap-2"
         >
           <span className="material-icons-round text-primary-4">swap_vert</span>
-          <span className="text-base text-neutral-5 group-hover:text-black">Transit</span>
+          <span className="font-medium text-base text-neutral-5 group-hover:text-black">Filter</span>
         </button>
       </div>
       {show && modalId === "flight-filter" && (
-        <Modal>
+        <Modal saveButton={false}>
           <FlightFilterModal data={flights} />
         </Modal>
       )}

@@ -2,7 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
+
 import { setFlights } from "@/redux/features/flight/flightSlice";
+import { closeModal } from "@/redux/features/modal/modalSlice";
 
 const FlightFilterModal = ({ data }) => {
 	const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const FlightFilterModal = ({ data }) => {
 		const result = flights.sort((x, y) => x.price - y.price);
 		
 		dispatch(setFlights(result));
+		dispatch(closeModal());
+
 		router.refresh();
 	}
 
@@ -28,6 +32,8 @@ const FlightFilterModal = ({ data }) => {
 		}
 		
 		dispatch(setFlights(result));
+		dispatch(closeModal());
+
 		router.refresh();
 	}
 
@@ -41,6 +47,8 @@ const FlightFilterModal = ({ data }) => {
 		}
 		
 		dispatch(setFlights(result));
+		dispatch(closeModal());
+		
 		router.refresh();
 	}
 
@@ -52,7 +60,6 @@ const FlightFilterModal = ({ data }) => {
 						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">
 							Harga&nbsp; <span className="font-medium group-hover:font-bold">- Termurah</span>
 						</span>
-						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
 					</div>
 				</button>
 				<button type="button" onClick={() => handleFilterByDeparture("earliest")} className="group flex flex-col gap-2 px-6 pt-3 outline-none bg-white hover:bg-primary-5">
@@ -60,7 +67,6 @@ const FlightFilterModal = ({ data }) => {
 						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">
 							Keberangkatan&nbsp; <span className="font-medium group-hover:font-bold">- Paling Awal</span>
 						</span>
-						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
 					</div>
 				</button>
 				<button type="button" onClick={() => handleFilterByDeparture("latest")} className="group flex flex-col gap-2 px-6 pt-3 outline-none bg-white hover:bg-primary-5">
@@ -68,7 +74,6 @@ const FlightFilterModal = ({ data }) => {
 						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">
 							Keberangkatan&nbsp; <span className="font-medium group-hover:font-bold">- Paling Akhir</span>
 						</span>
-						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
 					</div>
 				</button>
 				<button type="button" onClick={() => handleFilterByArrival("earliest")} className="group flex flex-col gap-2 px-6 pt-3 outline-none bg-white hover:bg-primary-5">
@@ -76,15 +81,13 @@ const FlightFilterModal = ({ data }) => {
 						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">
 							Kedatangan&nbsp; <span className="font-medium group-hover:font-bold">- Paling Awal</span>
 						</span>
-						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
 					</div>
 				</button>
 				<button type="button" onClick={() => handleFilterByArrival("latest")} className="group flex flex-col gap-2 px-6 pt-3 outline-none bg-white hover:bg-primary-5">
-					<div className="flex justify-between items-center w-full pb-3 border-b border-neutral-2">
+					<div className="flex justify-between items-center w-full pb-3">
 						<span className="font-medium text-sm text-neutral-5 group-hover:font-bold group-hover:text-neutral-1">
 							Kedatangan&nbsp; <span className="font-medium group-hover:font-bold">- Paling Akhir</span>
 						</span>
-						<span className="material-icons-round !hidden !text-[20px] text-success group-hover:!inline-block">check_circle</span>
 					</div>
 				</button>
 			</div>
