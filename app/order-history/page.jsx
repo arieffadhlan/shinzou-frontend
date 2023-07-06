@@ -17,7 +17,7 @@ import Alert from "@/components/atoms/Alert";
 
 export default function OrderHistory() {  
   const dispatch = useDispatch();
-  const { transactions, transactionData, success, error } = useSelector((state) => state.transaction);
+  const { transactions, transactionData, selectedTransaction, success, error } = useSelector((state) => state.transaction);
   const { user } = useSelector((state) => state.auth);
   const [bookingCode, setBookingCode] = useState("");
 
@@ -36,7 +36,9 @@ export default function OrderHistory() {
   });
 
   useEffect(() => {
-    if (userTransactions.length > 0) dispatch(setSelectedTransaction(userTransactions[0]));
+    if (userTransactions.length > 0 && selectedTransaction?.id === userTransactions[0]?.id) {
+      dispatch(setSelectedTransaction(userTransactions[0]));
+    }
   }, [userTransactions])
 
   const userTransactionsFiltered = userTransactions.filter((transaction) => {

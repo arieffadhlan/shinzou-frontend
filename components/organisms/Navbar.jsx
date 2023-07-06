@@ -3,16 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getNotifications } from "@/redux/features/notification/notificationAction";
 
 import ButtonLink from "@/components/atoms/ButtonLink";
 import logo from "@/assets/icons/logo.svg";
+import { useEffect } from "react";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
 	const pathname = usePathname();
 	const { notifications } = useSelector((state) => state.notification);
   const { user } = useSelector((state) => state.auth);
 	const token = localStorage.getItem("token");
+
+	useEffect(() => {
+    dispatch(getNotifications());
+  }, [])
 
   const userNotifications = token && notifications.filter((notification) => {
 		if (notification.user_id === user?.data?.id) {
