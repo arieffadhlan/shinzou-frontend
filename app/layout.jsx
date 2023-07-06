@@ -35,8 +35,9 @@ const RootLayout = ({ children }) => {
         <meta name="author" content="Shinzou Team" />
         <meta name="description" content="E-Flight Ticket: Shinzou" />
         <meta name="keyword" content="Shinzou, shinzou, tiket pesawat, pemesanan tiket pesawat" />
-        <title>Shinzou</title>
+        <link rel="icon" href="/icon.svg" type="image/svg" sizes="32x32" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+        <title>Shinzou</title>
       </head>
       <body>
         <Provider>
