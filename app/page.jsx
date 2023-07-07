@@ -8,6 +8,7 @@ import { clearTransactionState } from '@/redux/features/transaction/transactionS
 
 import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
+import Partners from '@/components/organisms/Partners';
 import AboutShinzou from '@/components/templates/AboutShinzou';
 import FavoriteDestination from '@/components/templates/FavoriteDestination';
 import SearchFlightForm from '@/components/templates/SearchFlightForm';
@@ -27,6 +28,7 @@ const Home = () => {
         <SearchFlightForm />
         <FavoriteDestination />
       </main>
+      <Partners />
       <AboutShinzou />
       <Footer />
     </>   

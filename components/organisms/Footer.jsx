@@ -12,7 +12,7 @@ import logo from "@/assets/icons/logo-white.svg"
 
 const Footer = () => {
   return (
-    <Container htmlTag="footer" className="px-6 py-12 mt-20 bg-sky-950 sm:px-8 sm:py-15">
+    <Container htmlTag="footer" className="px-6 py-12 mt-20 bg-sky-950 max-w-none sm:px-8 sm:py-15">
       <div className="flex flex-col justify-start items-start gap-10 lg:flex-row lg:gap-32">
         <div className="flex flex-col gap-y-6">
           <Image src={logo} width={64} height={64} alt="logo" />
