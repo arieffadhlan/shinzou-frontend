@@ -56,7 +56,7 @@ const SearchFlightForm = ({ setShowSearchForm = function(){}, className = "" }) 
     <Container className={twMerge("mt-32", className)}>
       <form onSubmit={handleOnSubmit} className="flex flex-col gap-8 border border-neutral-2 rounded-xl bg-neutral-1 shadow-xs">
         <div className="flex flex-col gap-6 px-6 pt-6">
-          <h1 className="font-bold text-xl">
+          <h1 className="font-bold text-base sm:text-xl">
             Pilih Jadwal Penerbangan spesial di&nbsp;
             <span className="text-primary-4">Shinzou!</span>
           </h1>
